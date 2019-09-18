@@ -16,6 +16,7 @@ foreach my $filename(@files) {
     open my $filecontent, $filename or die "Could not open $filename: $!";
 
     $filecount++;
+    
     my $found = 0;
 
     $output = $output."<bulletin><fichier>$filename</fichier>";
@@ -49,24 +50,33 @@ foreach my $filename(@files) {
             $line =~ s/&#21;/--/g;
         }
 
-        # Match title and date
+        # Get number and date
         if ( $line =~ /class="style32">BE France (\d+).*class="style42">.*;(\d{1,2}\/\d{1,2}\/\d{4})<\/span><\/p><\/td>/ ) {
-            my $number = $1;
+            $found = 1;
             my $date = $2;
-
             if (length $date == 9) {
                 $date = "0".$date;
             }
-            $output = $output."<numero>$number</numero><date>$date</date>";
-            $found = 1;
-        }
+            $output = $output."<numero>$1</numero><date>$date</date>";
+        } 
 
-        # Match rubrique
+        # Get rubrique
         if ( $line =~ /<span class="style42">(([A-zÀ-ÿ]+ )*([A-zÀ-ÿ]*))<br>/ ) {
-            my $rubrique = $1;
-            $output = $output."<rubrique>$rubrique</rubrique>";
-            $found = 1;
+            $found = 1; 
+            $output = $output."<rubrique>$1</rubrique>";
         }
+        
+        # Get title
+        if ( $line =~ /<span class="style17">(.*)<\/span>/ ) {
+            $found = 1;
+            $output = $output."<titre>$1</titre>";
+        } 
+
+        # Get text 
+
+        # Get images
+
+        # Get contact
     }
 
     if ($found == 0) {
