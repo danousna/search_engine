@@ -18,7 +18,8 @@ my %log = (
     "rubrique" => 0,
     "titre" => 0,
     "texte" => 0,
-    "images" => 0,
+    "images_url" => 0,
+    "images_legende" => 0,
     "contact" => 0
 );
 
@@ -27,6 +28,14 @@ foreach my $filename(@files) {
     
     $output = $output."<bulletin><fichier>$filename</fichier>";
     ++$log{fichiers};
+
+    my $article_has_begun = 0;
+
+    my $text = "";
+    my @images;
+
+    # Save contact in variable to put it at the end of the xml block.
+    my $contact = "";
 
     while (my $line = <$filecontent>) {
         # Replace html entities with correct accents
@@ -81,16 +90,67 @@ foreach my $filename(@files) {
         } 
 
         # Get texte
-        # $output = $output."<texte>";
-        # if ( $line =~ /<span class="style17">(.*)<\/span>/ ) {
-        #     $output = $output."<titre>$1</titre>";
-        #     ++$log{texte};
-        # }
-        # $output = $output."</texte>";
+        if ( $line =~ /<td width=452 valign=top bgcolor="#f3f5f8" class="FWExtra2">/ ) {
+            $article_has_begun = 1;
+        }
+
+        if ( $line =~ /<\/td>/ and $article_has_begun == 1 ) {
+            $article_has_begun = 0;
+        }
+
+        if ( $article_has_begun == 1 and $line =~ /<span class="style95">(.*)/gs ) {
+            my $match = $1;
+            # Replace all "br" tags with empty string
+            $match =~ s/<br \/>|<br>/ /g;
+            # # Replace all "b" tags with empty string
+            $match =~ s/<b[^>]*>|<\/b>/ /g;
+            # # Replace all "a" tags with empty string
+            $match =~ s/<a[^>]*>|<\/a>/ /g;
+
+            $text = $text.$match;
+        }
 
         # Get images
+        my $image = "";
+        my $image_has_been_found = 0;
+        if ( $article_has_begun == 1 and $line =~ /<div style="text-align: center"><img src="(.*?)"[^>]*>/ ) {
+            $image = $image."<url>$1</url>";
+            $image_has_been_found = 1;
+            ++$log{images_url};
+        }
+        if ( $article_has_begun == 1 and $line =~ /<span class="style21"><strong>(.*?)<\/strong>/ ) {
+            $image = $image."<legende>$1</legende>";
+            $image_has_been_found = 1;
+            ++$log{images_legende};
+        }
+        if ( $image_has_been_found == 1 ) {
+            push @images, "";
+        }
 
         # Get contact
+        # if ( $line =~ /<span class="style17">(.*)<\/span>/ ) {
+        #     $contact = "<contact>$1</contact>";
+        #     ++$log{contact};
+        # } 
+    }
+
+    if ($text ne "") {
+        $output = $output."<texte>$text</texte>";
+        ++$log{texte};
+    }
+    
+    $output = $output."<images>";
+    if (@images) {
+        ++$log{images};
+    }
+    foreach my $image (@images) {
+        $output = $output."<image>".$image."</image>";
+    }
+    $output = $output."</images>";
+
+    if ($contact ne "") {
+        $output = $output.$contact;
+        ++$log{contact};
     }
 
     $output = $output."</bulletin>";
