@@ -12,6 +12,7 @@ my @files = `ls OLD_BULLETINS_LO17/*.htm`;
 my $output = "<corpus>";
 
 my %log = ( 
+    "article" => 0,
     "fichiers" => 0,
     "numero" => 0,
     "date" => 0,
@@ -99,13 +100,9 @@ foreach my $filename(@files) {
         # Get texte
         if ( $line =~ /<td width=452 valign=top bgcolor="#f3f5f8" class="FWExtra2">/ ) {
             $article_has_begun = 1;
+            ++$log{article};
         }
-
-        if ( $line =~ /<\/td>/ and $article_has_begun == 1 ) {
-            $article_has_begun = 0;
-        }
-
-        if ( $article_has_begun == 1 and $line =~ /<span class="style95">(.*)/gs ) {
+        if ( $article_has_begun == 1 and ( $line =~ /<span class="style95">(.*)<\/span>/ or $line =~ /<span class="style95">(.*)/ ) ) {
             my $match = $1;
             # Replace all "br" tags with empty string
             $match =~ s/<br \/>|<br>/ /g;
@@ -115,6 +112,9 @@ foreach my $filename(@files) {
             $match =~ s/<a[^>]*>|<\/a>/ /g;
 
             $text = $text.$match;
+        }
+        if ( $line =~ /<\/td>/ and $article_has_begun == 1 ) {
+            $article_has_begun = 0;
         }
 
         # Get images
@@ -147,6 +147,8 @@ foreach my $filename(@files) {
     if ($text ne "") {
         $output = $output."<texte>$text</texte>";
         ++$log{texte};
+    } else {
+        print $filename;
     }
     
     if (@images) {
