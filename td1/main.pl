@@ -197,9 +197,6 @@ close FILE;
 print "Log :\n";
 foreach my $key (keys %log) {
     my $msg = "- $key : $log{$key}";
-    if ($log{$key} != $log{fichiers}) {
-        $msg = $msg." --> erreur";
-    }
     $msg = $msg."\n";
     print $msg;
 }
