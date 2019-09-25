@@ -138,10 +138,10 @@ foreach my $filename(@files) {
         }
 
         # Get contact
-        # if ( $line =~ /<span class="style17">(.*)<\/span>/ ) {
-        #     $contact = "<contact>$1</contact>";
-        #     ++$log{contact};
-        # }
+        if ( $line =~ /<p class="style44"><span class="style85">(.*)<\/p>/ ) {
+            $contact = "<contact>$1</contact>";
+            ++$log{contact};
+        }
     }
 
     if ($text ne "") {
@@ -165,7 +165,6 @@ foreach my $filename(@files) {
 
     if ($contact ne "") {
         $output = $output.$contact;
-        ++$log{contact};
     }
 
     $output = $output."</bulletin>";
