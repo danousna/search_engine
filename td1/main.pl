@@ -36,18 +36,16 @@ foreach my $filename(@files) {
 
     my $line_count = 0;
 
-    my $article_has_begun = 0;
+    my $article_found = 0;
 
     my $image = "";
-    my $image_found_page = 0; 
+    my $image_found = 0; 
 
     my $text = "";
     my @images;
 
     # Save contact in variable to put it at the end of the xml block.
     my $contact = "";
-
-    my $r = 0;
 
     while (my $line = <$filecontent>) {
         ++$line_count;
@@ -94,7 +92,6 @@ foreach my $filename(@files) {
         # Get rubrique
         if ( $line =~ /<span class="style42">(.*)<br>/ ) {
             $output = $output."<rubrique>$1</rubrique>";
-            $r = 1;
             ++$log{rubrique};
         }
         
@@ -106,9 +103,9 @@ foreach my $filename(@files) {
 
         # Get texte
         if ( $line =~ /<td width=452 valign=top bgcolor="#f3f5f8" class="FWExtra2">/ ) {
-            $article_has_begun = 1;
+            $article_found = 1;
         }
-        if ( $article_has_begun == 1 and ( $line =~ /<span class="style95">(.*)<\/span>/ or $line =~ /<span class="style95">(.*)/ ) ) {
+        if ( $article_found == 1 and ( $line =~ /<span class="style95">(.*)<\/span>/ or $line =~ /<span class="style95">(.*)/ ) ) {
             my $match = $1;
             # Replace all "br" tags with empty string
             $match =~ s/<br \/>|<br>/ /g;
@@ -119,28 +116,28 @@ foreach my $filename(@files) {
 
             $text = $text.$match;
         }
-        if ( $line =~ /<\/td>/ and $article_has_begun == 1 ) {
-            $article_has_begun = 0;
+        if ( $line =~ /<\/td>/ and $article_found == 1 ) {
+            $article_found = 0;
         }
 
         # Get images
         if ( $line =~ /<div style="text-align: center">.*<img src="(.*?)"[^>]*>/ ) {
             $image = $image."<url>$1</url>";
-            $image_found_page = $line_count;
+            $image_found = 1;
             ++$log{images_url};
         }
 
-        if ( $line_count == $image_found_page + 1 ) {
-            if ( $line =~ /<span class="style21"><strong>(.*?)<\/strong>/ ) {
-                $image = $image."<legende>$1</legende>";
-                ++$log{images_legende};
-            }
+        if ( $line =~ /<span class="style21"><strong>(.*?)<\/strong>/ ) {
+            $image = $image."<legende>$1</legende>";
+            ++$log{images_legende};
+        }
 
+        if ( $image_found == 1 ) {
             if ( $image ne "" ) {
                 push @images, $image;
             }
 
-            $image_found_page = 0;
+            $image_found = 0;
         }
 
         # Get contact
@@ -163,8 +160,6 @@ foreach my $filename(@files) {
     if ($text ne "") {
         $output = $output."<texte>$text</texte>";
         ++$log{texte};
-    } else {
-        print $filename;
     }
     
     if (@images) {
@@ -179,10 +174,6 @@ foreach my $filename(@files) {
 
     if ($contact ne "") {
         $output = $output.$contact;
-    }
-
-    if ($r == 0) {
-        print $filename;
     }
 
     $output = $output."</bulletin>";
