@@ -29,7 +29,12 @@ foreach my $filename(@files) {
     $output = $output."<bulletin><fichier>$filename</fichier>";
     ++$log{fichiers};
 
+    my $line_count = 0;
+
     my $article_has_begun = 0;
+
+    my $image = "";
+    my $image_found_page = 0; 
 
     my $text = "";
     my @images;
@@ -38,6 +43,8 @@ foreach my $filename(@files) {
     my $contact = "";
 
     while (my $line = <$filecontent>) {
+        ++$line_count;
+
         # Replace html entities with correct accents
         unless($line =~ /"style32">BE France (\d+).*&nbsp;(\d+\/\d+\/\d+)/) {
             $line =~ s/&nbsp;/ /g;
@@ -111,27 +118,30 @@ foreach my $filename(@files) {
         }
 
         # Get images
-        my $image = "";
-        my $image_has_been_found = 0;
-        if ( $article_has_begun == 1 and $line =~ /<div style="text-align: center"><img src="(.*?)"[^>]*>/ ) {
+        if ( $line =~ /<div style="text-align: center">.*<img src="(.*?)"[^>]*>/ ) {
             $image = $image."<url>$1</url>";
-            $image_has_been_found = 1;
+            $image_found_page = $line_count;
             ++$log{images_url};
         }
-        if ( $article_has_begun == 1 and $line =~ /<span class="style21"><strong>(.*?)<\/strong>/ ) {
-            $image = $image."<legende>$1</legende>";
-            $image_has_been_found = 1;
-            ++$log{images_legende};
-        }
-        if ( $image_has_been_found == 1 ) {
-            push @images, "";
+
+        if ( $line_count == $image_found_page + 1 ) {
+            if ( $line =~ /<span class="style21"><strong>(.*?)<\/strong>/ ) {
+                $image = $image."<legende>$1</legende>";
+                ++$log{images_legende};
+            }
+
+            if ( $image ne "" ) {
+                push @images, $image;
+            }
+
+            $image_found_page = 0;
         }
 
         # Get contact
         # if ( $line =~ /<span class="style17">(.*)<\/span>/ ) {
         #     $contact = "<contact>$1</contact>";
         #     ++$log{contact};
-        # } 
+        # }
     }
 
     if ($text ne "") {
@@ -139,14 +149,17 @@ foreach my $filename(@files) {
         ++$log{texte};
     }
     
-    $output = $output."<images>";
     if (@images) {
+        $output = $output."<images>";
+
+        foreach my $image (@images) {
+            $output = $output."<image>$image</image>";
+        }
+
+        $output = $output."</images>";
+
         ++$log{images};
     }
-    foreach my $image (@images) {
-        $output = $output."<image>".$image."</image>";
-    }
-    $output = $output."</images>";
 
     if ($contact ne "") {
         $output = $output.$contact;
