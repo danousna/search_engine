@@ -43,6 +43,8 @@ foreach my $filename(@files) {
     # Save contact in variable to put it at the end of the xml block.
     my $contact = "";
 
+    my $r = 0;
+
     while (my $line = <$filecontent>) {
         ++$line_count;
 
@@ -86,8 +88,9 @@ foreach my $filename(@files) {
         } 
 
         # Get rubrique
-        if ( $line =~ /<span class="style42">(([A-zÀ-ÿ]+ )*([A-zÀ-ÿ]*))<br>/ ) {
+        if ( $line =~ /<span class="style42">(.*)<br>/ ) {
             $output = $output."<rubrique>$1</rubrique>";
+            $r = 1;
             ++$log{rubrique};
         }
         
@@ -139,7 +142,17 @@ foreach my $filename(@files) {
 
         # Get contact
         if ( $line =~ /<p class="style44"><span class="style85">(.*)<\/p>/ ) {
-            $contact = "<contact>$1</contact>";
+            my $match = $1;
+            # Replace all "br" tags with empty string
+            $match =~ s/<br \/>|<br>/ /g;
+            # # Replace all "b" tags with empty string
+            $match =~ s/<b[^>]*>|<\/b>/ /g;
+            # # Replace all "a" tags with empty string
+            $match =~ s/<a[^>]*>|<\/a>/ /g;
+            # # Replace all "span" tags with empty string
+            $match =~ s/<span[^>]*>|<\/span>/ /g;
+
+            $contact = "<contact>$match</contact>";
             ++$log{contact};
         }
     }
@@ -159,12 +172,14 @@ foreach my $filename(@files) {
         }
 
         $output = $output."</images>";
-
-        ++$log{images};
     }
 
     if ($contact ne "") {
         $output = $output.$contact;
+    }
+
+    if ($r == 0) {
+        print $filename;
     }
 
     $output = $output."</bulletin>";
