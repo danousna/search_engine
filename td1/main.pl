@@ -2,18 +2,22 @@
 use strict;
 use warnings;
 
-# Workflow : perl main.pl
-
-# Check numéro class is in all files.
-# grep 'style32">BE France' OLD_BULLETINS_LO17/*.htm | uniq -c | wc -l
-
 my @files = `ls OLD_BULLETINS_LO17/*.htm`;
 
 my $output = "<corpus>";
 
+my %cmds = ( 
+    "numero" => 'grep \'style32">BE France\' OLD_BULLETINS_LO17/*.htm | uniq -c | wc -l',
+    "date" => 'grep \'style32">BE France\' OLD_BULLETINS_LO17/*.htm | uniq -c | wc -l',
+    "rubrique" => 'grep \'<p class="style96"><span class="style42">\' OLD_BULLETINS_LO17/*.htm | uniq -c | wc -l',
+    "titre" => 'grep \'<span class="style17">\' OLD_BULLETINS_LO17/*.htm | uniq -c | wc -l',
+    "texte" => 'grep \'<p class="style96"><span class="style95">\' OLD_BULLETINS_LO17/*.htm | uniq -c | wc -l',
+    "images_url" => 'grep \'<div style="text-align: center">.*<img src="\' OLD_BULLETINS_LO17/*.htm | uniq -c | wc -l',
+    "images_legende" => 'grep \'<span class="style21"><strong>\' OLD_BULLETINS_LO17/*.htm | uniq -c | wc -l',
+    "contact" => 'grep \'<p class="style44"><span class="style85">\' OLD_BULLETINS_LO17/*.htm | uniq -c | wc -l'
+);
 my %log = ( 
-    "article" => 0,
-    "fichiers" => 0,
+    # "fichiers" => 0,
     "numero" => 0,
     "date" => 0,
     "rubrique" => 0,
@@ -28,7 +32,7 @@ foreach my $filename(@files) {
     open my $filecontent, $filename or die "Could not open $filename: $!";
     
     $output = $output."<bulletin><fichier>$filename</fichier>";
-    ++$log{fichiers};
+    #++$log{fichiers};
 
     my $line_count = 0;
 
@@ -103,7 +107,6 @@ foreach my $filename(@files) {
         # Get texte
         if ( $line =~ /<td width=452 valign=top bgcolor="#f3f5f8" class="FWExtra2">/ ) {
             $article_has_begun = 1;
-            ++$log{article};
         }
         if ( $article_has_begun == 1 and ( $line =~ /<span class="style95">(.*)<\/span>/ or $line =~ /<span class="style95">(.*)/ ) ) {
             my $match = $1;
@@ -194,9 +197,14 @@ unless(open FILE, ">corpus.xml") {
 print FILE $output;
 close FILE;
 
-print "Log :\n";
+print "Results :\n";
 foreach my $key (keys %log) {
+    my $grep = `$cmds{$key}`;
+    print $grep;
+
     my $msg = "- $key : $log{$key}";
+    
     $msg = $msg."\n";
+    
     print $msg;
 }
