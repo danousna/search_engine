@@ -1,7 +1,5 @@
 #!/usr/bin/perl
-# use utf8;
-binmode(STDIN, ":utf8");
-binmode(STDOUT, ":utf8");
+
 for ($i=0; $i<3; $i++) { 
    if ($ARGV[0] =~ /^-[frn]$/) {
 	$opt = shift(@ARGV);
@@ -36,7 +34,7 @@ while (<>) {
         s/[\[\]]/ /g;
         s/[\*\+]/ /g;
 #       on intercale le numéro du fichier entre chaque mot
-		s/[ \t',.;:?\/"`_!\n>&~»\$-\(\)-]*(\w+)[ \t',.;:?\/"`_!\n>&~»\$-\(\)-]*/\1$rubrique$fichier$numero\n/g;
+		s/[ \t',.;:?\/"`_!\n>&~»\$-\(\)-]*([a-zÀ-ÿ]+)[ \t',.;:?\/"`_!\n>&~»\$-\(\)-]*/\1$rubrique$fichier$numero\n/g;
 		tr/A-Z/a-z/;
 #		s/^\t.*?\n//;
 		
@@ -53,7 +51,7 @@ while (<>) {
         s/[\[\]]/ /g;
         s/[\*\+]/ /g;
 #       on intercale le numéro du fichier entre chaque mot
-		s/[ \t',.;:?\/"`_!\n>&~»\$-\(\)-]*(\w+)[ \t',.;:?\/"`_!\n>&~»\$-\(\)-]*/\1$rubrique$fichier$numero\n/g;
+		s/[ \t',.;:?\/"`_!\n>&~»\$-\(\)-]*([a-zÀ-ÿ]+)[ \t',.;:?\/"`_!\n>&~»\$-\(\)-]*/\1$rubrique$fichier$numero\n/g;
 		tr/A-Z/a-z/;
 #		s/^\t.*?\n//;
 		

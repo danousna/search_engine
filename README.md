@@ -15,7 +15,7 @@ D'autres contenus de balises sont néanmoins moins simples à extraire car elles
 - article
 
 Il faut extraire de celles-ci, la liste des mots et les documents correspondants.
-Il faut balyer les titres, les articles et les titre + articles afin de pouvoir requêter de la manière suivant :
+Il faut balayer les titres, les articles et les titre + articles afin de pouvoir requêter de la manière suivant :
 - je cherche un article dont le titre...
 - je cherche un article qui contient ...
 - je cherche un article dont le sujet est ... (peut être dans le titre ou article)
@@ -24,5 +24,6 @@ Remarques :
 - Pour la rubrique, même si elle est composée parfois de plusieurs mots, on la considère comme un seul élèment, c'est donc bien une balise dite simple.
 - Extraire l'adresse mail de la balise de contact
 - Problème de la segmentation (séparateurs : `. | ; | , | -`)
+- Question de l'unité documentaire, quelle granularité
 
-Nous créeons ensuite des tables inverses à partir de ce corpus.
+Une fois la stop list faite, on peut re-filtrer le corpus pour enlever les mots non utiles, on pourra ensuite faire la table inverse.
