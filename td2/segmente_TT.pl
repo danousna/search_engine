@@ -1,5 +1,7 @@
 #!/usr/bin/perl
 
+# perl segmente_TT.pl -f corpus.xml > segmentation.txt
+
 for ($i=0; $i<3; $i++) { 
    if ($ARGV[0] =~ /^-[frn]$/) {
 	$opt = shift(@ARGV);
