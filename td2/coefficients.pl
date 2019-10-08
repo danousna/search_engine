@@ -43,7 +43,10 @@ foreach my $k (keys(%dict_occurence)) {
     my @spl = split(',', $k);
     $filename = $spl[0];
     $word = $spl[1];
-    my $result = $dict_occurence{$k} * $dict_coeffs{$word};
+    $dict_occurence{$filename.','.$word} = $dict_occurence{$k} * $dict_coeffs{$word};
+}
 
-    print "$filename\t$word\t$result\n";
+foreach my $k (sort { $dict_occurence{$a} <=> $dict_occurence{$b} } keys %dict_occurence) {
+    my @spl = split(',', $k);
+    print "$spl[0]\t$spl[1]\t$dict_occurence{$k}\n";
 }
