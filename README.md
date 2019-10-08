@@ -1,4 +1,6 @@
-# lo17
+# LO17
+
+## Présentation
 
 A partir d'un ensemble de page html, on crée un corpus xml avec les différents composants de ces pages html.
 
@@ -27,3 +29,11 @@ Remarques :
 - Question de l'unité documentaire, quelle granularité
 
 Une fois la stop list faite, on peut re-filtrer le corpus pour enlever les mots non utiles, on pourra ensuite faire la table inverse.
+
+## Workflow
+
+A partir du corpus de fichiers html, le déroulé de la construction de l'index est le suivant :
+- `td1/main.pl` : construction du fichier structuré `corpus.xml`
+- `td2/segmente.pl` : construction du fichier `segmentation.txt` avec une colonne mot et une colonne fichier html
+- `td2/coefficients.pl` : construction du fichier `coefficients.txt` avec trois colonnes : fichier, mot et coefficient tf * idf.
+- `td2/stoplist.pl` : construction du fichier `stoplist.txt`, une liste de mots à exclure car leurs coefficients est inférieur à une valeur arbitraire donnée.
