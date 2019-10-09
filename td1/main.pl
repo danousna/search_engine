@@ -37,6 +37,7 @@ foreach my $filename(@files) {
     my $line_count = 0;
 
     my $article_found = 0;
+    my $text_found = 0;
 
     my $image = "";
     my $image_found = 0; 
@@ -101,43 +102,43 @@ foreach my $filename(@files) {
             ++$log{titre};
         } 
 
-        # Get texte
-        if ( $line =~ /<td width=452 valign=top bgcolor="#f3f5f8" class="FWExtra2">/ ) {
-            $article_found = 1;
-        }
-        if ( $article_found == 1 and ( $line =~ /<span class="style95">(.*)<\/span>/ or $line =~ /<span class="style95">(.*)/ ) ) {
-            my $match = $1;
-            # Replace all "br" tags with empty string
-            $match =~ s/<br \/>|<br>/ /g;
-            # # Replace all "b" tags with empty string
-            $match =~ s/<b[^>]*>|<\/b>/ /g;
-            # # Replace all "a" tags with empty string
-            $match =~ s/<a[^>]*>|<\/a>/ /g;
-
-            $text = $text.$match;
-        }
-        if ( $line =~ /<\/td>/ and $article_found == 1 ) {
-            $article_found = 0;
-        }
-
         # Get images
         if ( $line =~ /<div style="text-align: center">.*<img src="(.*?)"[^>]*>/ ) {
             $image = $image."<url>$1</url>";
             $image_found = 1;
             ++$log{images_url};
         }
-
         if ( $line =~ /<span class="style21"><strong>(.*?)<\/strong>/ ) { # Si on enleve <\/strong>, on a le bon nb mais rien dans le tag legende;
             $image = $image."<legende>$1</legende>";
+            print "<legende>$1</legende>"; # Ici il y a bien 133 légendes
             ++$log{images_legende};
         }
-
         if ( $image_found == 1 ) {
             if ( $image ne "" ) {
                 push @images, $image;
             }
 
             $image_found = 0;
+        }
+
+        # Get texte
+        if ( $line =~ /<td width=452 valign=top bgcolor="#f3f5f8" class="FWExtra2">/ ) {
+            $article_found = 1;
+        }
+        if ( $line =~ /<span class="style95">(.*)<\/span>/ or $line =~ /<span class="style95">(.*)/ ) {
+            $text_found = 1;
+        }
+        if ( $article_found == 1 and $text_found == 1 ) {
+            my $match = $line;
+            $match =~ s/<\w+[^>]*>|<\/\w+>/ /g;
+
+            $text = $text.$match;
+        }
+        if ($text_found and $line =~ /(.*)<\/span>(.*)/) {
+            $text_found = 0;
+        }
+        if ( $line =~ /<\/td>/ and $article_found == 1 ) {
+            $article_found = 0;
         }
 
         # Get contact
