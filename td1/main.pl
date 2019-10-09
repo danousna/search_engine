@@ -127,7 +127,7 @@ foreach my $filename(@files) {
             ++$log{images_url};
         }
 
-        if ( $line =~ /<span class="style21"><strong>(.*?)<\/strong>/ ) {
+        if ( $line =~ /<span class="style21"><strong>(.*?)<\/strong>/ ) { # Si on enleve <\/strong>, on a le bon nb mais rien dans le tag legende;
             $image = $image."<legende>$1</legende>";
             ++$log{images_legende};
         }
