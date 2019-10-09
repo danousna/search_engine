@@ -16,5 +16,5 @@ while(<>) {
 	}
 	$res = substr($mot, 0, length($successeurs));
 	print $mot."\t";
-	print $res."\n";	
+	print $res."\n";
 }
