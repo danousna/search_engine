@@ -770,7 +770,7 @@ alternatifs 	alter
 alternative 	alter
 alternatives 	alter
 altika 	altika 
-altimètre 	altim�
+altimètre 	altim�
 altimétrie 	altimétri
 altimétrique 	altimétri
 altitude 	altitude
@@ -2093,7 +2093,7 @@ californiens 	californi
 calme 	calme 
 calorimètre 	calorimètre
 calorimètres 	calorimètre
-calorimétrique 	calorim�
+calorimétrique 	calorim�
 calottes 	calottes 
 caltech 	caltech 
 calvet 	calvet 
@@ -5723,7 +5723,7 @@ futurol 	futur
 futurotextiles 	futur
 futurs 	futur
 fécondation 	fécondation 
-fédère 	féd�
+fédère 	féd�
 fédéral 	fédér
 fédérant 	fédér
 fédérateurs 	fédér
@@ -6191,8 +6191,8 @@ herbicides 	herbicides
 herbrand 	herbrand 
 hercule 	hercule 
 heritage 	heritage 
-hermès 	herm�
-hermétiques 	herm�
+hermès 	herm�
+hermétiques 	herm�
 hertz 	hertz
 hertziennes 	hertz
 hervé 	hervé 
@@ -6227,8 +6227,8 @@ hommage 	hommage
 homme 	homme 
 hommes 	hommes 
 homo 	homo 
-homogène 	homog�
-homogénéisation 	homog�
+homogène 	homog�
+homogénéisation 	homog�
 homologation 	homolog
 homologues 	homolog
 homéopathiques 	homéopathiques 
@@ -6806,7 +6806,7 @@ inpi 	inpi
 inpt 	inpt 
 inquiètent 	inquiète
 inquiètes 	inquiète
-inquiétude 	inqui�
+inquiétude 	inqui�
 inra 	inra 
 inria 	inria 
 insa 	insa 
@@ -7080,7 +7080,7 @@ ioi 	ioi
 ion 	ion 
 ionique 	ionique
 ioniques 	ionique
-ionosphère 	ionosph�
+ionosphère 	ionosph�
 ionosphérique 	ionosphérique
 ionosphériques 	ionosphérique
 ions 	ions 
@@ -8460,7 +8460,7 @@ myriades 	myriade
 myrrha 	myrrha 
 myrte 	myrte 
 myrtille 	myrtille 
-mystère 	myst�
+mystère 	myst�
 mystérieuse 	mystérieu
 mystérieux 	mystérieu
 mythique 	mythique 
@@ -9308,7 +9308,7 @@ parallèle 	parallèle
 parallèlement 	parallèle
 paralyse 	paralys
 paralysie 	paralys
-paramètres 	param�
+paramètres 	param�
 paramétrable 	paramétr
 paramétrer 	paramétr
 parasite 	parasit
@@ -10143,7 +10143,7 @@ pris 	pris
 prise 	prise 
 prises 	prises 
 private 	private 
-privilège 	privil�
+privilège 	privil�
 privilégiant 	privilégi
 privilégie 	privilégi
 privilégié 	privilégié
@@ -10261,8 +10261,8 @@ projets 	proje
 projette 	proje
 projeté 	proje
 prolactine 	prolactine 
-prolifère 	prolif�
-prolifération 	prolif�
+prolifère 	prolif�
+prolifération 	prolif�
 prolongement 	prolong
 prolonger 	prolong
 prolongée 	prolong
@@ -11463,8 +11463,8 @@ récompensé 	récompensé
 récompensée 	récompensé
 récompensées 	récompensé
 récompensés 	récompensé
-récupère 	récup�
-récupérer 	récup�
+récupère 	récup�
+récupérer 	récup�
 récurrente 	récurrente
 récurrentes 	récurrente
 rédaction 	rédaction
@@ -12367,8 +12367,8 @@ strasbourgeois 	strasbourg
 strasse 	strasse 
 stratification 	stratification 
 stratobus 	stratobus 
-stratosphère 	stratosph�
-stratosphérique 	stratosph�
+stratosphère 	stratosph�
+stratosphérique 	stratosph�
 stratrobus 	stratrobus 
 stratégie 	stratégi
 stratégies 	stratégi
@@ -12661,7 +12661,7 @@ sérieux 	série
 sérotonine 	sérotonine 
 sévère 	sévère
 sévères 	sévère
-sévérité 	sév�
+sévérité 	sév�
 sûr 	sûr
 sûre 	sûr
 sûrement 	sûr

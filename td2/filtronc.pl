@@ -1,5 +1,9 @@
 #!/usr/bin/perl
 
+use Encode;
+
+binmode(STDOUT, ":utf8");
+
 while(<>) {
 	chop;
 	($successeurs,$mot) = split(/\t/);
@@ -15,6 +19,6 @@ while(<>) {
         }
 	}
 	$res = substr($mot, 0, length($successeurs));
-	print $mot."\t";
-	print $res."\n";
+	print decode 'utf8', $mot."\t";
+	print decode 'utf8', $res."\n";
 }
