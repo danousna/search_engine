@@ -2,8 +2,7 @@
 
 # perl index.pl corpus_lemme.xml > index.txt
 
-# $balise = shift(@ARGV);
-$balise = "texte";
+$balise = shift(@ARGV);
 print STDERR "création d'index pour la balise <$balise>...\n";
 
 while (<>) {
@@ -27,7 +26,13 @@ while (<>) {
             # print("annee $annee\n");
             $index=$jour.$mois.$annee
         }
-        $tabindex{$index} .= "$rubrique$fichier$numero";
+        if ($balise eq 'contact') {
+            while ($index =~ /href=\"mailto:([^']*?)\"/g) {
+                $tabindex{$1} .= "$rubrique$fichier$numero";
+            }
+        } else {
+            $tabindex{$index} .= "$rubrique$fichier$numero";
+        }
     }
 	$index="";
 }
