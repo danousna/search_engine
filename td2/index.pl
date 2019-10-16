@@ -30,7 +30,8 @@ while (<>) {
             while ($index =~ /href=\"mailto:([^']*?)\"/g) {
                 $tabindex{$1} .= "$rubrique$fichier$numero";
             }
-        } else {
+        }
+        if ($balise ne 'contact') {
             $tabindex{$index} .= "$rubrique$fichier$numero";
         }
     }

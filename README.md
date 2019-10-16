@@ -74,3 +74,14 @@ parl => LIKE
 
 SELECT id_article FROM table WHERE text LIKE 'nanotechnologie' AND rubrique == 'focus'
 ```
+
+## Rapport
+
+=> quel est le pb
+=> quel est la solution
+=> quel est le résultat
+=> choix faits
+=> comment on a fait
+
+=> retour critique sur ce qu'on a fait
+=> quel évaluation sur ce qu'on a fait
