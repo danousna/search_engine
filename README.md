@@ -37,3 +37,11 @@ A partir du corpus de fichiers html, le déroulé de la construction de l'index 
 - `td2/segmente.pl` : construction du fichier `segmentation.txt` avec une colonne mot et une colonne fichier html
 - `td2/coefficients.pl` : construction du fichier `coefficients.txt` avec trois colonnes : fichier, mot et coefficient tf * idf.
 - `td2/stoplist.pl` : construction du fichier `stoplist.txt`, une liste de mots à exclure car leurs coefficients est inférieur à une valeur arbitraire donnée.
+
+
+## TODO
+
+- Moyenner les coefficients (voir coefficient.pl pour le détail)
+- Table inverse pour titre, texte, email auteur, date
+- Faire plusieurs tables dans une BDD
+- Quand il y a requête, donner le fichier html correspondant le plus proche
