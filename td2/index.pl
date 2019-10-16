@@ -37,7 +37,6 @@ while (<>) {
 	$index="";
 }
 
-
 @cleindex = keys %tabindex ;
 foreach $index (@cleindex) {
 	print $index.$tabindex{$index}."\n";

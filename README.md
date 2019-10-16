@@ -45,3 +45,32 @@ A partir du corpus de fichiers html, le déroulé de la construction de l'index 
 - Table inverse pour titre, texte, email auteur, date
 - Faire plusieurs tables dans une BDD
 - Quand il y a requête, donner le fichier html correspondant le plus proche
+
+
+## Construction des requêtes
+
+À partir d'une phrase telle que :
+`Je veux les articles qui parlent de nanotechnologie dans la rubrique Focus.`
+
+Je veux obtenir la requête SQL suivante :
+```sql
+SELECT id_article FROM table WHERE text LIKE 'nanotechnologie' AND rubrique == 'focus'
+```
+
+Je transforme la requête de la manière suivante :
+1. Suppression des mots usuels + minuscules
+```
+veux articles parlent nanotechnologie rubrique Focus.
+```
+2. Subsitution par les lemmes
+``` 
+veu article parl nanotechnologie rubrique focus
+```
+3. Recherche dans le lexique SQL
+```
+veu => SELECT
+article => id_article
+parl => LIKE
+
+SELECT id_article FROM table WHERE text LIKE 'nanotechnologie' AND rubrique == 'focus'
+```
