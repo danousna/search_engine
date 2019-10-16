@@ -1,5 +1,21 @@
 #!/usr/bin/perl
 
+
+## A FAIRE :
+# Moyenne des coefficients des termes pour avoir un meilleures idée.
+# Ex :
+# recherche 0.8???
+# pour  0.9???
+# pour ...
+# pour ...
+# recherche 1.???
+# Si on prend le min de recherche, on a des mots inutiles
+# Si on prend le max de recherche, on loupe peut-être des mots intéressant
+# Si on fait la moyenne, on devrait plus ou moins avoir :
+# pour
+# recherche
+# Et donc on prend bien recherche et on loupe rien.
+
 sub log10 {
     my $n = shift;
     return log($n)/log(10);
