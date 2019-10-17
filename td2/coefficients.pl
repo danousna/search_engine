@@ -2,7 +2,7 @@
 
 
 ## A FAIRE :
-# Moyenne des coefficients des termes pour avoir un meilleures idée.
+# Moyenne des coefficients des termes pour avoir une meilleure idée.
 # Ex :
 # recherche 0.8???
 # pour  0.9???
@@ -62,7 +62,23 @@ foreach my $k (keys(%dict_occurence)) {
     $dict_occurence{$filename.','.$word} = $dict_occurence{$k} * $dict_coeffs{$word};
 }
 
+my $dict_words = ();
+my $dict_words_count = ();
+
 foreach my $k (sort { $dict_occurence{$a} <=> $dict_occurence{$b} } keys %dict_occurence) {
     my @spl = split(',', $k);
-    print "$spl[0]\t$spl[1]\t$dict_occurence{$k}\n";
+    $dict_words{$spl[1]} = $dict_words{$spl[1]} + $dict_occurence{$k};
+    if ($dict_words_count{$spl[1]}) {
+        ++$dict_words_count{$spl[1]};
+    } else {
+        $dict_words_count{$spl[1]} = 1;
+    }
+}
+
+foreach my $k (keys %dict_words) {
+    $dict_words{$k} = $dict_words{$k} / $dict_words_count{$k};
+}
+
+foreach my $k (sort { $dict_words{$a} <=> $dict_words{$b} } keys %dict_words) {
+    print "$k\t$dict_words{$k}\n";
 }

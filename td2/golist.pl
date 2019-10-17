@@ -7,7 +7,7 @@ my $threshold = 1.2; # scientifiques
 
 while (<>) {
     if ( /(.*)\t(.*)/i ) {
-        if ( $2 <= $threshold ) { # reverse to make golist
+        if ( $2 > $threshold ) { # reverse to make golist
             $stoplist{$1} = 1;
         }
     }
