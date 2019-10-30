@@ -1,7 +1,5 @@
 import java.io.*;
-import java.util.StringTokenizer;
-import java.util.Map;
-import java.util.HashMap;
+import java.util.*;
 
 public class Lexicon {
     Map<String, String> lexicon = new HashMap<String, String>();
@@ -16,6 +14,8 @@ public class Lexicon {
                 br = new BufferedReader(new FileReader("lexicon.txt"));
                 while ((chaine = br.readLine()) != null) {
                     String[] entry = chaine.split("\t");
+                    System.out.println(entry[0]);
+                    System.out.println(entry[1]);
                     lexicon.put(entry[0], entry[1]);
                 }
             }
@@ -31,6 +31,11 @@ public class Lexicon {
         }
     }
 
+    public static int min(int... numbers) {
+        return Arrays.stream(numbers)
+          .min().orElse(Integer.MAX_VALUE);
+    }
+
     private static int countCommonLetters(String wordA, String wordB) {
         int n = 0;
         int length = Math.min(wordA.length(), wordB.length());
@@ -44,8 +49,37 @@ public class Lexicon {
         return n;
     }
 
+    private static int levenshtein(String wordA, String wordB) {
+        int[][] dp = new int[wordA.length() + 1][wordB.length() + 1];
+        int costOfSubstitution = 1;
+
+        for (int i = 0; i <= wordA.length(); i++) {
+            for (int j = 0; j <= wordB.length(); j++) {
+                if (i == 0) {
+                    dp[i][j] = j;
+                }
+                else if (j == 0) {
+                    dp[i][j] = i;
+                }
+                else {
+                    if (wordA.charAt(i - 1) == wordB.charAt(j - 1)) {
+                        costOfSubstitution = 0;
+                    }
+
+                    dp[i][j] = Lexicon.min(
+                        dp[i - 1][j - 1] + costOfSubstitution,
+                        dp[i - 1][j] + 1,
+                        dp[i][j - 1] + 1
+                    );
+                }
+            }
+        }
+
+        return dp[wordA.length()][wordB.length()];
+    }
+
     private List<String> wordProcessing(String word) {
-        static int THRESHOLD = 4;
+        int THRESHOLD = 4;
         String w = word;
         w.toLowerCase();
 
@@ -57,13 +91,11 @@ public class Lexicon {
             for (String key : this.lexicon.keySet()) {
                 if (Lexicon.countCommonLetters(w, key) >= THRESHOLD) {
                     candidates.add(this.lexicon.get(key));
+                } 
+                else {
+                    // test levenshtein is positive
+                    System.out.println("Levenshtein is " + Lexicon.levenshtein(w, key));
                 }
-            }
-
-            // Get best candidates
-
-            if (candidates.size() == 0) { 
-                // test levenshtein is positive
             }
         } 
 
