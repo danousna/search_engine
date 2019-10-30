@@ -78,7 +78,8 @@ public class Lexicon {
     }
 
     private List<String> wordProcessing(String word) {
-        int THRESHOLD = 4;
+        int COMMON_LETTERS_THRESHOLD = 4;
+        int LEVENSHTEIN_THESHOLD = 3;
         String w = word;
         w.toLowerCase();
 
@@ -86,19 +87,56 @@ public class Lexicon {
 
         if (this.lexicon.containsKey(w)) {
             candidates.add(this.lexicon.get(w));
+            return candidates;
         } else {
+            // Find best common letters candidates.
+            int maxCommonLetters = 0;
             for (String key : this.lexicon.keySet()) {
-                if (Lexicon.countCommonLetters(w, key) >= THRESHOLD) {
-                    candidates.add(this.lexicon.get(key));
-                } 
-                else {
-                    // test levenshtein is positive
-                    System.out.println(w + " | " + key + " : " + Lexicon.levenshtein(w, key));
+                int result = Lexicon.countCommonLetters(w, key);
+
+                if (result >= COMMON_LETTERS_THRESHOLD) {
+                    // If result is greater than previous max, the previous candidates are
+                    // no longer the best, so we flush the array.
+                    if (result > maxCommonLetters) {
+                        maxCommonLetters = result;
+                        candidates.clear();
+                        candidates.add(this.lexicon.get(key));
+                    } 
+                    // If result is equal to previous max, we just add it, only if the lemme is 
+                    // not already present.
+                    else if (result == maxCommonLetters && !candidates.contains(this.lexicon.get(key))) {
+                        candidates.add(this.lexicon.get(key));
+                    }
                 }
             }
-        } 
 
-        return candidates;
+            if (candidates.isEmpty() == false) {
+                return candidates;
+            }
+            else {
+                int minDistance = Integer.MAX_VALUE;
+                for (String key : this.lexicon.keySet()) {
+                    int result = Lexicon.levenshtein(w, key);
+
+                    if (result <= key.length() / LEVENSHTEIN_THESHOLD) {
+                        if (result < minDistance) {
+                            minDistance = result;
+                            candidates.clear();
+                            candidates.add(this.lexicon.get(key));
+                        }
+                        else if (result == minDistance && !candidates.contains(this.lexicon.get(key))) {
+                            candidates.add(this.lexicon.get(key));
+                        }
+                    }
+                }
+
+                if (candidates.isEmpty() == false) {
+                    return candidates;
+                }
+
+                throw new Error("Aucun mot trouvé.");
+            }
+        }
     }
 
     public static void main (String[] args) {
@@ -106,7 +144,7 @@ public class Lexicon {
         String[] words = args[0].split("\\s");
 
         for (int i = 0; i < words.length; i++) {
-            lexicon.wordProcessing(words[i]);
+            System.out.println(lexicon.wordProcessing(words[i]));
         }
     }
 }

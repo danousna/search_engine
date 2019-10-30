@@ -9,6 +9,7 @@ encéphale;encéphal
 encéphalique;encéphal
 end;end
 engageant;engag
+engageont;engaddd
 engagement;engag
 engager;engag
 engagé;engagé
