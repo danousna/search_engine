@@ -13,9 +13,7 @@ public class Lexicon {
             try {
                 br = new BufferedReader(new FileReader("lexicon.txt"));
                 while ((chaine = br.readLine()) != null) {
-                    String[] entry = chaine.split("\t");
-                    System.out.println(entry[0]);
-                    System.out.println(entry[1]);
+                    String[] entry = chaine.split(";");
                     lexicon.put(entry[0], entry[1]);
                 }
             }
@@ -32,8 +30,7 @@ public class Lexicon {
     }
 
     public static int min(int... numbers) {
-        return Arrays.stream(numbers)
-          .min().orElse(Integer.MAX_VALUE);
+        return Arrays.stream(numbers).min().orElse(Integer.MAX_VALUE);
     }
 
     private static int countCommonLetters(String wordA, String wordB) {
@@ -64,6 +61,8 @@ public class Lexicon {
                 else {
                     if (wordA.charAt(i - 1) == wordB.charAt(j - 1)) {
                         costOfSubstitution = 0;
+                    } else {
+                        costOfSubstitution = 1;
                     }
 
                     dp[i][j] = Lexicon.min(
@@ -94,7 +93,7 @@ public class Lexicon {
                 } 
                 else {
                     // test levenshtein is positive
-                    System.out.println("Levenshtein is " + Lexicon.levenshtein(w, key));
+                    System.out.println(w + " | " + key + " : " + Lexicon.levenshtein(w, key));
                 }
             }
         } 
@@ -104,10 +103,10 @@ public class Lexicon {
 
     public static void main (String[] args) {
         Lexicon lexicon = new Lexicon();
-        StringTokenizer st = new StringTokenizer(args[0]);
+        String[] words = args[0].split("\\s");
 
-        while (st.hasMoreTokens()) {
-            lexicon.wordProcessing(st.nextToken());
+        for (int i = 0; i < words.length; i++) {
+            lexicon.wordProcessing(words[i]);
         }
     }
 }

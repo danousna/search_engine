@@ -228,4 +228,3 @@ spécificités;spécificité
 spécifique;spécifique
 spécifiquement;spécifique
 spécifiques;spécifique
-;
