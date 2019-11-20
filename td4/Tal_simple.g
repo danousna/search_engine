@@ -1,9 +1,9 @@
 grammar Tal_simple;
-NOM : 'Pierre' | 'Marie' | 'bananes' | 'pommes'
+NOM : 'Pierre' | 'Marie' | 'bananes' | 'pommes' | 'fils'
 ;
 VERBE : 'mange' | 'mangent'
 ;
-DET : 'des'
+DET : 'des' | 'de' | 'le'
 ;
 ADJ : 'vertes' | 'jaunes'
 ;
@@ -33,6 +33,7 @@ phrase returns [Arbre phrase = new Arbre("PHRASE")]
                 phrase.ajouteFils(gnc);
                 phrase.ajouteFils(gva);
         }
+
 ;
 gn_c returns [Arbre gnc = new Arbre("GNC")]
  @init       {Arbre gn1, gn2;}: 

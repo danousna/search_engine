@@ -1,4 +1,6 @@
-// $ANTLR 3.5.1 /Users/Natan/Developer/lo17/td4/Tal_simple.g 2019-11-20 11:03:34
+package main;
+
+//$ANTLR 3.5.1 /Users/Natan/Developer/lo17/td4/Tal_simple.g 2019-11-20 11:03:34
 
 import org.antlr.runtime.*;
 import java.util.Stack;
