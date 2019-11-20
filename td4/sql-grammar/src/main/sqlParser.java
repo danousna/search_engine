@@ -1,4 +1,4 @@
-//$ANTLR 3.5.1 /Users/Natan/Developer/lo17/td4/Tal_simple.g 2019-11-20 11:03:34
+// $ANTLR 3.5.1 /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g 2019-11-20 11:29:16
 
 package main;
 
@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.ArrayList;
 
 @SuppressWarnings("all")
-public class Tal_simpleParser extends Parser {
+public class sqlParser extends Parser {
 	public static final String[] tokenNames = new String[] {
 		"<invalid>", "<EOR>", "<DOWN>", "<UP>", "ADJ", "CONJ", "DET", "NOM", "POINT", 
 		"VERBE", "WS"
@@ -30,20 +30,20 @@ public class Tal_simpleParser extends Parser {
 	// delegators
 
 
-	public Tal_simpleParser(TokenStream input) {
+	public sqlParser(TokenStream input) {
 		this(input, new RecognizerSharedState());
 	}
-	public Tal_simpleParser(TokenStream input, RecognizerSharedState state) {
+	public sqlParser(TokenStream input, RecognizerSharedState state) {
 		super(input, state);
 	}
 
-	@Override public String[] getTokenNames() { return Tal_simpleParser.tokenNames; }
-	@Override public String getGrammarFileName() { return "/Users/Natan/Developer/lo17/td4/Tal_simple.g"; }
+	@Override public String[] getTokenNames() { return sqlParser.tokenNames; }
+	@Override public String getGrammarFileName() { return "/Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g"; }
 
 
 
 	// $ANTLR start "listephrases"
-	// /Users/Natan/Developer/lo17/td4/Tal_simple.g:16:1: listephrases returns [String arbresort = \"\"] : t= phrase POINT ;
+	// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:16:1: listephrases returns [String arbresort = \"\"] : t= phrase POINT ;
 	public final String listephrases() throws RecognitionException {
 		String arbresort =  "";
 
@@ -52,8 +52,8 @@ public class Tal_simpleParser extends Parser {
 
 		Arbre p;
 		try {
-			// /Users/Natan/Developer/lo17/td4/Tal_simple.g:17:24: (t= phrase POINT )
-			// /Users/Natan/Developer/lo17/td4/Tal_simple.g:18:17: t= phrase POINT
+			// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:17:24: (t= phrase POINT )
+			// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:18:17: t= phrase POINT
 			{
 			pushFollow(FOLLOW_phrase_in_listephrases154);
 			t=phrase();
@@ -79,7 +79,7 @@ public class Tal_simpleParser extends Parser {
 
 
 	// $ANTLR start "phrase"
-	// /Users/Natan/Developer/lo17/td4/Tal_simple.g:23:1: phrase returns [Arbre phrase = new Arbre(\"PHRASE\")] : agnc= gn_c agva= gv ;
+	// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:23:1: phrase returns [Arbre phrase = new Arbre(\"PHRASE\")] : agnc= gn_c agva= gv ;
 	public final Arbre phrase() throws RecognitionException {
 		Arbre phrase =  new Arbre("PHRASE");
 
@@ -93,8 +93,8 @@ public class Tal_simpleParser extends Parser {
 		        Arbre gnc, gva;
 		        
 		try {
-			// /Users/Natan/Developer/lo17/td4/Tal_simple.g:28:10: (agnc= gn_c agva= gv )
-			// /Users/Natan/Developer/lo17/td4/Tal_simple.g:29:9: agnc= gn_c agva= gv
+			// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:28:10: (agnc= gn_c agva= gv )
+			// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:29:9: agnc= gn_c agva= gv
 			{
 			pushFollow(FOLLOW_gn_c_in_phrase210);
 			agnc=gn_c();
@@ -127,7 +127,7 @@ public class Tal_simpleParser extends Parser {
 
 
 	// $ANTLR start "gn_c"
-	// /Users/Natan/Developer/lo17/td4/Tal_simple.g:38:1: gn_c returns [Arbre gnc = new Arbre(\"GNC\")] : agn1= gn (c= CONJ agn2= gn )* ;
+	// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:38:1: gn_c returns [Arbre gnc = new Arbre(\"GNC\")] : agn1= gn (c= CONJ agn2= gn )* ;
 	public final Arbre gn_c() throws RecognitionException {
 		Arbre gnc =  new Arbre("GNC");
 
@@ -138,8 +138,8 @@ public class Tal_simpleParser extends Parser {
 
 		Arbre gn1, gn2;
 		try {
-			// /Users/Natan/Developer/lo17/td4/Tal_simple.g:39:31: (agn1= gn (c= CONJ agn2= gn )* )
-			// /Users/Natan/Developer/lo17/td4/Tal_simple.g:40:17: agn1= gn (c= CONJ agn2= gn )*
+			// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:39:31: (agn1= gn (c= CONJ agn2= gn )* )
+			// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:40:17: agn1= gn (c= CONJ agn2= gn )*
 			{
 			pushFollow(FOLLOW_gn_in_gn_c271);
 			agn1=gn();
@@ -149,7 +149,7 @@ public class Tal_simpleParser extends Parser {
 			                        gn1 = agn1;
 			                        gnc.ajouteFils(gn1);
 			                
-			// /Users/Natan/Developer/lo17/td4/Tal_simple.g:45:17: (c= CONJ agn2= gn )*
+			// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:45:17: (c= CONJ agn2= gn )*
 			loop1:
 			while (true) {
 				int alt1=2;
@@ -160,7 +160,7 @@ public class Tal_simpleParser extends Parser {
 
 				switch (alt1) {
 				case 1 :
-					// /Users/Natan/Developer/lo17/td4/Tal_simple.g:45:18: c= CONJ agn2= gn
+					// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:45:18: c= CONJ agn2= gn
 					{
 					c=(Token)match(input,CONJ,FOLLOW_CONJ_in_gn_c313); 
 					pushFollow(FOLLOW_gn_in_gn_c319);
@@ -197,7 +197,7 @@ public class Tal_simpleParser extends Parser {
 
 
 	// $ANTLR start "gn"
-	// /Users/Natan/Developer/lo17/td4/Tal_simple.g:52:1: gn returns [Arbre legn = new Arbre(\"GN\")] : (d= DET n1= NOM (a= ADJ )? |n2= NOM );
+	// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:52:1: gn returns [Arbre legn = new Arbre(\"GN\")] : (d= DET n1= NOM (a= ADJ )? |n2= NOM );
 	public final Arbre gn() throws RecognitionException {
 		Arbre legn =  new Arbre("GN");
 
@@ -208,7 +208,7 @@ public class Tal_simpleParser extends Parser {
 		Token n2=null;
 
 		try {
-			// /Users/Natan/Developer/lo17/td4/Tal_simple.g:52:42: (d= DET n1= NOM (a= ADJ )? |n2= NOM )
+			// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:52:42: (d= DET n1= NOM (a= ADJ )? |n2= NOM )
 			int alt3=2;
 			int LA3_0 = input.LA(1);
 			if ( (LA3_0==DET) ) {
@@ -226,7 +226,7 @@ public class Tal_simpleParser extends Parser {
 
 			switch (alt3) {
 				case 1 :
-					// /Users/Natan/Developer/lo17/td4/Tal_simple.g:53:9: d= DET n1= NOM (a= ADJ )?
+					// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:53:9: d= DET n1= NOM (a= ADJ )?
 					{
 					d=(Token)match(input,DET,FOLLOW_DET_in_gn360); 
 					n1=(Token)match(input,NOM,FOLLOW_NOM_in_gn364); 
@@ -234,7 +234,7 @@ public class Tal_simpleParser extends Parser {
 					                legn.ajouteFils(new Arbre("DET",d.getText()));
 					                legn.ajouteFils(new Arbre("NOM",n1.getText()));
 					        
-					// /Users/Natan/Developer/lo17/td4/Tal_simple.g:58:9: (a= ADJ )?
+					// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:58:9: (a= ADJ )?
 					int alt2=2;
 					int LA2_0 = input.LA(1);
 					if ( (LA2_0==ADJ) ) {
@@ -242,7 +242,7 @@ public class Tal_simpleParser extends Parser {
 					}
 					switch (alt2) {
 						case 1 :
-							// /Users/Natan/Developer/lo17/td4/Tal_simple.g:58:10: a= ADJ
+							// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:58:10: a= ADJ
 							{
 							a=(Token)match(input,ADJ,FOLLOW_ADJ_in_gn387); 
 
@@ -256,7 +256,7 @@ public class Tal_simpleParser extends Parser {
 					}
 					break;
 				case 2 :
-					// /Users/Natan/Developer/lo17/td4/Tal_simple.g:62:11: n2= NOM
+					// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:62:11: n2= NOM
 					{
 					n2=(Token)match(input,NOM,FOLLOW_NOM_in_gn414); 
 
@@ -281,7 +281,7 @@ public class Tal_simpleParser extends Parser {
 
 
 	// $ANTLR start "gv"
-	// /Users/Natan/Developer/lo17/td4/Tal_simple.g:68:1: gv returns [Arbre legv = new Arbre(\"GV\")] : v= VERBE (agnc= gn_c )? ;
+	// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:68:1: gv returns [Arbre legv = new Arbre(\"GV\")] : v= VERBE (agnc= gn_c )? ;
 	public final Arbre gv() throws RecognitionException {
 		Arbre legv =  new Arbre("GV");
 
@@ -291,14 +291,14 @@ public class Tal_simpleParser extends Parser {
 
 		Arbre gnc;
 		try {
-			// /Users/Natan/Developer/lo17/td4/Tal_simple.g:69:26: (v= VERBE (agnc= gn_c )? )
-			// /Users/Natan/Developer/lo17/td4/Tal_simple.g:70:9: v= VERBE (agnc= gn_c )?
+			// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:69:26: (v= VERBE (agnc= gn_c )? )
+			// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:70:9: v= VERBE (agnc= gn_c )?
 			{
 			v=(Token)match(input,VERBE,FOLLOW_VERBE_in_gv458); 
 
 			                legv.ajouteFils(new Arbre("VERBE",v.getText()));
 			        
-			// /Users/Natan/Developer/lo17/td4/Tal_simple.g:74:9: (agnc= gn_c )?
+			// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:74:9: (agnc= gn_c )?
 			int alt4=2;
 			int LA4_0 = input.LA(1);
 			if ( ((LA4_0 >= DET && LA4_0 <= NOM)) ) {
@@ -306,7 +306,7 @@ public class Tal_simpleParser extends Parser {
 			}
 			switch (alt4) {
 				case 1 :
-					// /Users/Natan/Developer/lo17/td4/Tal_simple.g:74:10: agnc= gn_c
+					// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:74:10: agnc= gn_c
 					{
 					pushFollow(FOLLOW_gn_c_in_gv483);
 					agnc=gn_c();

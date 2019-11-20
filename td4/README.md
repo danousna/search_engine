@@ -41,3 +41,10 @@ vouloir fichier mot hexa
 C'est la requête normalisée. On met ça ensuite dans notre grammaire SQL. 'vouloir' c'est la valeur de lexicalisation de 'SELECT', etc...
 
 La grammaire que l'on va constuire s'appuit sur la requête normalisée.
+
+## Détails sur la méthodologie
+
+La partie grammaire (AntlrWorks), fait la reconnaissance de la syntaxe à partir de la requête normalisée.
+La partie application java, fait la génération de l'arbre et donne la requête SQL.
+
+On commence dans l'environnement AntlrWorks.

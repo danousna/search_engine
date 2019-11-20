@@ -1,6 +1,6 @@
-package main;
+// $ANTLR 3.5.1 /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g 2019-11-20 11:29:16
 
-//$ANTLR 3.5.1 /Users/Natan/Developer/lo17/td4/Tal_simple.g 2019-11-20 11:03:34
+package main;
 
 import org.antlr.runtime.*;
 import java.util.Stack;
@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.ArrayList;
 
 @SuppressWarnings("all")
-public class Tal_simpleLexer extends Lexer {
+public class sqlLexer extends Lexer {
 	public static final int EOF=-1;
 	public static final int ADJ=4;
 	public static final int CONJ=5;
@@ -24,21 +24,21 @@ public class Tal_simpleLexer extends Lexer {
 		return new Lexer[] {};
 	}
 
-	public Tal_simpleLexer() {} 
-	public Tal_simpleLexer(CharStream input) {
+	public sqlLexer() {} 
+	public sqlLexer(CharStream input) {
 		this(input, new RecognizerSharedState());
 	}
-	public Tal_simpleLexer(CharStream input, RecognizerSharedState state) {
+	public sqlLexer(CharStream input, RecognizerSharedState state) {
 		super(input,state);
 	}
-	@Override public String getGrammarFileName() { return "/Users/Natan/Developer/lo17/td4/Tal_simple.g"; }
+	@Override public String getGrammarFileName() { return "/Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g"; }
 
 	// $ANTLR start "NOM"
 	public final void mNOM() throws RecognitionException {
 		try {
 			int _type = NOM;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/Natan/Developer/lo17/td4/Tal_simple.g:2:5: ( 'Pierre' | 'Marie' | 'bananes' | 'pommes' | 'fils' )
+			// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:2:5: ( 'Pierre' | 'Marie' | 'bananes' | 'pommes' | 'fils' )
 			int alt1=5;
 			switch ( input.LA(1) ) {
 			case 'P':
@@ -73,35 +73,35 @@ public class Tal_simpleLexer extends Lexer {
 			}
 			switch (alt1) {
 				case 1 :
-					// /Users/Natan/Developer/lo17/td4/Tal_simple.g:2:7: 'Pierre'
+					// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:2:7: 'Pierre'
 					{
 					match("Pierre"); 
 
 					}
 					break;
 				case 2 :
-					// /Users/Natan/Developer/lo17/td4/Tal_simple.g:2:18: 'Marie'
+					// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:2:18: 'Marie'
 					{
 					match("Marie"); 
 
 					}
 					break;
 				case 3 :
-					// /Users/Natan/Developer/lo17/td4/Tal_simple.g:2:28: 'bananes'
+					// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:2:28: 'bananes'
 					{
 					match("bananes"); 
 
 					}
 					break;
 				case 4 :
-					// /Users/Natan/Developer/lo17/td4/Tal_simple.g:2:40: 'pommes'
+					// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:2:40: 'pommes'
 					{
 					match("pommes"); 
 
 					}
 					break;
 				case 5 :
-					// /Users/Natan/Developer/lo17/td4/Tal_simple.g:2:51: 'fils'
+					// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:2:51: 'fils'
 					{
 					match("fils"); 
 
@@ -123,7 +123,7 @@ public class Tal_simpleLexer extends Lexer {
 		try {
 			int _type = VERBE;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/Natan/Developer/lo17/td4/Tal_simple.g:4:7: ( 'mange' | 'mangent' )
+			// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:4:7: ( 'mange' | 'mangent' )
 			int alt2=2;
 			int LA2_0 = input.LA(1);
 			if ( (LA2_0=='m') ) {
@@ -216,14 +216,14 @@ public class Tal_simpleLexer extends Lexer {
 
 			switch (alt2) {
 				case 1 :
-					// /Users/Natan/Developer/lo17/td4/Tal_simple.g:4:9: 'mange'
+					// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:4:9: 'mange'
 					{
 					match("mange"); 
 
 					}
 					break;
 				case 2 :
-					// /Users/Natan/Developer/lo17/td4/Tal_simple.g:4:19: 'mangent'
+					// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:4:19: 'mangent'
 					{
 					match("mangent"); 
 
@@ -245,7 +245,7 @@ public class Tal_simpleLexer extends Lexer {
 		try {
 			int _type = DET;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/Natan/Developer/lo17/td4/Tal_simple.g:6:5: ( 'des' | 'de' | 'le' )
+			// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:6:5: ( 'des' | 'de' | 'le' )
 			int alt3=3;
 			int LA3_0 = input.LA(1);
 			if ( (LA3_0=='d') ) {
@@ -287,21 +287,21 @@ public class Tal_simpleLexer extends Lexer {
 
 			switch (alt3) {
 				case 1 :
-					// /Users/Natan/Developer/lo17/td4/Tal_simple.g:6:7: 'des'
+					// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:6:7: 'des'
 					{
 					match("des"); 
 
 					}
 					break;
 				case 2 :
-					// /Users/Natan/Developer/lo17/td4/Tal_simple.g:6:15: 'de'
+					// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:6:15: 'de'
 					{
 					match("de"); 
 
 					}
 					break;
 				case 3 :
-					// /Users/Natan/Developer/lo17/td4/Tal_simple.g:6:22: 'le'
+					// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:6:22: 'le'
 					{
 					match("le"); 
 
@@ -323,7 +323,7 @@ public class Tal_simpleLexer extends Lexer {
 		try {
 			int _type = ADJ;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/Natan/Developer/lo17/td4/Tal_simple.g:8:5: ( 'vertes' | 'jaunes' )
+			// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:8:5: ( 'vertes' | 'jaunes' )
 			int alt4=2;
 			int LA4_0 = input.LA(1);
 			if ( (LA4_0=='v') ) {
@@ -341,14 +341,14 @@ public class Tal_simpleLexer extends Lexer {
 
 			switch (alt4) {
 				case 1 :
-					// /Users/Natan/Developer/lo17/td4/Tal_simple.g:8:7: 'vertes'
+					// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:8:7: 'vertes'
 					{
 					match("vertes"); 
 
 					}
 					break;
 				case 2 :
-					// /Users/Natan/Developer/lo17/td4/Tal_simple.g:8:18: 'jaunes'
+					// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:8:18: 'jaunes'
 					{
 					match("jaunes"); 
 
@@ -370,7 +370,7 @@ public class Tal_simpleLexer extends Lexer {
 		try {
 			int _type = CONJ;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/Natan/Developer/lo17/td4/Tal_simple.g:10:6: ( 'et' | 'ou' )
+			// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:10:6: ( 'et' | 'ou' )
 			int alt5=2;
 			int LA5_0 = input.LA(1);
 			if ( (LA5_0=='e') ) {
@@ -388,14 +388,14 @@ public class Tal_simpleLexer extends Lexer {
 
 			switch (alt5) {
 				case 1 :
-					// /Users/Natan/Developer/lo17/td4/Tal_simple.g:10:8: 'et'
+					// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:10:8: 'et'
 					{
 					match("et"); 
 
 					}
 					break;
 				case 2 :
-					// /Users/Natan/Developer/lo17/td4/Tal_simple.g:10:15: 'ou'
+					// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:10:15: 'ou'
 					{
 					match("ou"); 
 
@@ -417,8 +417,8 @@ public class Tal_simpleLexer extends Lexer {
 		try {
 			int _type = POINT;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/Natan/Developer/lo17/td4/Tal_simple.g:12:7: ( '.' )
-			// /Users/Natan/Developer/lo17/td4/Tal_simple.g:12:9: '.'
+			// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:12:7: ( '.' )
+			// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:12:9: '.'
 			{
 			match('.'); 
 			}
@@ -437,7 +437,7 @@ public class Tal_simpleLexer extends Lexer {
 		try {
 			int _type = WS;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/Natan/Developer/lo17/td4/Tal_simple.g:14:5: ( ( ' ' | '\\t' | '\\r' ) | '\\n' )
+			// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:14:5: ( ( ' ' | '\\t' | '\\r' ) | '\\n' )
 			int alt6=2;
 			int LA6_0 = input.LA(1);
 			if ( (LA6_0=='\t'||LA6_0=='\r'||LA6_0==' ') ) {
@@ -455,7 +455,7 @@ public class Tal_simpleLexer extends Lexer {
 
 			switch (alt6) {
 				case 1 :
-					// /Users/Natan/Developer/lo17/td4/Tal_simple.g:14:7: ( ' ' | '\\t' | '\\r' )
+					// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:14:7: ( ' ' | '\\t' | '\\r' )
 					{
 					if ( input.LA(1)=='\t'||input.LA(1)=='\r'||input.LA(1)==' ' ) {
 						input.consume();
@@ -469,7 +469,7 @@ public class Tal_simpleLexer extends Lexer {
 					}
 					break;
 				case 2 :
-					// /Users/Natan/Developer/lo17/td4/Tal_simple.g:14:38: '\\n'
+					// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:14:38: '\\n'
 					{
 					match('\n'); 
 					}
@@ -487,7 +487,7 @@ public class Tal_simpleLexer extends Lexer {
 
 	@Override
 	public void mTokens() throws RecognitionException {
-		// /Users/Natan/Developer/lo17/td4/Tal_simple.g:1:8: ( NOM | VERBE | DET | ADJ | CONJ | POINT | WS )
+		// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:1:8: ( NOM | VERBE | DET | ADJ | CONJ | POINT | WS )
 		int alt7=7;
 		switch ( input.LA(1) ) {
 		case 'M':
@@ -542,49 +542,49 @@ public class Tal_simpleLexer extends Lexer {
 		}
 		switch (alt7) {
 			case 1 :
-				// /Users/Natan/Developer/lo17/td4/Tal_simple.g:1:10: NOM
+				// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:1:10: NOM
 				{
 				mNOM(); 
 
 				}
 				break;
 			case 2 :
-				// /Users/Natan/Developer/lo17/td4/Tal_simple.g:1:14: VERBE
+				// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:1:14: VERBE
 				{
 				mVERBE(); 
 
 				}
 				break;
 			case 3 :
-				// /Users/Natan/Developer/lo17/td4/Tal_simple.g:1:20: DET
+				// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:1:20: DET
 				{
 				mDET(); 
 
 				}
 				break;
 			case 4 :
-				// /Users/Natan/Developer/lo17/td4/Tal_simple.g:1:24: ADJ
+				// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:1:24: ADJ
 				{
 				mADJ(); 
 
 				}
 				break;
 			case 5 :
-				// /Users/Natan/Developer/lo17/td4/Tal_simple.g:1:28: CONJ
+				// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:1:28: CONJ
 				{
 				mCONJ(); 
 
 				}
 				break;
 			case 6 :
-				// /Users/Natan/Developer/lo17/td4/Tal_simple.g:1:33: POINT
+				// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:1:33: POINT
 				{
 				mPOINT(); 
 
 				}
 				break;
 			case 7 :
-				// /Users/Natan/Developer/lo17/td4/Tal_simple.g:1:39: WS
+				// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:1:39: WS
 				{
 				mWS(); 
 
