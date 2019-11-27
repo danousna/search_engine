@@ -113,7 +113,7 @@ Dans cette démarche, on suppose que chaque colonne d'une table est unique à la
 Les tables titre et texte partagent le même nom de variable : 'mot'. De toute façon cette démarche est à chier
 car très peu robuste et pas très rigoureuse.
 
-### Solution
+### 1ère Solution
 
 Arbre final souhaité :
 
@@ -147,3 +147,30 @@ param:
     (CONJ
     VAR)*
 
+Cette proposition est plus pertinente, elle relie directement la variable à sa variable. Il nous suffit en post-traitement de choper les tables mentionnées.
+
+Néanmoins, d'un point de vue sémantique, c'est le bordel, les requêtes suivantes :
+- `vouloir article datant ta mère`
+- `vouloir article contenir janvier 2019`
+
+Sont valides d'un point de vue grammaire mais les requêtes générées renverront pour le 1er exemple, une erreur et la seconde, fera le traitement sur 'janvier 2019' => 'mois=01, annee=2019' ce qui est faut, pusique l'on recherche dans le texte le string 'janvier 2019'.
+
+
+### 2ème, et on l'espère dernière solution
+
+La reconnaissance de la table est faite vraiment au niveau de la variable.
+
+### Traitement de la date
+
+Requetage de date possibles :
+
+2019
+janvier 2019
+01/01/2019
+1er janvier 2019
+20 janvier 2019
+
+
+
+
+### Traitement des comparateurs
