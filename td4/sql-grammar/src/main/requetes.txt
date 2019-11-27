@@ -1,15 +1,20 @@
-Quel est le nombre d’article écrit par X entre Y et Z ?
 Combien d’auteurs ont écrit sur le sujet X ?
 Combien d’articles ont été publiés au mois décembre ?
+
+Quel est le nombre d’article écrit par X entre Y et Z ?
 Qui a  écrit le plus d’article en 2011 ?
 Quel auteur a publié dans le plus de rubriques différentes ?
-Qui a écrit un article sur ce sujet ?
 Quels articles ont le mot X dans leur titre et ont été écrit en 2011 par un auteur qui n’a plus publié depuis ?
 Quel auteur n’a pas publié en 2012 mais a publié en 2011 et en 2014 ?
+
 Qui a écrit un article portant
+Qui a écrit un article sur ce sujet ?
 Quelle rubrique est la plus représentée (dans les articles de cette période )?
+
 Quel auteur a écrit un article en commun ces auteurs X et Y ?
+
 Quel est le nombre d’auteurs n’ayant publiés qu'un seul article ?
+
 Qui a écrit des textes en rapport avec X et Y ?
 Quels textes ont le mot X dans le texte et dans le titre ?
 Combien d’auteurs ont écrit un texte sur ce sujet ou sur ce sujet pendant l’année 2012 et l’année 2014 ?
