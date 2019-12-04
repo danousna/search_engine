@@ -47,4 +47,6 @@ Si un mot de la liste de structure ou de la stoplist apparait est voulu par l'ut
 
 Solutions possibles :
 1. Imposer à l'utilisateur de mettre des guillemets sur les mots de sa recherche.
-2. On peut faire l'hypthèse qu'une recherche de mot est toujours précédée par un le mot de structure 'mot' ('parlent', 'traite', etc..). Ainsi, si l'on traite les mots de la requête un à un, il suffit de détecter le mot de structure 'mot' et de considérer la suite comme une association déterminant + variable. Ainsi, dans l'exemple précédent `qui parlent de fichiers`, le mot 'fichiers' n'est pas remplacé.
+2. On peut faire l'hypthèse qu'une recherche de mot est toujours précédée par un le mot de structure 'mot' ('parlent', 'traite', etc..). Ainsi, si l'on traite les mots de la requête un à un, il suffit de détecter le mot de structure 'mot' et de considérer la suite comme une association déterminant + variable. Ainsi, dans l'exemple précédent `qui parlent de fichiers`, le mot 'fichiers' n'est pas remplacé. On fait de plus l'hypothèse que l'utilisateur ne cherchera pas de mots contenus dans la stoplist. En effet il y a objectivement peu d'intérêt à chercher "je", "le", "de", etc...
+
+Tenant compte de la 3ème solution, une fois que l'on détecte le mot de structure 'mot', on ne fait pas passer le reste dans la liste de structure cependant on applique la stoplist.
