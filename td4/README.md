@@ -11,9 +11,9 @@ AVANCEMENT :
 - [x] qui parler hexa (et titi et datant 2019)
 - [x] vouloir auteur et article parler hexa
 - [x] conjonction AND, OR
-- [] gérer "quel articles écrit par Michel" et "quel articles de la rubrique machin"
-- [] gérer "combien"
-- [] à partir de, entre, avant
+- [ ] gérer "quel articles écrit par Michel" et "quel articles de la rubrique machin"
+- [ ] gérer "combien"
+- [ ] à partir de, entre, avant
 
 
 ## Initialement : requête en language naturel
