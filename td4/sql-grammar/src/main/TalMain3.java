@@ -18,7 +18,7 @@ public class TalMain3 {
 				sqlLexer lexer = new sqlLexer(new ANTLRReaderStream(new StringReader(s)));
 				CommonTokenStream tokens = new CommonTokenStream(lexer);
 				sqlParser parser = new sqlParser(tokens);
-				String arbre = parser.listephrases();
+				String arbre = parser.requete();
 	            System.out.println(arbre);
 			} catch(Exception e) {  
 				

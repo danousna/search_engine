@@ -1,12 +1,8 @@
-grammar tal_sql;
+grammar sql;
 
-SELECT : 'vouloir';
+SELECT : 'vouloir' | 'quels' | 'quel';
 
-SELECT_SHORT_AUTEUR : 'qui';
-
-SELECT_SHORT_DATE : 'quand';
-
-SELECT_ARTICLE : 'article';
+SELECT_ARTICLE : 'article' | 'articles';
 
 SELECT_BULLETIN : 'bulletin';
 
@@ -14,25 +10,26 @@ SELECT_AUTEUR : 'auteur';
 
 SELECT_DATE : 'date';
 
+SELECT_SHORT_AUTEUR : 'qui';
+
+SELECT_SHORT_DATE : 'quand';
+
 CONJ_OR : 'ou';
 
 CONJ_AND : 'et' | ',';
 
-POINT : '.';
-
 MOT : 'mot' | 'contenir' | 'parler';
 
+AUTEUR: 'par';
+
+RUBRIQUE: 'rubrique';
+
 DATE : 'datant';
- 
-WS  : (' ' |'\t' | '\r' | 'je' | 'qui' | 'dont') {skip();} | '\n' ;
 
-VAR_MOT 	: ('A'..'Z' | 'a'..'z') ('a'..'z')+;
-
-VAR_AUTEUR	: ('A'..'Z' | 'a'..'z') ('a'..'z')+;
-
+VAR_JOUR	: ('0'..'9') ('0'..'9');
 VAR_ANNEE	: ('0'..'9') ('0'..'9') ('0'..'9') ('0'..'9');
-
-VAR_MOIS_JANVIER : 'janvier';
+VAR_DATE	: VAR_JOUR'/'VAR_JOUR'/'VAR_ANNEE;
+VAR_MOIS_JANVIER: 'janvier';
 VAR_MOIS_FEVRIER : 'février';
 VAR_MOIS_MARS : 'mars';
 VAR_MOIS_AVRIL : 'avril';
@@ -45,9 +42,11 @@ VAR_MOIS_OCTOBRE : 'octobre';
 VAR_MOIS_NOVEMBRE : 'novembre';
 VAR_MOIS_DECEMBRE : 'décembre';
 
-VAR_JOUR	: ('0'..'9') ('0'..'9');
-VAR_MOIS	: ('0'..'9') ('0'..'9');
-VAR_DATE	: VAR_JOUR'/'VAR_MOIS'/'VAR_ANNEE;
+VAR_MOT 	: ('A'..'Z' | 'a'..'z') ('a'..'z')+;
+
+WS  : (' ' |'\t' | '\r' | 'je' | 'qui' | 'dont') {skip();} | '\n' ;
+
+POINT : '.';
 
 requete returns [Arbre arbre_requete = new Arbre("")]
 	@init {Arbre ps_arbre;} : 
@@ -119,21 +118,20 @@ params returns [Arbre arbre_params = new Arbre("")]
 
 param returns [Arbre arbre_param = new Arbre("")] :
 	(
-		MOT
-		{
-			{ arbre_param.ajouteFils(new Arbre("", "table_texte")); }
-		}
-		var1 = VAR_MOT
-		{
-		 	arbre_param.ajouteFils(new Arbre("mot =", "'"+var1.getText()+"'"));
-		}
+		MOT { arbre_param.ajouteFils(new Arbre("", "table_texte")); }
+		var_mot_1 = VAR_MOT { arbre_param.ajouteFils(new Arbre("mot =", "'"+var_mot_1.getText()+"'")); }
 		(
-			conj1 = conj {
-				arbre_param.ajouteFils(new Arbre("", conj1.getText()));
-			}
-			var2 = VAR_MOT { 
-				arbre_param.ajouteFils(new Arbre("mot =", "'"+var2.getText()+"'"));
-			}
+			conj1 = conj { arbre_param.ajouteFils(new Arbre("", conj1.getText())); }
+			var_mot_2 = VAR_MOT { arbre_param.ajouteFils(new Arbre("mot =", "'"+var_mot_2.getText()+"'")); }
+		)*
+	)
+	|
+	(
+		AUTEUR { arbre_param.ajouteFils(new Arbre("", "table_auteur")); }
+		var_auteur_1 = VAR_MOT { arbre_param.ajouteFils(new Arbre("auteur =", "'"+var_auteur_1.getText()+"'")); }
+		(
+			conj1 = conj { arbre_param.ajouteFils(new Arbre("", conj1.getText())); }
+			var_auteur_2 = VAR_MOT { arbre_param.ajouteFils(new Arbre("auteur =", "'"+var_auteur_2.getText()+"'")); }
 		)*
 	)
 	|
@@ -142,17 +140,10 @@ param returns [Arbre arbre_param = new Arbre("")] :
 		{
 			{ arbre_param.ajouteFils(new Arbre("", "table_date")); }
 		}
-		var1 = var_date
-		{
-		 	arbre_param.ajouteFils(var1.arbre_var);
-		}
+		var_date_1 = var_date { arbre_param.ajouteFils(var_date_1.arbre_var); }
 		(
-			conj1 = conj {
-				arbre_param.ajouteFils(new Arbre("", conj1.getText()));
-			}
-			var2 = var_date { 
-				arbre_param.ajouteFils(var2.arbre_var);
-			}
+			conj1 = conj { arbre_param.ajouteFils(new Arbre("", conj1.getText())); }
+			var_date_2 = var_date { arbre_param.ajouteFils(var_date_2.arbre_var); }
 		)*
 	)
 ;
