@@ -48,6 +48,8 @@ public class NLPTransformer {
         Boolean bypass = false;
 
         for (int i = 0; i < request.length; i++) {
+            //TODO: if first word is "qui", we keep it.
+            
             request[i] = request[i].toLowerCase();
             
             if (keeplist.containsKey(request[i])) {

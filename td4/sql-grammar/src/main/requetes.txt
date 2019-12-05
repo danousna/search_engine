@@ -9,9 +9,10 @@ Quel auteur n’a pas publié en 2012 mais a publié en 2011 et en 2014 ?
 
 Qui a écrit un article portant
 Qui a écrit un article sur ce sujet ?
+
 Quelle rubrique est la plus représentée (dans les articles de cette période )?
 
-Quel auteur a écrit un article en commun ces auteurs X et Y ?
+Quel auteur a écrit un article en commun ces auteurs X et Y ? 
 
 Quel est le nombre d’auteurs n’ayant publiés qu'un seul article ?
 

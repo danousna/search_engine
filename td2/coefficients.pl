@@ -37,6 +37,12 @@ while (<>) {
     }
 }
 
+# dict_occurence :
+#
+# 67068.htm,physique  3
+# 67068.htm,test  1
+# 67069.htm,physique  2
+
 foreach my $k (keys(%dict_occurence)) {
     my @spl = split(',', $k);
 
@@ -49,11 +55,21 @@ foreach my $k (keys(%dict_occurence)) {
     $dict_files{$spl[0]} = 1;
 }
 
+# dict_coeffs :
+#
+# physique 2
+# test 1
+
 $n = keys %dict_files;
 
 foreach my $k (keys(%dict_coeffs)) {
     $dict_coeffs{$k} = log10($n / $dict_coeffs{$k});
 }
+
+# dict_coeffs :
+#
+# physique log10(n / 2)
+# test log10(n / 1)
 
 foreach my $k (keys(%dict_occurence)) {
     my @spl = split(',', $k);
@@ -61,6 +77,12 @@ foreach my $k (keys(%dict_occurence)) {
     $word = $spl[1];
     $dict_occurence{$filename.','.$word} = $dict_occurence{$k} * $dict_coeffs{$word};
 }
+
+# dict_occurence :
+#
+# 67068.htm,physique  3 * log10(n / 2)
+# 67068.htm,test  1 * log10(n / 1)
+# 67069.htm,physique  2 * log10(n / 2)
 
 my $dict_words = ();
 my $dict_words_count = ();

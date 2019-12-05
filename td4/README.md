@@ -3,6 +3,21 @@
 Réalisation du module grammatical à partir d'une requête normalisée.
 À partir de cela, on sort une requête SQL ou pseudo SQL si requête complexe (post-traitement plus tard).
 
+AVANCEMENT :
+-[x] vouloir article parler hexe
+-[x] vouloir article parler hexa et titi
+-[x] vouloir article parler hexa et titi et datant 2019
+-[x] vouloir article parler hexa et titi et datant 20/03/2019
+-[x] qui parler hexa (et titi et datant 2019)
+-[x] vouloir auteur et article parler hexa
+-[x] conjonction AND, OR
+
+TODO:
+- gérer "quel articles écrit par Michel" et "quel articles de la rubrique machin"
+- gérer "combien"
+- à partir de, entre, avant
+
+
 ## Initialement : requête en language naturel
 
 ```
@@ -159,6 +174,7 @@ Sont valides d'un point de vue grammaire mais les requêtes générées renverro
 ### 2ème, et on l'espère dernière solution
 
 La reconnaissance de la table est faite vraiment au niveau de la variable.
+Le mot indiquant la table ("contenir", "datant", etc...) est détecté par une variable de son type et c'est dans l'abre que l'on créer avec celui-ci que l'on met le nom de la table.
 
 ### Traitement de la date
 
@@ -174,3 +190,7 @@ janvier 2019
 
 
 ### Traitement des comparateurs
+
+Qui a écrit un article en 2019 ?
+
+Quel articles contiennet hexa et sont écrit par Michel Machin ?
