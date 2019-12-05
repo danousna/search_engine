@@ -4,13 +4,13 @@ Réalisation du module grammatical à partir d'une requête normalisée.
 À partir de cela, on sort une requête SQL ou pseudo SQL si requête complexe (post-traitement plus tard).
 
 AVANCEMENT :
--[x] vouloir article parler hexe
--[x] vouloir article parler hexa et titi
--[x] vouloir article parler hexa et titi et datant 2019
--[x] vouloir article parler hexa et titi et datant 20/03/2019
--[x] qui parler hexa (et titi et datant 2019)
--[x] vouloir auteur et article parler hexa
--[x] conjonction AND, OR
+- [x] vouloir article parler hexe
+- [x] vouloir article parler hexa et titi
+- [x] vouloir article parler hexa et titi et datant 2019
+- [x] vouloir article parler hexa et titi et datant 20/03/2019
+- [x] qui parler hexa (et titi et datant 2019)
+- [x] vouloir auteur et article parler hexa
+- [x] conjonction AND, OR
 
 TODO:
 - gérer "quel articles écrit par Michel" et "quel articles de la rubrique machin"
