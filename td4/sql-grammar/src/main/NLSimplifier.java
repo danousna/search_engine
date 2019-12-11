@@ -64,26 +64,31 @@ public class NLSimplifier {
                 request[i] = structure.get(request[i]);
             } 
             else {
-                List<String> candidates = new ArrayList<String>();
-                try {
-                    candidates = lexicon.wordProcessing(request[i]);
+                // Check word is a valid number, if it is, we don't process it
+                try { 
+                    Float.parseFloat(request[i]);  
+                } catch (NumberFormatException nf_e) { 
+                    List<String> candidates = new ArrayList<String>();
+                    try {
+                        candidates = lexicon.wordProcessing(request[i]);
 
-                    if (candidates.size() == 1) {
-                        request[i] = candidates.get(0);
-                    }
-                    else {
-                        System.out.println("Plusieurs mots candidats ont été trouvés pour le mot " + request[i] + ". Faites votre choix :");
-                        for (int j = 0; j < candidates.size(); j++) {
-                            System.out.println("- " + candidates.get(j) + " (" + j + ")");
+                        if (candidates.size() == 1) {
+                            request[i] = candidates.get(0);
                         }
+                        else {
+                            System.out.println("Plusieurs mots candidats ont été trouvés pour le mot " + request[i] + ". Faites votre choix :");
+                            for (int j = 0; j < candidates.size(); j++) {
+                                System.out.println("- " + candidates.get(j) + " (" + j + ")");
+                            }
 
-                        Scanner input = new Scanner(System.in);
-                        int choice = input.nextInt();
-                        request[i] = candidates.get(choice);
+                            Scanner input = new Scanner(System.in);
+                            int choice = input.nextInt();
+                            request[i] = candidates.get(choice);
+                        }
                     }
-                }
-                catch (Error e) {
-                    // Do nothing, we do not replace the current word.
+                    catch (Error e) {
+                        // Do nothing, we do not replace the current word.
+                    }
                 }
             }
 
