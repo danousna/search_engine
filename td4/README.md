@@ -13,8 +13,9 @@ AVANCEMENT :
 - [x] conjonction AND, OR
 - [ ] gérer "quel articles écrit par Michel" et "quel articles de la rubrique machin"
 - [ ] gérer "combien"
+- [ ] générer la requête SQL
+- [ ] jointures !!!
 - [ ] à partir de, entre, avant
-
 
 ## Initialement : requête en language naturel
 

@@ -1,6 +1,5 @@
-// $ANTLR 3.5.1 /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g 2019-12-05 18:35:38
-
 package main;
+// $ANTLR 3.5.1 /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g 2019-12-11 12:32:54
 
 import org.antlr.runtime.*;
 import java.util.Stack;
@@ -743,10 +742,10 @@ public class sqlLexer extends Lexer {
 		try {
 			int _type = VAR_MOIS_JANVIER;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:32:17: ( 'janviér' )
-			// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:32:19: 'janviér'
+			// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:32:17: ( 'janvier' )
+			// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:32:19: 'janvier'
 			{
-			match("janviér"); 
+			match("janvier"); 
 
 			}
 
@@ -1431,11 +1430,11 @@ public class sqlLexer extends Lexer {
 		"\22\3\uffff\5\22\1\142\1\uffff\5\22\1\150\1\22\1\uffff\1\22\1\uffff\1"+
 		"\153\1\uffff\2\22\1\uffff\2\22\1\160\4\22\1\142\1\uffff\1\165\2\22\1\170"+
 		"\1\22\1\uffff\2\22\1\uffff\4\22\1\uffff\4\22\1\uffff\1\22\1\u0085\1\uffff"+
-		"\1\22\1\u0087\2\22\1\124\1\22\1\uffff\3\22\1\142\1\u008f\1\uffff\1\22"+
-		"\1\uffff\1\u0091\2\22\1\u0094\2\22\1\u008f\1\uffff\1\u0097\1\uffff\1\124"+
-		"\1\u0098\1\uffff\1\22\1\u009a\2\uffff\1\u009b\2\uffff";
+		"\1\22\1\u0087\2\22\1\124\5\22\1\142\1\u0090\1\uffff\1\22\1\uffff\1\u0092"+
+		"\2\22\1\u0095\1\u0096\2\22\1\u0090\1\uffff\1\u0099\1\uffff\1\124\1\u009a"+
+		"\2\uffff\1\22\1\u009c\2\uffff\1\u009d\2\uffff";
 	static final String DFA8_eofS =
-		"\u009c\uffff";
+		"\u009e\uffff";
 	static final String DFA8_minS =
 		"\1\11\7\141\1\uffff\4\141\1\60\4\141\3\uffff\1\165\1\141\2\164\1\162\1"+
 		"\u00fb\1\154\1\164\1\uffff\1\156\1\141\1\164\1\141\1\164\1\151\1\156\1"+
@@ -1445,10 +1444,10 @@ public class sqlLexer extends Lexer {
 		"\1\144\1\143\1\165\1\154\1\145\1\141\1\156\1\uffff\1\142\1\uffff\1\141"+
 		"\1\uffff\2\145\1\uffff\2\151\1\141\1\154\1\145\1\155\1\151\1\141\1\uffff"+
 		"\1\141\1\154\1\162\1\141\1\164\1\uffff\1\164\1\162\1\uffff\1\156\1\162"+
-		"\1\161\1\u00e9\1\uffff\1\145\1\155\1\142\1\162\1\uffff\1\145\1\141\1\uffff"+
-		"\1\151\1\141\1\145\1\151\1\141\1\165\1\uffff\1\164\1\142\1\162\2\141\1"+
-		"\uffff\1\156\1\uffff\1\141\1\162\1\145\1\141\1\162\1\145\1\141\1\uffff"+
-		"\1\141\1\uffff\2\141\1\uffff\1\145\1\141\2\uffff\1\141\2\uffff";
+		"\1\161\1\145\1\uffff\1\145\1\155\1\142\1\162\1\uffff\1\145\1\141\1\uffff"+
+		"\1\151\1\141\1\145\1\151\1\141\1\165\1\162\1\164\1\142\1\162\2\141\1\uffff"+
+		"\1\156\1\uffff\1\141\1\162\1\145\2\141\1\162\1\145\1\141\1\uffff\1\141"+
+		"\1\uffff\2\141\2\uffff\1\145\1\141\2\uffff\1\141\2\uffff";
 	static final String DFA8_maxS =
 		"\5\172\1\u00e9\2\172\1\uffff\4\172\1\71\1\172\1\u00e9\2\172\3\uffff\1"+
 		"\165\1\151\2\164\1\162\1\u00fb\1\154\1\164\1\uffff\1\156\1\172\1\164\1"+
@@ -1458,20 +1457,20 @@ public class sqlLexer extends Lexer {
 		"\145\1\157\1\172\1\uffff\1\144\1\143\1\165\1\154\1\145\1\172\1\156\1\uffff"+
 		"\1\142\1\uffff\1\172\1\uffff\2\145\1\uffff\2\151\1\172\1\154\1\145\1\155"+
 		"\1\151\1\172\1\uffff\1\172\1\154\1\162\1\172\1\164\1\uffff\1\164\1\162"+
-		"\1\uffff\1\156\1\162\1\161\1\u00e9\1\uffff\1\145\1\155\1\142\1\162\1\uffff"+
-		"\1\145\1\172\1\uffff\1\151\1\172\1\145\1\151\1\172\1\165\1\uffff\1\164"+
-		"\1\142\1\162\2\172\1\uffff\1\156\1\uffff\1\172\1\162\1\145\1\172\1\162"+
-		"\1\145\1\172\1\uffff\1\172\1\uffff\2\172\1\uffff\1\145\1\172\2\uffff\1"+
-		"\172\2\uffff";
+		"\1\uffff\1\156\1\162\1\161\1\145\1\uffff\1\145\1\155\1\142\1\162\1\uffff"+
+		"\1\145\1\172\1\uffff\1\151\1\172\1\145\1\151\1\172\1\165\1\162\1\164\1"+
+		"\142\1\162\2\172\1\uffff\1\156\1\uffff\1\172\1\162\1\145\2\172\1\162\1"+
+		"\145\1\172\1\uffff\1\172\1\uffff\2\172\2\uffff\1\145\1\172\2\uffff\1\172"+
+		"\2\uffff";
 	static final String DFA8_acceptS =
 		"\10\uffff\1\11\11\uffff\1\35\1\36\1\37\10\uffff\1\34\14\uffff\1\35\1\22"+
 		"\11\uffff\1\30\3\uffff\1\10\7\uffff\1\17\1\16\1\20\6\uffff\1\6\7\uffff"+
 		"\1\35\1\uffff\1\12\1\uffff\1\25\2\uffff\1\13\10\uffff\1\1\5\uffff\1\5"+
-		"\2\uffff\1\23\4\uffff\1\26\4\uffff\1\7\2\uffff\1\24\6\uffff\1\21\5\uffff"+
-		"\1\4\1\uffff\1\15\7\uffff\1\2\1\uffff\1\32\2\uffff\1\27\2\uffff\1\3\1"+
-		"\14\1\uffff\1\33\1\31";
+		"\2\uffff\1\23\4\uffff\1\26\4\uffff\1\7\2\uffff\1\24\14\uffff\1\4\1\uffff"+
+		"\1\15\10\uffff\1\2\1\uffff\1\32\2\uffff\1\21\1\27\2\uffff\1\3\1\14\1\uffff"+
+		"\1\33\1\31";
 	static final String DFA8_specialS =
-		"\u009c\uffff}>";
+		"\u009e\uffff}>";
 	static final String[] DFA8_transitionS = {
 			"\2\23\2\uffff\1\23\22\uffff\1\23\13\uffff\1\10\1\uffff\1\24\1\uffff\12"+
 			"\15\7\uffff\32\22\6\uffff\1\3\1\4\1\12\1\5\1\7\1\17\3\22\1\16\2\22\1"+
@@ -1602,29 +1601,31 @@ public class sqlLexer extends Lexer {
 			"\1\u0089",
 			"\32\22",
 			"\1\u008a",
-			"",
 			"\1\u008b",
 			"\1\u008c",
 			"\1\u008d",
+			"\1\u008e",
 			"\32\22",
-			"\22\22\1\u008e\7\22",
+			"\22\22\1\u008f\7\22",
 			"",
-			"\1\u0090",
+			"\1\u0091",
 			"",
 			"\32\22",
-			"\1\u0092",
 			"\1\u0093",
+			"\1\u0094",
 			"\32\22",
-			"\1\u0095",
-			"\1\u0096",
+			"\32\22",
+			"\1\u0097",
+			"\1\u0098",
+			"\32\22",
+			"",
 			"\32\22",
 			"",
 			"\32\22",
-			"",
-			"\32\22",
 			"\32\22",
 			"",
-			"\1\u0099",
+			"",
+			"\1\u009b",
 			"\32\22",
 			"",
 			"",

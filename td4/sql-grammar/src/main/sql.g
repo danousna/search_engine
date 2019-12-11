@@ -52,29 +52,27 @@ requete returns [Arbre arbre_requete = new Arbre("")]
 	@init {Arbre ps_arbre;} : 
 		sl = select 
 			{
-				sl_arbre = $sl.arbre_select;
-				arbre_requete.ajouteFils(sl_arbre);
+				arbre_requete.ajouteFils(sl);
 			} 
 		
 		ps = params 
 			{
-				ps_arbre = $ps.arbre_params;
-				arbre_requete.ajouteFils(ps_arbre);
+				arbre_requete.ajouteFils(ps);
 			}
 		POINT?
 ;
 
-select returns [Arbre arbre_select = new Arbre("")] :
+select returns [Arbre arbre_select = new Arbre("select")] :
 	(
 		SELECT
 		(
-			SELECT_ARTICLE { arbre_select.ajouteFils(new Arbre("", "select article")); }
+			SELECT_ARTICLE { arbre_select.ajouteFils(new Arbre("", "article")); }
 			|
-			SELECT_BULLETIN { arbre_select.ajouteFils(new Arbre("", "select bulletin")); }
+			SELECT_BULLETIN { arbre_select.ajouteFils(new Arbre("", "bulletin")); }
 			|
-			SELECT_AUTEUR { arbre_select.ajouteFils(new Arbre("", "select auteur")); }
+			SELECT_AUTEUR { arbre_select.ajouteFils(new Arbre("", "auteur")); }
 			|
-			SELECT_DATE { arbre_select.ajouteFils(new Arbre("", "select date")); }
+			SELECT_DATE { arbre_select.ajouteFils(new Arbre("", "date")); }
 		)
 		(
 			CONJ_AND
@@ -85,52 +83,50 @@ select returns [Arbre arbre_select = new Arbre("")] :
 				|
 				SELECT_AUTEUR { arbre_select.ajouteFils(new Arbre("", ", auteur")); }
 				|
-				SELECT_DATE { arbre_select.ajouteFils(new Arbre("", "select date")); }
+				SELECT_DATE { arbre_select.ajouteFils(new Arbre("", ", date")); }
 			)
 		)*
 	)
 	|
-	SELECT_SHORT_AUTEUR { arbre_select.ajouteFils(new Arbre("", "select auteur")); }
+	SELECT_SHORT_AUTEUR { arbre_select.ajouteFils(new Arbre("", "auteur")); }
 	|
-	SELECT_SHORT_DATE { arbre_select.ajouteFils(new Arbre("", "select date")); }
+	SELECT_SHORT_DATE { arbre_select.ajouteFils(new Arbre("", "date")); }
 ;
 
-params returns [Arbre arbre_params = new Arbre("")]
+params returns [Arbre arbre_params = new Arbre("params")]
 	@init {Arbre par1_arbre, par2_arbre;} : 
 		par1 = param 
 			{
-				par1_arbre = $par1.arbre_param;
-				arbre_params.ajouteFils(par1_arbre);
+				arbre_params.ajouteFils(par1);
 			}
 		(
 			(
 				conj1 = conj { //TODO: Ajouter la conjonction SQL valide 'or', 'and' et non pas française.
-					arbre_params.ajouteFils(new Arbre("", conj1.getText()));
+					arbre_params.ajouteFils(conj1);
 				}
 			)?
 			par2 = param
 			{
-				par2_arbre = $par2.arbre_param;
-				arbre_params.ajouteFils(par2_arbre);
+				arbre_params.ajouteFils(par2);
 			}
 		)*
 ;
 
-param returns [Arbre arbre_param = new Arbre("")] :
+param returns [Arbre arbre_param = new Arbre("param")] :
 	(
-		MOT { arbre_param.ajouteFils(new Arbre("", "table_texte")); }
+		MOT { arbre_param.ajouteFils(new Arbre("table", "texte")); }
 		var_mot_1 = VAR_MOT { arbre_param.ajouteFils(new Arbre("mot =", "'"+var_mot_1.getText()+"'")); }
 		(
-			conj1 = conj { arbre_param.ajouteFils(new Arbre("", conj1.getText())); }
+			conj1 = conj { arbre_param.ajouteFils(conj1); }
 			var_mot_2 = VAR_MOT { arbre_param.ajouteFils(new Arbre("mot =", "'"+var_mot_2.getText()+"'")); }
 		)*
 	)
 	|
 	(
-		AUTEUR { arbre_param.ajouteFils(new Arbre("", "table_auteur")); }
+		AUTEUR { arbre_param.ajouteFils(new Arbre("table", "auteur")); }
 		var_auteur_1 = VAR_MOT { arbre_param.ajouteFils(new Arbre("auteur =", "'"+var_auteur_1.getText()+"'")); }
 		(
-			conj1 = conj { arbre_param.ajouteFils(new Arbre("", conj1.getText())); }
+			conj1 = conj { arbre_param.ajouteFils(conj1); }
 			var_auteur_2 = VAR_MOT { arbre_param.ajouteFils(new Arbre("auteur =", "'"+var_auteur_2.getText()+"'")); }
 		)*
 	)
@@ -138,17 +134,17 @@ param returns [Arbre arbre_param = new Arbre("")] :
 	(
 		DATE
 		{
-			{ arbre_param.ajouteFils(new Arbre("", "table_date")); }
+			arbre_param.ajouteFils(new Arbre("table", "date"));
 		}
-		var_date_1 = var_date { arbre_param.ajouteFils(var_date_1.arbre_var); }
+		var_date_1 = var_date { arbre_param.ajouteFils(var_date_1); }
 		(
-			conj1 = conj { arbre_param.ajouteFils(new Arbre("", conj1.getText())); }
-			var_date_2 = var_date { arbre_param.ajouteFils(var_date_2.arbre_var); }
+			conj1 = conj { arbre_param.ajouteFils(conj1); }
+			var_date_2 = var_date { arbre_param.ajouteFils(var_date_2); }
 		)*
 	)
 ;
 
-conj returns [Arbre arbre_conj = new Arbre("")] :
+conj returns [Arbre arbre_conj = new Arbre("conj")] :
 	CONJ_OR
 	{
 		arbre_conj.ajouteFils(new Arbre("", "or"));
@@ -160,7 +156,7 @@ conj returns [Arbre arbre_conj = new Arbre("")] :
 	}
 ;
 
-var_date returns [Arbre arbre_var_date = new Arbre("")] :
+var_date returns [Arbre arbre_var = new Arbre("")] :
 	(
 		var1 = VAR_ANNEE
 		{ 

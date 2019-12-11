@@ -1,6 +1,5 @@
-// $ANTLR 3.5.1 /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g 2019-12-05 18:35:37
-
 package main;
+// $ANTLR 3.5.1 /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g 2019-12-11 12:32:54
 
 import org.antlr.runtime.*;
 import java.util.Stack;
@@ -90,18 +89,16 @@ public class sqlParser extends Parser {
 			state._fsp--;
 
 
-							sl_arbre = sl;
-							arbre_requete.ajouteFils(sl_arbre);
+							arbre_requete.ajouteFils(sl);
 						
 			pushFollow(FOLLOW_params_in_requete383);
 			ps=params();
 			state._fsp--;
 
 
-							ps_arbre = ps;
-							arbre_requete.ajouteFils(ps_arbre);
+							arbre_requete.ajouteFils(ps);
 						
-			// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:64:3: ( POINT )?
+			// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:62:3: ( POINT )?
 			int alt1=2;
 			int LA1_0 = input.LA(1);
 			if ( (LA1_0==POINT) ) {
@@ -109,7 +106,7 @@ public class sqlParser extends Parser {
 			}
 			switch (alt1) {
 				case 1 :
-					// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:64:3: POINT
+					// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:62:3: POINT
 					{
 					match(input,POINT,FOLLOW_POINT_in_requete393); 
 					}
@@ -134,13 +131,13 @@ public class sqlParser extends Parser {
 
 
 	// $ANTLR start "select"
-	// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:67:1: select returns [Arbre arbre_select = new Arbre(\"\")] : ( ( SELECT ( SELECT_ARTICLE | SELECT_BULLETIN | SELECT_AUTEUR | SELECT_DATE ) ( CONJ_AND ( SELECT_ARTICLE | SELECT_BULLETIN | SELECT_AUTEUR | SELECT_DATE ) )* ) | SELECT_SHORT_AUTEUR | SELECT_SHORT_DATE );
+	// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:65:1: select returns [Arbre arbre_select = new Arbre(\"select\")] : ( ( SELECT ( SELECT_ARTICLE | SELECT_BULLETIN | SELECT_AUTEUR | SELECT_DATE ) ( CONJ_AND ( SELECT_ARTICLE | SELECT_BULLETIN | SELECT_AUTEUR | SELECT_DATE ) )* ) | SELECT_SHORT_AUTEUR | SELECT_SHORT_DATE );
 	public final Arbre select() throws RecognitionException {
-		Arbre arbre_select =  new Arbre("");
+		Arbre arbre_select =  new Arbre("select");
 
 
 		try {
-			// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:67:53: ( ( SELECT ( SELECT_ARTICLE | SELECT_BULLETIN | SELECT_AUTEUR | SELECT_DATE ) ( CONJ_AND ( SELECT_ARTICLE | SELECT_BULLETIN | SELECT_AUTEUR | SELECT_DATE ) )* ) | SELECT_SHORT_AUTEUR | SELECT_SHORT_DATE )
+			// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:65:59: ( ( SELECT ( SELECT_ARTICLE | SELECT_BULLETIN | SELECT_AUTEUR | SELECT_DATE ) ( CONJ_AND ( SELECT_ARTICLE | SELECT_BULLETIN | SELECT_AUTEUR | SELECT_DATE ) )* ) | SELECT_SHORT_AUTEUR | SELECT_SHORT_DATE )
 			int alt5=3;
 			switch ( input.LA(1) ) {
 			case SELECT:
@@ -165,13 +162,13 @@ public class sqlParser extends Parser {
 			}
 			switch (alt5) {
 				case 1 :
-					// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:68:2: ( SELECT ( SELECT_ARTICLE | SELECT_BULLETIN | SELECT_AUTEUR | SELECT_DATE ) ( CONJ_AND ( SELECT_ARTICLE | SELECT_BULLETIN | SELECT_AUTEUR | SELECT_DATE ) )* )
+					// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:66:2: ( SELECT ( SELECT_ARTICLE | SELECT_BULLETIN | SELECT_AUTEUR | SELECT_DATE ) ( CONJ_AND ( SELECT_ARTICLE | SELECT_BULLETIN | SELECT_AUTEUR | SELECT_DATE ) )* )
 					{
-					// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:68:2: ( SELECT ( SELECT_ARTICLE | SELECT_BULLETIN | SELECT_AUTEUR | SELECT_DATE ) ( CONJ_AND ( SELECT_ARTICLE | SELECT_BULLETIN | SELECT_AUTEUR | SELECT_DATE ) )* )
-					// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:69:3: SELECT ( SELECT_ARTICLE | SELECT_BULLETIN | SELECT_AUTEUR | SELECT_DATE ) ( CONJ_AND ( SELECT_ARTICLE | SELECT_BULLETIN | SELECT_AUTEUR | SELECT_DATE ) )*
+					// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:66:2: ( SELECT ( SELECT_ARTICLE | SELECT_BULLETIN | SELECT_AUTEUR | SELECT_DATE ) ( CONJ_AND ( SELECT_ARTICLE | SELECT_BULLETIN | SELECT_AUTEUR | SELECT_DATE ) )* )
+					// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:67:3: SELECT ( SELECT_ARTICLE | SELECT_BULLETIN | SELECT_AUTEUR | SELECT_DATE ) ( CONJ_AND ( SELECT_ARTICLE | SELECT_BULLETIN | SELECT_AUTEUR | SELECT_DATE ) )*
 					{
 					match(input,SELECT,FOLLOW_SELECT_in_select412); 
-					// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:70:3: ( SELECT_ARTICLE | SELECT_BULLETIN | SELECT_AUTEUR | SELECT_DATE )
+					// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:68:3: ( SELECT_ARTICLE | SELECT_BULLETIN | SELECT_AUTEUR | SELECT_DATE )
 					int alt2=4;
 					switch ( input.LA(1) ) {
 					case SELECT_ARTICLE:
@@ -201,37 +198,37 @@ public class sqlParser extends Parser {
 					}
 					switch (alt2) {
 						case 1 :
-							// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:71:4: SELECT_ARTICLE
+							// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:69:4: SELECT_ARTICLE
 							{
 							match(input,SELECT_ARTICLE,FOLLOW_SELECT_ARTICLE_in_select421); 
-							 arbre_select.ajouteFils(new Arbre("", "select article")); 
+							 arbre_select.ajouteFils(new Arbre("", "article")); 
 							}
 							break;
 						case 2 :
-							// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:73:4: SELECT_BULLETIN
+							// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:71:4: SELECT_BULLETIN
 							{
 							match(input,SELECT_BULLETIN,FOLLOW_SELECT_BULLETIN_in_select433); 
-							 arbre_select.ajouteFils(new Arbre("", "select bulletin")); 
+							 arbre_select.ajouteFils(new Arbre("", "bulletin")); 
 							}
 							break;
 						case 3 :
-							// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:75:4: SELECT_AUTEUR
+							// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:73:4: SELECT_AUTEUR
 							{
 							match(input,SELECT_AUTEUR,FOLLOW_SELECT_AUTEUR_in_select445); 
-							 arbre_select.ajouteFils(new Arbre("", "select auteur")); 
+							 arbre_select.ajouteFils(new Arbre("", "auteur")); 
 							}
 							break;
 						case 4 :
-							// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:77:4: SELECT_DATE
+							// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:75:4: SELECT_DATE
 							{
 							match(input,SELECT_DATE,FOLLOW_SELECT_DATE_in_select457); 
-							 arbre_select.ajouteFils(new Arbre("", "select date")); 
+							 arbre_select.ajouteFils(new Arbre("", "date")); 
 							}
 							break;
 
 					}
 
-					// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:79:3: ( CONJ_AND ( SELECT_ARTICLE | SELECT_BULLETIN | SELECT_AUTEUR | SELECT_DATE ) )*
+					// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:77:3: ( CONJ_AND ( SELECT_ARTICLE | SELECT_BULLETIN | SELECT_AUTEUR | SELECT_DATE ) )*
 					loop4:
 					while (true) {
 						int alt4=2;
@@ -242,10 +239,10 @@ public class sqlParser extends Parser {
 
 						switch (alt4) {
 						case 1 :
-							// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:80:4: CONJ_AND ( SELECT_ARTICLE | SELECT_BULLETIN | SELECT_AUTEUR | SELECT_DATE )
+							// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:78:4: CONJ_AND ( SELECT_ARTICLE | SELECT_BULLETIN | SELECT_AUTEUR | SELECT_DATE )
 							{
 							match(input,CONJ_AND,FOLLOW_CONJ_AND_in_select472); 
-							// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:81:4: ( SELECT_ARTICLE | SELECT_BULLETIN | SELECT_AUTEUR | SELECT_DATE )
+							// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:79:4: ( SELECT_ARTICLE | SELECT_BULLETIN | SELECT_AUTEUR | SELECT_DATE )
 							int alt3=4;
 							switch ( input.LA(1) ) {
 							case SELECT_ARTICLE:
@@ -275,31 +272,31 @@ public class sqlParser extends Parser {
 							}
 							switch (alt3) {
 								case 1 :
-									// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:82:5: SELECT_ARTICLE
+									// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:80:5: SELECT_ARTICLE
 									{
 									match(input,SELECT_ARTICLE,FOLLOW_SELECT_ARTICLE_in_select483); 
 									 arbre_select.ajouteFils(new Arbre("", ", article")); 
 									}
 									break;
 								case 2 :
-									// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:84:5: SELECT_BULLETIN
+									// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:82:5: SELECT_BULLETIN
 									{
 									match(input,SELECT_BULLETIN,FOLLOW_SELECT_BULLETIN_in_select497); 
 									 arbre_select.ajouteFils(new Arbre("", ", bulletin")); 
 									}
 									break;
 								case 3 :
-									// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:86:5: SELECT_AUTEUR
+									// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:84:5: SELECT_AUTEUR
 									{
 									match(input,SELECT_AUTEUR,FOLLOW_SELECT_AUTEUR_in_select511); 
 									 arbre_select.ajouteFils(new Arbre("", ", auteur")); 
 									}
 									break;
 								case 4 :
-									// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:88:5: SELECT_DATE
+									// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:86:5: SELECT_DATE
 									{
 									match(input,SELECT_DATE,FOLLOW_SELECT_DATE_in_select525); 
-									 arbre_select.ajouteFils(new Arbre("", "select date")); 
+									 arbre_select.ajouteFils(new Arbre("", ", date")); 
 									}
 									break;
 
@@ -318,17 +315,17 @@ public class sqlParser extends Parser {
 					}
 					break;
 				case 2 :
-					// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:93:2: SELECT_SHORT_AUTEUR
+					// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:91:2: SELECT_SHORT_AUTEUR
 					{
 					match(input,SELECT_SHORT_AUTEUR,FOLLOW_SELECT_SHORT_AUTEUR_in_select546); 
-					 arbre_select.ajouteFils(new Arbre("", "select auteur")); 
+					 arbre_select.ajouteFils(new Arbre("", "auteur")); 
 					}
 					break;
 				case 3 :
-					// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:95:2: SELECT_SHORT_DATE
+					// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:93:2: SELECT_SHORT_DATE
 					{
 					match(input,SELECT_SHORT_DATE,FOLLOW_SELECT_SHORT_DATE_in_select554); 
-					 arbre_select.ajouteFils(new Arbre("", "select date")); 
+					 arbre_select.ajouteFils(new Arbre("", "date")); 
 					}
 					break;
 
@@ -348,9 +345,9 @@ public class sqlParser extends Parser {
 
 
 	// $ANTLR start "params"
-	// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:98:1: params returns [Arbre arbre_params = new Arbre(\"\")] : par1= param ( (conj1= conj )? par2= param )* ;
+	// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:96:1: params returns [Arbre arbre_params = new Arbre(\"params\")] : par1= param ( (conj1= conj )? par2= param )* ;
 	public final Arbre params() throws RecognitionException {
-		Arbre arbre_params =  new Arbre("");
+		Arbre arbre_params =  new Arbre("params");
 
 
 		Arbre par1 =null;
@@ -359,18 +356,17 @@ public class sqlParser extends Parser {
 
 		Arbre par1_arbre, par2_arbre;
 		try {
-			// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:99:40: (par1= param ( (conj1= conj )? par2= param )* )
-			// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:100:3: par1= param ( (conj1= conj )? par2= param )*
+			// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:97:40: (par1= param ( (conj1= conj )? par2= param )* )
+			// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:98:3: par1= param ( (conj1= conj )? par2= param )*
 			{
 			pushFollow(FOLLOW_param_in_params582);
 			par1=param();
 			state._fsp--;
 
 
-							par1_arbre = par1;
-							arbre_params.ajouteFils(par1_arbre);
+							arbre_params.ajouteFils(par1);
 						
-			// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:105:3: ( (conj1= conj )? par2= param )*
+			// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:102:3: ( (conj1= conj )? par2= param )*
 			loop7:
 			while (true) {
 				int alt7=2;
@@ -381,9 +377,9 @@ public class sqlParser extends Parser {
 
 				switch (alt7) {
 				case 1 :
-					// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:106:4: (conj1= conj )? par2= param
+					// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:103:4: (conj1= conj )? par2= param
 					{
-					// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:106:4: (conj1= conj )?
+					// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:103:4: (conj1= conj )?
 					int alt6=2;
 					int LA6_0 = input.LA(1);
 					if ( ((LA6_0 >= CONJ_AND && LA6_0 <= CONJ_OR)) ) {
@@ -391,14 +387,14 @@ public class sqlParser extends Parser {
 					}
 					switch (alt6) {
 						case 1 :
-							// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:107:5: conj1= conj
+							// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:104:5: conj1= conj
 							{
 							pushFollow(FOLLOW_conj_in_params607);
 							conj1=conj();
 							state._fsp--;
 
 							 //TODO: Ajouter la conjonction SQL valide 'or', 'and' et non pas française.
-												arbre_params.ajouteFils(new Arbre("", conj1.getText()));
+												arbre_params.ajouteFils(conj1);
 											
 							}
 							break;
@@ -410,8 +406,7 @@ public class sqlParser extends Parser {
 					state._fsp--;
 
 
-									par2_arbre = par2;
-									arbre_params.ajouteFils(par2_arbre);
+									arbre_params.ajouteFils(par2);
 								
 					}
 					break;
@@ -438,9 +433,9 @@ public class sqlParser extends Parser {
 
 
 	// $ANTLR start "param"
-	// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:119:1: param returns [Arbre arbre_param = new Arbre(\"\")] : ( ( MOT var_mot_1= VAR_MOT (conj1= conj var_mot_2= VAR_MOT )* ) | ( AUTEUR var_auteur_1= VAR_MOT (conj1= conj var_auteur_2= VAR_MOT )* ) | ( DATE var_date_1= var_date (conj1= conj var_date_2= var_date )* ) );
+	// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:115:1: param returns [Arbre arbre_param = new Arbre(\"param\")] : ( ( MOT var_mot_1= VAR_MOT (conj1= conj var_mot_2= VAR_MOT )* ) | ( AUTEUR var_auteur_1= VAR_MOT (conj1= conj var_auteur_2= VAR_MOT )* ) | ( DATE var_date_1= var_date (conj1= conj var_date_2= var_date )* ) );
 	public final Arbre param() throws RecognitionException {
-		Arbre arbre_param =  new Arbre("");
+		Arbre arbre_param =  new Arbre("param");
 
 
 		Token var_mot_1=null;
@@ -452,7 +447,7 @@ public class sqlParser extends Parser {
 		Arbre var_date_2 =null;
 
 		try {
-			// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:119:51: ( ( MOT var_mot_1= VAR_MOT (conj1= conj var_mot_2= VAR_MOT )* ) | ( AUTEUR var_auteur_1= VAR_MOT (conj1= conj var_auteur_2= VAR_MOT )* ) | ( DATE var_date_1= var_date (conj1= conj var_date_2= var_date )* ) )
+			// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:115:56: ( ( MOT var_mot_1= VAR_MOT (conj1= conj var_mot_2= VAR_MOT )* ) | ( AUTEUR var_auteur_1= VAR_MOT (conj1= conj var_auteur_2= VAR_MOT )* ) | ( DATE var_date_1= var_date (conj1= conj var_date_2= var_date )* ) )
 			int alt11=3;
 			switch ( input.LA(1) ) {
 			case MOT:
@@ -477,16 +472,16 @@ public class sqlParser extends Parser {
 			}
 			switch (alt11) {
 				case 1 :
-					// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:120:2: ( MOT var_mot_1= VAR_MOT (conj1= conj var_mot_2= VAR_MOT )* )
+					// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:116:2: ( MOT var_mot_1= VAR_MOT (conj1= conj var_mot_2= VAR_MOT )* )
 					{
-					// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:120:2: ( MOT var_mot_1= VAR_MOT (conj1= conj var_mot_2= VAR_MOT )* )
-					// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:121:3: MOT var_mot_1= VAR_MOT (conj1= conj var_mot_2= VAR_MOT )*
+					// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:116:2: ( MOT var_mot_1= VAR_MOT (conj1= conj var_mot_2= VAR_MOT )* )
+					// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:117:3: MOT var_mot_1= VAR_MOT (conj1= conj var_mot_2= VAR_MOT )*
 					{
 					match(input,MOT,FOLLOW_MOT_in_param652); 
-					 arbre_param.ajouteFils(new Arbre("", "table_texte")); 
+					 arbre_param.ajouteFils(new Arbre("table", "texte")); 
 					var_mot_1=(Token)match(input,VAR_MOT,FOLLOW_VAR_MOT_in_param662); 
 					 arbre_param.ajouteFils(new Arbre("mot =", "'"+var_mot_1.getText()+"'")); 
-					// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:123:3: (conj1= conj var_mot_2= VAR_MOT )*
+					// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:119:3: (conj1= conj var_mot_2= VAR_MOT )*
 					loop8:
 					while (true) {
 						int alt8=2;
@@ -508,13 +503,13 @@ public class sqlParser extends Parser {
 
 						switch (alt8) {
 						case 1 :
-							// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:124:4: conj1= conj var_mot_2= VAR_MOT
+							// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:120:4: conj1= conj var_mot_2= VAR_MOT
 							{
 							pushFollow(FOLLOW_conj_in_param677);
 							conj1=conj();
 							state._fsp--;
 
-							 arbre_param.ajouteFils(new Arbre("", conj1.getText())); 
+							 arbre_param.ajouteFils(conj1); 
 							var_mot_2=(Token)match(input,VAR_MOT,FOLLOW_VAR_MOT_in_param688); 
 							 arbre_param.ajouteFils(new Arbre("mot =", "'"+var_mot_2.getText()+"'")); 
 							}
@@ -530,16 +525,16 @@ public class sqlParser extends Parser {
 					}
 					break;
 				case 2 :
-					// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:129:2: ( AUTEUR var_auteur_1= VAR_MOT (conj1= conj var_auteur_2= VAR_MOT )* )
+					// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:125:2: ( AUTEUR var_auteur_1= VAR_MOT (conj1= conj var_auteur_2= VAR_MOT )* )
 					{
-					// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:129:2: ( AUTEUR var_auteur_1= VAR_MOT (conj1= conj var_auteur_2= VAR_MOT )* )
-					// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:130:3: AUTEUR var_auteur_1= VAR_MOT (conj1= conj var_auteur_2= VAR_MOT )*
+					// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:125:2: ( AUTEUR var_auteur_1= VAR_MOT (conj1= conj var_auteur_2= VAR_MOT )* )
+					// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:126:3: AUTEUR var_auteur_1= VAR_MOT (conj1= conj var_auteur_2= VAR_MOT )*
 					{
 					match(input,AUTEUR,FOLLOW_AUTEUR_in_param708); 
-					 arbre_param.ajouteFils(new Arbre("", "table_auteur")); 
+					 arbre_param.ajouteFils(new Arbre("table", "auteur")); 
 					var_auteur_1=(Token)match(input,VAR_MOT,FOLLOW_VAR_MOT_in_param718); 
 					 arbre_param.ajouteFils(new Arbre("auteur =", "'"+var_auteur_1.getText()+"'")); 
-					// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:132:3: (conj1= conj var_auteur_2= VAR_MOT )*
+					// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:128:3: (conj1= conj var_auteur_2= VAR_MOT )*
 					loop9:
 					while (true) {
 						int alt9=2;
@@ -561,13 +556,13 @@ public class sqlParser extends Parser {
 
 						switch (alt9) {
 						case 1 :
-							// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:133:4: conj1= conj var_auteur_2= VAR_MOT
+							// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:129:4: conj1= conj var_auteur_2= VAR_MOT
 							{
 							pushFollow(FOLLOW_conj_in_param733);
 							conj1=conj();
 							state._fsp--;
 
-							 arbre_param.ajouteFils(new Arbre("", conj1.getText())); 
+							 arbre_param.ajouteFils(conj1); 
 							var_auteur_2=(Token)match(input,VAR_MOT,FOLLOW_VAR_MOT_in_param744); 
 							 arbre_param.ajouteFils(new Arbre("auteur =", "'"+var_auteur_2.getText()+"'")); 
 							}
@@ -583,21 +578,21 @@ public class sqlParser extends Parser {
 					}
 					break;
 				case 3 :
-					// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:138:2: ( DATE var_date_1= var_date (conj1= conj var_date_2= var_date )* )
+					// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:134:2: ( DATE var_date_1= var_date (conj1= conj var_date_2= var_date )* )
 					{
-					// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:138:2: ( DATE var_date_1= var_date (conj1= conj var_date_2= var_date )* )
-					// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:139:3: DATE var_date_1= var_date (conj1= conj var_date_2= var_date )*
+					// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:134:2: ( DATE var_date_1= var_date (conj1= conj var_date_2= var_date )* )
+					// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:135:3: DATE var_date_1= var_date (conj1= conj var_date_2= var_date )*
 					{
 					match(input,DATE,FOLLOW_DATE_in_param764); 
 
-								{ arbre_param.ajouteFils(new Arbre("", "table_date")); }
+								arbre_param.ajouteFils(new Arbre("table", "date"));
 							
 					pushFollow(FOLLOW_var_date_in_param776);
 					var_date_1=var_date();
 					state._fsp--;
 
-					 arbre_param.ajouteFils(var_date_1.arbre_var); 
-					// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:144:3: (conj1= conj var_date_2= var_date )*
+					 arbre_param.ajouteFils(var_date_1); 
+					// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:140:3: (conj1= conj var_date_2= var_date )*
 					loop10:
 					while (true) {
 						int alt10=2;
@@ -619,18 +614,18 @@ public class sqlParser extends Parser {
 
 						switch (alt10) {
 						case 1 :
-							// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:145:4: conj1= conj var_date_2= var_date
+							// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:141:4: conj1= conj var_date_2= var_date
 							{
 							pushFollow(FOLLOW_conj_in_param791);
 							conj1=conj();
 							state._fsp--;
 
-							 arbre_param.ajouteFils(new Arbre("", conj1.getText())); 
+							 arbre_param.ajouteFils(conj1); 
 							pushFollow(FOLLOW_var_date_in_param802);
 							var_date_2=var_date();
 							state._fsp--;
 
-							 arbre_param.ajouteFils(var_date_2.arbre_var); 
+							 arbre_param.ajouteFils(var_date_2); 
 							}
 							break;
 
@@ -660,13 +655,13 @@ public class sqlParser extends Parser {
 
 
 	// $ANTLR start "conj"
-	// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:151:1: conj returns [Arbre arbre_conj = new Arbre(\"\")] : ( CONJ_OR | CONJ_AND );
+	// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:147:1: conj returns [Arbre arbre_conj = new Arbre(\"conj\")] : ( CONJ_OR | CONJ_AND );
 	public final Arbre conj() throws RecognitionException {
-		Arbre arbre_conj =  new Arbre("");
+		Arbre arbre_conj =  new Arbre("conj");
 
 
 		try {
-			// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:151:49: ( CONJ_OR | CONJ_AND )
+			// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:147:53: ( CONJ_OR | CONJ_AND )
 			int alt12=2;
 			int LA12_0 = input.LA(1);
 			if ( (LA12_0==CONJ_OR) ) {
@@ -684,7 +679,7 @@ public class sqlParser extends Parser {
 
 			switch (alt12) {
 				case 1 :
-					// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:152:2: CONJ_OR
+					// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:148:2: CONJ_OR
 					{
 					match(input,CONJ_OR,FOLLOW_CONJ_OR_in_conj826); 
 
@@ -693,7 +688,7 @@ public class sqlParser extends Parser {
 					}
 					break;
 				case 2 :
-					// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:157:2: CONJ_AND
+					// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:153:2: CONJ_AND
 					{
 					match(input,CONJ_AND,FOLLOW_CONJ_AND_in_conj835); 
 
@@ -718,15 +713,15 @@ public class sqlParser extends Parser {
 
 
 	// $ANTLR start "var_date"
-	// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:163:1: var_date returns [Arbre arbre_var_date = new Arbre(\"\")] : ( (var1= VAR_ANNEE ) | ( (var1= VAR_JOUR )? ( VAR_MOIS_JANVIER | VAR_MOIS_FEVRIER | VAR_MOIS_MARS | VAR_MOIS_AVRIL | VAR_MOIS_MAI | VAR_MOIS_JUIN | VAR_MOIS_JUILLET | VAR_MOIS_AOUT | VAR_MOIS_SEPTEMBRE | VAR_MOIS_OCTOBRE | VAR_MOIS_NOVEMBRE | VAR_MOIS_DECEMBRE ) var1= VAR_ANNEE ) | (var1= VAR_DATE ) );
+	// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:159:1: var_date returns [Arbre arbre_var = new Arbre(\"\")] : ( (var1= VAR_ANNEE ) | ( (var1= VAR_JOUR )? ( VAR_MOIS_JANVIER | VAR_MOIS_FEVRIER | VAR_MOIS_MARS | VAR_MOIS_AVRIL | VAR_MOIS_MAI | VAR_MOIS_JUIN | VAR_MOIS_JUILLET | VAR_MOIS_AOUT | VAR_MOIS_SEPTEMBRE | VAR_MOIS_OCTOBRE | VAR_MOIS_NOVEMBRE | VAR_MOIS_DECEMBRE ) var1= VAR_ANNEE ) | (var1= VAR_DATE ) );
 	public final Arbre var_date() throws RecognitionException {
-		Arbre arbre_var_date =  new Arbre("");
+		Arbre arbre_var =  new Arbre("");
 
 
 		Token var1=null;
 
 		try {
-			// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:163:57: ( (var1= VAR_ANNEE ) | ( (var1= VAR_JOUR )? ( VAR_MOIS_JANVIER | VAR_MOIS_FEVRIER | VAR_MOIS_MARS | VAR_MOIS_AVRIL | VAR_MOIS_MAI | VAR_MOIS_JUIN | VAR_MOIS_JUILLET | VAR_MOIS_AOUT | VAR_MOIS_SEPTEMBRE | VAR_MOIS_OCTOBRE | VAR_MOIS_NOVEMBRE | VAR_MOIS_DECEMBRE ) var1= VAR_ANNEE ) | (var1= VAR_DATE ) )
+			// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:159:52: ( (var1= VAR_ANNEE ) | ( (var1= VAR_JOUR )? ( VAR_MOIS_JANVIER | VAR_MOIS_FEVRIER | VAR_MOIS_MARS | VAR_MOIS_AVRIL | VAR_MOIS_MAI | VAR_MOIS_JUIN | VAR_MOIS_JUILLET | VAR_MOIS_AOUT | VAR_MOIS_SEPTEMBRE | VAR_MOIS_OCTOBRE | VAR_MOIS_NOVEMBRE | VAR_MOIS_DECEMBRE ) var1= VAR_ANNEE ) | (var1= VAR_DATE ) )
 			int alt15=3;
 			switch ( input.LA(1) ) {
 			case VAR_ANNEE:
@@ -763,10 +758,10 @@ public class sqlParser extends Parser {
 			}
 			switch (alt15) {
 				case 1 :
-					// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:164:2: (var1= VAR_ANNEE )
+					// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:160:2: (var1= VAR_ANNEE )
 					{
-					// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:164:2: (var1= VAR_ANNEE )
-					// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:165:3: var1= VAR_ANNEE
+					// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:160:2: (var1= VAR_ANNEE )
+					// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:161:3: var1= VAR_ANNEE
 					{
 					var1=(Token)match(input,VAR_ANNEE,FOLLOW_VAR_ANNEE_in_var_date860); 
 					 
@@ -777,12 +772,12 @@ public class sqlParser extends Parser {
 					}
 					break;
 				case 2 :
-					// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:171:2: ( (var1= VAR_JOUR )? ( VAR_MOIS_JANVIER | VAR_MOIS_FEVRIER | VAR_MOIS_MARS | VAR_MOIS_AVRIL | VAR_MOIS_MAI | VAR_MOIS_JUIN | VAR_MOIS_JUILLET | VAR_MOIS_AOUT | VAR_MOIS_SEPTEMBRE | VAR_MOIS_OCTOBRE | VAR_MOIS_NOVEMBRE | VAR_MOIS_DECEMBRE ) var1= VAR_ANNEE )
+					// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:167:2: ( (var1= VAR_JOUR )? ( VAR_MOIS_JANVIER | VAR_MOIS_FEVRIER | VAR_MOIS_MARS | VAR_MOIS_AVRIL | VAR_MOIS_MAI | VAR_MOIS_JUIN | VAR_MOIS_JUILLET | VAR_MOIS_AOUT | VAR_MOIS_SEPTEMBRE | VAR_MOIS_OCTOBRE | VAR_MOIS_NOVEMBRE | VAR_MOIS_DECEMBRE ) var1= VAR_ANNEE )
 					{
-					// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:171:2: ( (var1= VAR_JOUR )? ( VAR_MOIS_JANVIER | VAR_MOIS_FEVRIER | VAR_MOIS_MARS | VAR_MOIS_AVRIL | VAR_MOIS_MAI | VAR_MOIS_JUIN | VAR_MOIS_JUILLET | VAR_MOIS_AOUT | VAR_MOIS_SEPTEMBRE | VAR_MOIS_OCTOBRE | VAR_MOIS_NOVEMBRE | VAR_MOIS_DECEMBRE ) var1= VAR_ANNEE )
-					// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:172:3: (var1= VAR_JOUR )? ( VAR_MOIS_JANVIER | VAR_MOIS_FEVRIER | VAR_MOIS_MARS | VAR_MOIS_AVRIL | VAR_MOIS_MAI | VAR_MOIS_JUIN | VAR_MOIS_JUILLET | VAR_MOIS_AOUT | VAR_MOIS_SEPTEMBRE | VAR_MOIS_OCTOBRE | VAR_MOIS_NOVEMBRE | VAR_MOIS_DECEMBRE ) var1= VAR_ANNEE
+					// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:167:2: ( (var1= VAR_JOUR )? ( VAR_MOIS_JANVIER | VAR_MOIS_FEVRIER | VAR_MOIS_MARS | VAR_MOIS_AVRIL | VAR_MOIS_MAI | VAR_MOIS_JUIN | VAR_MOIS_JUILLET | VAR_MOIS_AOUT | VAR_MOIS_SEPTEMBRE | VAR_MOIS_OCTOBRE | VAR_MOIS_NOVEMBRE | VAR_MOIS_DECEMBRE ) var1= VAR_ANNEE )
+					// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:168:3: (var1= VAR_JOUR )? ( VAR_MOIS_JANVIER | VAR_MOIS_FEVRIER | VAR_MOIS_MARS | VAR_MOIS_AVRIL | VAR_MOIS_MAI | VAR_MOIS_JUIN | VAR_MOIS_JUILLET | VAR_MOIS_AOUT | VAR_MOIS_SEPTEMBRE | VAR_MOIS_OCTOBRE | VAR_MOIS_NOVEMBRE | VAR_MOIS_DECEMBRE ) var1= VAR_ANNEE
 					{
-					// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:172:3: (var1= VAR_JOUR )?
+					// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:168:3: (var1= VAR_JOUR )?
 					int alt13=2;
 					int LA13_0 = input.LA(1);
 					if ( (LA13_0==VAR_JOUR) ) {
@@ -790,7 +785,7 @@ public class sqlParser extends Parser {
 					}
 					switch (alt13) {
 						case 1 :
-							// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:173:4: var1= VAR_JOUR
+							// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:169:4: var1= VAR_JOUR
 							{
 							var1=(Token)match(input,VAR_JOUR,FOLLOW_VAR_JOUR_in_var_date886); 
 
@@ -801,7 +796,7 @@ public class sqlParser extends Parser {
 
 					}
 
-					// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:178:3: ( VAR_MOIS_JANVIER | VAR_MOIS_FEVRIER | VAR_MOIS_MARS | VAR_MOIS_AVRIL | VAR_MOIS_MAI | VAR_MOIS_JUIN | VAR_MOIS_JUILLET | VAR_MOIS_AOUT | VAR_MOIS_SEPTEMBRE | VAR_MOIS_OCTOBRE | VAR_MOIS_NOVEMBRE | VAR_MOIS_DECEMBRE )
+					// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:174:3: ( VAR_MOIS_JANVIER | VAR_MOIS_FEVRIER | VAR_MOIS_MARS | VAR_MOIS_AVRIL | VAR_MOIS_MAI | VAR_MOIS_JUIN | VAR_MOIS_JUILLET | VAR_MOIS_AOUT | VAR_MOIS_SEPTEMBRE | VAR_MOIS_OCTOBRE | VAR_MOIS_NOVEMBRE | VAR_MOIS_DECEMBRE )
 					int alt14=12;
 					switch ( input.LA(1) ) {
 					case VAR_MOIS_JANVIER:
@@ -871,84 +866,84 @@ public class sqlParser extends Parser {
 					}
 					switch (alt14) {
 						case 1 :
-							// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:179:4: VAR_MOIS_JANVIER
+							// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:175:4: VAR_MOIS_JANVIER
 							{
 							match(input,VAR_MOIS_JANVIER,FOLLOW_VAR_MOIS_JANVIER_in_var_date905); 
 							 arbre_var.ajouteFils(new Arbre("mois =", "01")); 
 							}
 							break;
 						case 2 :
-							// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:181:4: VAR_MOIS_FEVRIER
+							// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:177:4: VAR_MOIS_FEVRIER
 							{
 							match(input,VAR_MOIS_FEVRIER,FOLLOW_VAR_MOIS_FEVRIER_in_var_date918); 
 							 arbre_var.ajouteFils(new Arbre("mois =", "02")); 
 							}
 							break;
 						case 3 :
-							// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:183:4: VAR_MOIS_MARS
+							// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:179:4: VAR_MOIS_MARS
 							{
 							match(input,VAR_MOIS_MARS,FOLLOW_VAR_MOIS_MARS_in_var_date931); 
 							 arbre_var.ajouteFils(new Arbre("mois =", "03")); 
 							}
 							break;
 						case 4 :
-							// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:185:4: VAR_MOIS_AVRIL
+							// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:181:4: VAR_MOIS_AVRIL
 							{
 							match(input,VAR_MOIS_AVRIL,FOLLOW_VAR_MOIS_AVRIL_in_var_date944); 
 							 arbre_var.ajouteFils(new Arbre("mois =", "04")); 
 							}
 							break;
 						case 5 :
-							// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:187:4: VAR_MOIS_MAI
+							// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:183:4: VAR_MOIS_MAI
 							{
 							match(input,VAR_MOIS_MAI,FOLLOW_VAR_MOIS_MAI_in_var_date957); 
 							 arbre_var.ajouteFils(new Arbre("mois =", "05")); 
 							}
 							break;
 						case 6 :
-							// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:189:4: VAR_MOIS_JUIN
+							// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:185:4: VAR_MOIS_JUIN
 							{
 							match(input,VAR_MOIS_JUIN,FOLLOW_VAR_MOIS_JUIN_in_var_date970); 
 							 arbre_var.ajouteFils(new Arbre("mois =", "06")); 
 							}
 							break;
 						case 7 :
-							// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:191:4: VAR_MOIS_JUILLET
+							// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:187:4: VAR_MOIS_JUILLET
 							{
 							match(input,VAR_MOIS_JUILLET,FOLLOW_VAR_MOIS_JUILLET_in_var_date983); 
 							 arbre_var.ajouteFils(new Arbre("mois =", "07")); 
 							}
 							break;
 						case 8 :
-							// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:193:4: VAR_MOIS_AOUT
+							// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:189:4: VAR_MOIS_AOUT
 							{
 							match(input,VAR_MOIS_AOUT,FOLLOW_VAR_MOIS_AOUT_in_var_date996); 
 							 arbre_var.ajouteFils(new Arbre("mois =", "08")); 
 							}
 							break;
 						case 9 :
-							// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:195:4: VAR_MOIS_SEPTEMBRE
+							// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:191:4: VAR_MOIS_SEPTEMBRE
 							{
 							match(input,VAR_MOIS_SEPTEMBRE,FOLLOW_VAR_MOIS_SEPTEMBRE_in_var_date1009); 
 							 arbre_var.ajouteFils(new Arbre("mois =", "09")); 
 							}
 							break;
 						case 10 :
-							// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:197:4: VAR_MOIS_OCTOBRE
+							// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:193:4: VAR_MOIS_OCTOBRE
 							{
 							match(input,VAR_MOIS_OCTOBRE,FOLLOW_VAR_MOIS_OCTOBRE_in_var_date1022); 
 							 arbre_var.ajouteFils(new Arbre("mois =", "10")); 
 							}
 							break;
 						case 11 :
-							// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:199:4: VAR_MOIS_NOVEMBRE
+							// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:195:4: VAR_MOIS_NOVEMBRE
 							{
 							match(input,VAR_MOIS_NOVEMBRE,FOLLOW_VAR_MOIS_NOVEMBRE_in_var_date1035); 
 							 arbre_var.ajouteFils(new Arbre("mois =", "11")); 
 							}
 							break;
 						case 12 :
-							// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:201:4: VAR_MOIS_DECEMBRE
+							// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:197:4: VAR_MOIS_DECEMBRE
 							{
 							match(input,VAR_MOIS_DECEMBRE,FOLLOW_VAR_MOIS_DECEMBRE_in_var_date1048); 
 							 arbre_var.ajouteFils(new Arbre("mois =", "12")); 
@@ -966,10 +961,10 @@ public class sqlParser extends Parser {
 					}
 					break;
 				case 3 :
-					// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:209:2: (var1= VAR_DATE )
+					// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:205:2: (var1= VAR_DATE )
 					{
-					// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:209:2: (var1= VAR_DATE )
-					// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:211:3: var1= VAR_DATE
+					// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:205:2: (var1= VAR_DATE )
+					// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:207:3: var1= VAR_DATE
 					{
 					var1=(Token)match(input,VAR_DATE,FOLLOW_VAR_DATE_in_var_date1087); 
 
@@ -989,7 +984,7 @@ public class sqlParser extends Parser {
 		finally {
 			// do for sure before leaving
 		}
-		return arbre_var_date;
+		return arbre_var;
 	}
 	// $ANTLR end "var_date"
 
