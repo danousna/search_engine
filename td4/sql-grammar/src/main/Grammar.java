@@ -7,7 +7,7 @@ import org.antlr.runtime.ANTLRReaderStream;
 import org.antlr.runtime.CommonTokenStream;
 
 public class Grammar {	
-	public String postProcessing(ANTLRReaderStream antlrStream) {
+	private String postProcessing(ANTLRReaderStream antlrStream) {
 		String selects = "";
 		String tables = " from ";
 		String params = "";
@@ -98,6 +98,14 @@ public class Grammar {
 			
 			return selects + tables + params + ";";
 		} catch (Exception e) {
+			return e.toString();
+		}
+	}
+	
+	public String analyze(String request) {
+		try {
+			return postProcessing(new ANTLRReaderStream(new StringReader(request)));
+		} catch (IOException e) {
 			return e.toString();
 		}
 	}
