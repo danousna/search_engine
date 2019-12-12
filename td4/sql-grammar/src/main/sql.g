@@ -2,15 +2,11 @@ grammar sql;
 
 SELECT : 'vouloir' | 'quels' | 'quel';
 
-SELECT_ARTICLE : 'article' | 'articles';
+SELECT_ARTICLE : 'article';
 
 SELECT_BULLETIN : 'bulletin';
 
-SELECT_AUTEUR : 'auteur';
-
 SELECT_DATE : 'date';
-
-SELECT_SHORT_AUTEUR : 'qui';
 
 SELECT_SHORT_DATE : 'quand';
 
@@ -19,8 +15,6 @@ CONJ_OR : 'ou';
 CONJ_AND : 'et' | ',';
 
 MOT : 'mot' | 'contenir' | 'parler';
-
-AUTEUR: 'par';
 
 RUBRIQUE: 'rubrique';
 
@@ -66,29 +60,27 @@ select returns [Arbre arbre_select = new Arbre("select")] :
 	(
 		SELECT
 		(
-			SELECT_ARTICLE { arbre_select.ajouteFils(new Arbre("", "article")); }
+			SELECT_ARTICLE { arbre_select.ajouteFils(new Arbre("", "fichier")); }
 			|
-			SELECT_BULLETIN { arbre_select.ajouteFils(new Arbre("", "bulletin")); }
-			|
-			SELECT_AUTEUR { arbre_select.ajouteFils(new Arbre("", "auteur")); }
+			SELECT_BULLETIN { arbre_select.ajouteFils(new Arbre("", "numero")); }
 			|
 			SELECT_DATE { arbre_select.ajouteFils(new Arbre("", "date")); }
+			|
+			RUBRIQUE { arbre_select.ajouteFils(new Arbre("", "rubrique")); }
 		)
 		(
 			CONJ_AND
 			(
-				SELECT_ARTICLE { arbre_select.ajouteFils(new Arbre("", ", article")); }
+				SELECT_ARTICLE { arbre_select.ajouteFils(new Arbre("", ", fichier")); }
 				|
-				SELECT_BULLETIN { arbre_select.ajouteFils(new Arbre("", ", bulletin")); }
-				|
-				SELECT_AUTEUR { arbre_select.ajouteFils(new Arbre("", ", auteur")); }
+				SELECT_BULLETIN { arbre_select.ajouteFils(new Arbre("", ", numero")); }
 				|
 				SELECT_DATE { arbre_select.ajouteFils(new Arbre("", ", date")); }
+				|
+				RUBRIQUE { arbre_select.ajouteFils(new Arbre("", "rubrique")); }
 			)
 		)*
 	)
-	|
-	SELECT_SHORT_AUTEUR { arbre_select.ajouteFils(new Arbre("", "auteur")); }
 	|
 	SELECT_SHORT_DATE { arbre_select.ajouteFils(new Arbre("", "date")); }
 ;
@@ -115,19 +107,19 @@ params returns [Arbre arbre_params = new Arbre("params")]
 param returns [Arbre arbre_param = new Arbre("param")] :
 	(
 		MOT { arbre_param.ajouteFils(new Arbre("table", "texte")); }
-		var_mot_1 = VAR_MOT { arbre_param.ajouteFils(new Arbre("mot =", "'"+var_mot_1.getText()+"'")); }
+		var_mot_1 = VAR_MOT { arbre_param.ajouteFils(new Arbre("mot=", "'"+var_mot_1.getText()+"'")); }
 		(
 			conj1 = conj { arbre_param.ajouteFils(conj1); }
-			var_mot_2 = VAR_MOT { arbre_param.ajouteFils(new Arbre("mot =", "'"+var_mot_2.getText()+"'")); }
+			var_mot_2 = VAR_MOT { arbre_param.ajouteFils(new Arbre("mot=", "'"+var_mot_2.getText()+"'")); }
 		)*
 	)
 	|
 	(
 		AUTEUR { arbre_param.ajouteFils(new Arbre("table", "auteur")); }
-		var_auteur_1 = VAR_MOT { arbre_param.ajouteFils(new Arbre("auteur =", "'"+var_auteur_1.getText()+"'")); }
+		var_auteur_1 = VAR_MOT { arbre_param.ajouteFils(new Arbre("auteur=", "'"+var_auteur_1.getText()+"'")); }
 		(
 			conj1 = conj { arbre_param.ajouteFils(conj1); }
-			var_auteur_2 = VAR_MOT { arbre_param.ajouteFils(new Arbre("auteur =", "'"+var_auteur_2.getText()+"'")); }
+			var_auteur_2 = VAR_MOT { arbre_param.ajouteFils(new Arbre("auteur=", "'"+var_auteur_2.getText()+"'")); }
 		)*
 	)
 	|
@@ -156,11 +148,11 @@ conj returns [Arbre arbre_conj = new Arbre("conj")] :
 	}
 ;
 
-var_date returns [Arbre arbre_var = new Arbre("")] :
+var_date returns [Arbre arbre_var = new Arbre("var_date")] :
 	(
 		var1 = VAR_ANNEE
 		{ 
-			arbre_var.ajouteFils(new Arbre("annee =", "'"+var1.getText()+"'"));
+			arbre_var.ajouteFils(new Arbre("annee=", "'"+var1.getText()+"'"));
 		}
 	)
 	|
@@ -168,37 +160,37 @@ var_date returns [Arbre arbre_var = new Arbre("")] :
 		(
 			var1 = VAR_JOUR
 			{
-				arbre_var.ajouteFils(new Arbre("jour =", "'"+var1.getText()+"'"));
+				arbre_var.ajouteFils(new Arbre("jour=", "'"+var1.getText()+"'"));
 			}
 		)?
 		(
-			VAR_MOIS_JANVIER { arbre_var.ajouteFils(new Arbre("mois =", "01")); }
+			VAR_MOIS_JANVIER { arbre_var.ajouteFils(new Arbre("mois=", "'01'")); }
 			| 
-			VAR_MOIS_FEVRIER { arbre_var.ajouteFils(new Arbre("mois =", "02")); }
+			VAR_MOIS_FEVRIER { arbre_var.ajouteFils(new Arbre("mois=", "'02'")); }
 			| 
-			VAR_MOIS_MARS { arbre_var.ajouteFils(new Arbre("mois =", "03")); }
+			VAR_MOIS_MARS { arbre_var.ajouteFils(new Arbre("mois=", "'03'")); }
 			| 
-			VAR_MOIS_AVRIL { arbre_var.ajouteFils(new Arbre("mois =", "04")); }
+			VAR_MOIS_AVRIL { arbre_var.ajouteFils(new Arbre("mois=", "'04'")); }
 			| 
-			VAR_MOIS_MAI { arbre_var.ajouteFils(new Arbre("mois =", "05")); }
+			VAR_MOIS_MAI { arbre_var.ajouteFils(new Arbre("mois=", "'05'")); }
 			| 
-			VAR_MOIS_JUIN { arbre_var.ajouteFils(new Arbre("mois =", "06")); }
+			VAR_MOIS_JUIN { arbre_var.ajouteFils(new Arbre("mois=", "'06'")); }
 			| 
-			VAR_MOIS_JUILLET { arbre_var.ajouteFils(new Arbre("mois =", "07")); }
+			VAR_MOIS_JUILLET { arbre_var.ajouteFils(new Arbre("mois=", "'07'")); }
 			| 
-			VAR_MOIS_AOUT { arbre_var.ajouteFils(new Arbre("mois =", "08")); }
+			VAR_MOIS_AOUT { arbre_var.ajouteFils(new Arbre("mois=", "'08'")); }
 			| 
-			VAR_MOIS_SEPTEMBRE { arbre_var.ajouteFils(new Arbre("mois =", "09")); }
+			VAR_MOIS_SEPTEMBRE { arbre_var.ajouteFils(new Arbre("mois=", "'09'")); }
 			| 
-			VAR_MOIS_OCTOBRE { arbre_var.ajouteFils(new Arbre("mois =", "10")); }
+			VAR_MOIS_OCTOBRE { arbre_var.ajouteFils(new Arbre("mois=", "'10'")); }
 			| 
-			VAR_MOIS_NOVEMBRE { arbre_var.ajouteFils(new Arbre("mois =", "11")); }
+			VAR_MOIS_NOVEMBRE { arbre_var.ajouteFils(new Arbre("mois=", "'11'")); }
 			| 
-			VAR_MOIS_DECEMBRE { arbre_var.ajouteFils(new Arbre("mois =", "12")); }
+			VAR_MOIS_DECEMBRE { arbre_var.ajouteFils(new Arbre("mois=", "'12'")); }
 		)
 		var1 = VAR_ANNEE
 		{ 
-			arbre_var.ajouteFils(new Arbre("annee =", "'"+var1.getText()+"'"));
+			arbre_var.ajouteFils(new Arbre("annee=", "'"+var1.getText()+"'"));
 		}
 	)
 	|

@@ -8,7 +8,7 @@ import org.antlr.runtime.CommonTokenStream;
 
 public class Grammar {	
 	public String postProcessing(ANTLRReaderStream antlrStream) {
-		String select = "select ";
+		String selects = "";
 		String tables = " from ";
 		String params = "";
 		
@@ -22,28 +22,65 @@ public class Grammar {
 				if (tree.categorie == "select") {
 					Arbre fils = tree.fils;
 					do {
-						select += fils.mot;
+						selects += fils.mot;
 						fils = fils.frere;
+						// Si c'est le dernier fils, on ajoute pas de "and".
+						if (fils != null) {
+							selects += ", ";
+						}
 					} while (fils != null);
 				}
 				else if (tree.categorie == "params") {
 					Arbre fils = tree.fils;
+					String firstTableName = "";
+					
 					do {
 						if (fils.categorie == "param") {
 							Arbre param = fils.fils;
 							do {
-								if (param.categorie == "table") {
-									tables += param.mot + ", ";
+								if (param.categorie == "table") {																											
+									if (firstTableName == "") {
+										firstTableName = param.mot;
+										tables += param.mot;
+										
+										// We know that almost all tables have these three columns (TODO: handle those that don't)
+										// so the table that is referenced for these "confusing" columns is the first one.
+										selects = selects.replace("fichier", param.mot + ".fichier");
+										selects = selects.replace("rubrique", param.mot + ".rubrique");
+										selects = selects.replace("numero", param.mot + ".numero");
+									} else {
+										tables += String.format(
+												" inner join %s on (%s.fichier = %s.fichier)", 
+												param.mot, 
+												firstTableName, 
+												param.mot
+										);
+									}
 								} else if (param.categorie == "conj") {
-									
+									params += " " + param.fils.mot + " ";
 								} else {
-									params += param.categorie + param.mot;
+									if (param.categorie == "var_date") {
+										// on parcours les fils et on append categorie et mot en séparant par un "and"
+										Arbre paramDate = param.fils;
+										do {
+											params += paramDate.categorie + paramDate.mot;
+											paramDate = paramDate.frere;
+											
+											// Si c'est le dernier fils, on ajoute pas de "and".
+											if (paramDate != null) {
+												params += " and ";
+											}
+										} while (paramDate != null);
+										
+									} else {
+										params += param.categorie + param.mot;
+									}
 								}
 								
 								param = param.frere;
 							} while (param != null);
 						} else if (fils.categorie == "conj") {
-							
+							params += " " + fils.fils.mot + " ";
 						}
 						
 						fils = fils.frere;
@@ -53,13 +90,13 @@ public class Grammar {
 				tree = tree.frere;
 			}
 			
-			// Remove last ','
-			tables = tables.substring(0, tables.length() - 2);
+			selects = "select " + selects;
+			
 			if (params != "") {
 				params = " where " + params;
 			}
 			
-			return select + tables + params;
+			return selects + tables + params + ";";
 		} catch (Exception e) {
 			return e.toString();
 		}
@@ -68,16 +105,18 @@ public class Grammar {
 	public static void main(String args[]) {
 		Grammar g = new Grammar();
 		Scanner scanner = new Scanner(System.in);
-		System.out.print("Texte : ");
-		String s = scanner.nextLine();
-		while (!s.equals("*")) {
+
+		String stop = "";
+		while (!stop.equals("stop")) {
+			System.out.print("Texte : ");
+			String s = scanner.nextLine();
 			try {
 				String sql = g.postProcessing(new ANTLRReaderStream(new StringReader(s)));
 				System.out.println(sql);
 			} catch (IOException e) {
 				
 			}
-			s = scanner.nextLine();
+			stop = scanner.nextLine();			
 		}
 	}
 

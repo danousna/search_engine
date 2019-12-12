@@ -11,6 +11,9 @@ AVANCEMENT :
 - [x] qui parler hexa (et titi et datant 2019)
 - [x] vouloir auteur et article parler hexa
 - [x] conjonction AND, OR
+- [ ] changer ref à article en ref à fichier
+- [ ] mois et jour à mettre en string et non pas int coté grammaire
+- [ ] tester requête inner join à trois tables.
 - [ ] gérer "quel articles écrit par Michel" et "quel articles de la rubrique machin"
 - [ ] gérer "combien"
 - [ ] générer la requête SQL

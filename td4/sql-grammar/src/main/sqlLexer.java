@@ -1,5 +1,5 @@
 package main;
-// $ANTLR 3.5.1 /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g 2019-12-11 12:32:54
+// $ANTLR 3.5.1 /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g 2019-12-12 19:30:02
 
 import org.antlr.runtime.*;
 import java.util.Stack;
@@ -18,28 +18,26 @@ public class sqlLexer extends Lexer {
 	public static final int RUBRIQUE=10;
 	public static final int SELECT=11;
 	public static final int SELECT_ARTICLE=12;
-	public static final int SELECT_AUTEUR=13;
-	public static final int SELECT_BULLETIN=14;
-	public static final int SELECT_DATE=15;
-	public static final int SELECT_SHORT_AUTEUR=16;
-	public static final int SELECT_SHORT_DATE=17;
-	public static final int VAR_ANNEE=18;
-	public static final int VAR_DATE=19;
-	public static final int VAR_JOUR=20;
-	public static final int VAR_MOIS_AOUT=21;
-	public static final int VAR_MOIS_AVRIL=22;
-	public static final int VAR_MOIS_DECEMBRE=23;
-	public static final int VAR_MOIS_FEVRIER=24;
-	public static final int VAR_MOIS_JANVIER=25;
-	public static final int VAR_MOIS_JUILLET=26;
-	public static final int VAR_MOIS_JUIN=27;
-	public static final int VAR_MOIS_MAI=28;
-	public static final int VAR_MOIS_MARS=29;
-	public static final int VAR_MOIS_NOVEMBRE=30;
-	public static final int VAR_MOIS_OCTOBRE=31;
-	public static final int VAR_MOIS_SEPTEMBRE=32;
-	public static final int VAR_MOT=33;
-	public static final int WS=34;
+	public static final int SELECT_BULLETIN=13;
+	public static final int SELECT_DATE=14;
+	public static final int SELECT_SHORT_DATE=15;
+	public static final int VAR_ANNEE=16;
+	public static final int VAR_DATE=17;
+	public static final int VAR_JOUR=18;
+	public static final int VAR_MOIS_AOUT=19;
+	public static final int VAR_MOIS_AVRIL=20;
+	public static final int VAR_MOIS_DECEMBRE=21;
+	public static final int VAR_MOIS_FEVRIER=22;
+	public static final int VAR_MOIS_JANVIER=23;
+	public static final int VAR_MOIS_JUILLET=24;
+	public static final int VAR_MOIS_JUIN=25;
+	public static final int VAR_MOIS_MAI=26;
+	public static final int VAR_MOIS_MARS=27;
+	public static final int VAR_MOIS_NOVEMBRE=28;
+	public static final int VAR_MOIS_OCTOBRE=29;
+	public static final int VAR_MOIS_SEPTEMBRE=30;
+	public static final int VAR_MOT=31;
+	public static final int WS=32;
 
 	// delegates
 	// delegators
@@ -175,150 +173,13 @@ public class sqlLexer extends Lexer {
 		try {
 			int _type = SELECT_ARTICLE;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:5:16: ( 'article' | 'articles' )
-			int alt2=2;
-			int LA2_0 = input.LA(1);
-			if ( (LA2_0=='a') ) {
-				int LA2_1 = input.LA(2);
-				if ( (LA2_1=='r') ) {
-					int LA2_2 = input.LA(3);
-					if ( (LA2_2=='t') ) {
-						int LA2_3 = input.LA(4);
-						if ( (LA2_3=='i') ) {
-							int LA2_4 = input.LA(5);
-							if ( (LA2_4=='c') ) {
-								int LA2_5 = input.LA(6);
-								if ( (LA2_5=='l') ) {
-									int LA2_6 = input.LA(7);
-									if ( (LA2_6=='e') ) {
-										int LA2_7 = input.LA(8);
-										if ( (LA2_7=='s') ) {
-											alt2=2;
-										}
-
-										else {
-											alt2=1;
-										}
-
-									}
-
-									else {
-										int nvaeMark = input.mark();
-										try {
-											for (int nvaeConsume = 0; nvaeConsume < 7 - 1; nvaeConsume++) {
-												input.consume();
-											}
-											NoViableAltException nvae =
-												new NoViableAltException("", 2, 6, input);
-											throw nvae;
-										} finally {
-											input.rewind(nvaeMark);
-										}
-									}
-
-								}
-
-								else {
-									int nvaeMark = input.mark();
-									try {
-										for (int nvaeConsume = 0; nvaeConsume < 6 - 1; nvaeConsume++) {
-											input.consume();
-										}
-										NoViableAltException nvae =
-											new NoViableAltException("", 2, 5, input);
-										throw nvae;
-									} finally {
-										input.rewind(nvaeMark);
-									}
-								}
-
-							}
-
-							else {
-								int nvaeMark = input.mark();
-								try {
-									for (int nvaeConsume = 0; nvaeConsume < 5 - 1; nvaeConsume++) {
-										input.consume();
-									}
-									NoViableAltException nvae =
-										new NoViableAltException("", 2, 4, input);
-									throw nvae;
-								} finally {
-									input.rewind(nvaeMark);
-								}
-							}
-
-						}
-
-						else {
-							int nvaeMark = input.mark();
-							try {
-								for (int nvaeConsume = 0; nvaeConsume < 4 - 1; nvaeConsume++) {
-									input.consume();
-								}
-								NoViableAltException nvae =
-									new NoViableAltException("", 2, 3, input);
-								throw nvae;
-							} finally {
-								input.rewind(nvaeMark);
-							}
-						}
-
-					}
-
-					else {
-						int nvaeMark = input.mark();
-						try {
-							for (int nvaeConsume = 0; nvaeConsume < 3 - 1; nvaeConsume++) {
-								input.consume();
-							}
-							NoViableAltException nvae =
-								new NoViableAltException("", 2, 2, input);
-							throw nvae;
-						} finally {
-							input.rewind(nvaeMark);
-						}
-					}
-
-				}
-
-				else {
-					int nvaeMark = input.mark();
-					try {
-						input.consume();
-						NoViableAltException nvae =
-							new NoViableAltException("", 2, 1, input);
-						throw nvae;
-					} finally {
-						input.rewind(nvaeMark);
-					}
-				}
+			// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:5:16: ( 'article' )
+			// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:5:18: 'article'
+			{
+			match("article"); 
 
 			}
 
-			else {
-				NoViableAltException nvae =
-					new NoViableAltException("", 2, 0, input);
-				throw nvae;
-			}
-
-			switch (alt2) {
-				case 1 :
-					// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:5:18: 'article'
-					{
-					match("article"); 
-
-					}
-					break;
-				case 2 :
-					// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:5:30: 'articles'
-					{
-					match("articles"); 
-
-					}
-					break;
-
-			}
 			state.type = _type;
 			state.channel = _channel;
 		}
@@ -349,34 +210,13 @@ public class sqlLexer extends Lexer {
 	}
 	// $ANTLR end "SELECT_BULLETIN"
 
-	// $ANTLR start "SELECT_AUTEUR"
-	public final void mSELECT_AUTEUR() throws RecognitionException {
-		try {
-			int _type = SELECT_AUTEUR;
-			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:9:15: ( 'auteur' )
-			// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:9:17: 'auteur'
-			{
-			match("auteur"); 
-
-			}
-
-			state.type = _type;
-			state.channel = _channel;
-		}
-		finally {
-			// do for sure before leaving
-		}
-	}
-	// $ANTLR end "SELECT_AUTEUR"
-
 	// $ANTLR start "SELECT_DATE"
 	public final void mSELECT_DATE() throws RecognitionException {
 		try {
 			int _type = SELECT_DATE;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:11:13: ( 'date' )
-			// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:11:15: 'date'
+			// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:9:13: ( 'date' )
+			// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:9:15: 'date'
 			{
 			match("date"); 
 
@@ -391,34 +231,13 @@ public class sqlLexer extends Lexer {
 	}
 	// $ANTLR end "SELECT_DATE"
 
-	// $ANTLR start "SELECT_SHORT_AUTEUR"
-	public final void mSELECT_SHORT_AUTEUR() throws RecognitionException {
-		try {
-			int _type = SELECT_SHORT_AUTEUR;
-			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:13:21: ( 'qui' )
-			// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:13:23: 'qui'
-			{
-			match("qui"); 
-
-			}
-
-			state.type = _type;
-			state.channel = _channel;
-		}
-		finally {
-			// do for sure before leaving
-		}
-	}
-	// $ANTLR end "SELECT_SHORT_AUTEUR"
-
 	// $ANTLR start "SELECT_SHORT_DATE"
 	public final void mSELECT_SHORT_DATE() throws RecognitionException {
 		try {
 			int _type = SELECT_SHORT_DATE;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:15:19: ( 'quand' )
-			// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:15:21: 'quand'
+			// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:11:19: ( 'quand' )
+			// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:11:21: 'quand'
 			{
 			match("quand"); 
 
@@ -438,8 +257,8 @@ public class sqlLexer extends Lexer {
 		try {
 			int _type = CONJ_OR;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:17:9: ( 'ou' )
-			// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:17:11: 'ou'
+			// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:13:9: ( 'ou' )
+			// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:13:11: 'ou'
 			{
 			match("ou"); 
 
@@ -459,32 +278,32 @@ public class sqlLexer extends Lexer {
 		try {
 			int _type = CONJ_AND;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:19:10: ( 'et' | ',' )
-			int alt3=2;
-			int LA3_0 = input.LA(1);
-			if ( (LA3_0=='e') ) {
-				alt3=1;
+			// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:15:10: ( 'et' | ',' )
+			int alt2=2;
+			int LA2_0 = input.LA(1);
+			if ( (LA2_0=='e') ) {
+				alt2=1;
 			}
-			else if ( (LA3_0==',') ) {
-				alt3=2;
+			else if ( (LA2_0==',') ) {
+				alt2=2;
 			}
 
 			else {
 				NoViableAltException nvae =
-					new NoViableAltException("", 3, 0, input);
+					new NoViableAltException("", 2, 0, input);
 				throw nvae;
 			}
 
-			switch (alt3) {
+			switch (alt2) {
 				case 1 :
-					// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:19:12: 'et'
+					// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:15:12: 'et'
 					{
 					match("et"); 
 
 					}
 					break;
 				case 2 :
-					// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:19:19: ','
+					// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:15:19: ','
 					{
 					match(','); 
 					}
@@ -505,46 +324,46 @@ public class sqlLexer extends Lexer {
 		try {
 			int _type = MOT;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:21:5: ( 'mot' | 'contenir' | 'parler' )
-			int alt4=3;
+			// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:17:5: ( 'mot' | 'contenir' | 'parler' )
+			int alt3=3;
 			switch ( input.LA(1) ) {
 			case 'm':
 				{
-				alt4=1;
+				alt3=1;
 				}
 				break;
 			case 'c':
 				{
-				alt4=2;
+				alt3=2;
 				}
 				break;
 			case 'p':
 				{
-				alt4=3;
+				alt3=3;
 				}
 				break;
 			default:
 				NoViableAltException nvae =
-					new NoViableAltException("", 4, 0, input);
+					new NoViableAltException("", 3, 0, input);
 				throw nvae;
 			}
-			switch (alt4) {
+			switch (alt3) {
 				case 1 :
-					// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:21:7: 'mot'
+					// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:17:7: 'mot'
 					{
 					match("mot"); 
 
 					}
 					break;
 				case 2 :
-					// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:21:15: 'contenir'
+					// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:17:15: 'contenir'
 					{
 					match("contenir"); 
 
 					}
 					break;
 				case 3 :
-					// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:21:28: 'parler'
+					// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:17:28: 'parler'
 					{
 					match("parler"); 
 
@@ -561,34 +380,13 @@ public class sqlLexer extends Lexer {
 	}
 	// $ANTLR end "MOT"
 
-	// $ANTLR start "AUTEUR"
-	public final void mAUTEUR() throws RecognitionException {
-		try {
-			int _type = AUTEUR;
-			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:23:7: ( 'par' )
-			// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:23:9: 'par'
-			{
-			match("par"); 
-
-			}
-
-			state.type = _type;
-			state.channel = _channel;
-		}
-		finally {
-			// do for sure before leaving
-		}
-	}
-	// $ANTLR end "AUTEUR"
-
 	// $ANTLR start "RUBRIQUE"
 	public final void mRUBRIQUE() throws RecognitionException {
 		try {
 			int _type = RUBRIQUE;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:25:9: ( 'rubrique' )
-			// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:25:11: 'rubrique'
+			// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:19:9: ( 'rubrique' )
+			// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:19:11: 'rubrique'
 			{
 			match("rubrique"); 
 
@@ -608,8 +406,8 @@ public class sqlLexer extends Lexer {
 		try {
 			int _type = DATE;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:27:6: ( 'datant' )
-			// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:27:8: 'datant'
+			// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:21:6: ( 'datant' )
+			// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:21:8: 'datant'
 			{
 			match("datant"); 
 
@@ -629,8 +427,8 @@ public class sqlLexer extends Lexer {
 		try {
 			int _type = VAR_JOUR;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:29:10: ( ( '0' .. '9' ) ( '0' .. '9' ) )
-			// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:29:12: ( '0' .. '9' ) ( '0' .. '9' )
+			// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:23:10: ( ( '0' .. '9' ) ( '0' .. '9' ) )
+			// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:23:12: ( '0' .. '9' ) ( '0' .. '9' )
 			{
 			if ( (input.LA(1) >= '0' && input.LA(1) <= '9') ) {
 				input.consume();
@@ -664,8 +462,8 @@ public class sqlLexer extends Lexer {
 		try {
 			int _type = VAR_ANNEE;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:30:11: ( ( '0' .. '9' ) ( '0' .. '9' ) ( '0' .. '9' ) ( '0' .. '9' ) )
-			// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:30:13: ( '0' .. '9' ) ( '0' .. '9' ) ( '0' .. '9' ) ( '0' .. '9' )
+			// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:24:11: ( ( '0' .. '9' ) ( '0' .. '9' ) ( '0' .. '9' ) ( '0' .. '9' ) )
+			// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:24:13: ( '0' .. '9' ) ( '0' .. '9' ) ( '0' .. '9' ) ( '0' .. '9' )
 			{
 			if ( (input.LA(1) >= '0' && input.LA(1) <= '9') ) {
 				input.consume();
@@ -715,8 +513,8 @@ public class sqlLexer extends Lexer {
 		try {
 			int _type = VAR_DATE;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:31:10: ( VAR_JOUR '/' VAR_JOUR '/' VAR_ANNEE )
-			// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:31:12: VAR_JOUR '/' VAR_JOUR '/' VAR_ANNEE
+			// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:25:10: ( VAR_JOUR '/' VAR_JOUR '/' VAR_ANNEE )
+			// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:25:12: VAR_JOUR '/' VAR_JOUR '/' VAR_ANNEE
 			{
 			mVAR_JOUR(); 
 
@@ -742,8 +540,8 @@ public class sqlLexer extends Lexer {
 		try {
 			int _type = VAR_MOIS_JANVIER;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:32:17: ( 'janvier' )
-			// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:32:19: 'janvier'
+			// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:26:17: ( 'janvier' )
+			// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:26:19: 'janvier'
 			{
 			match("janvier"); 
 
@@ -763,8 +561,8 @@ public class sqlLexer extends Lexer {
 		try {
 			int _type = VAR_MOIS_FEVRIER;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:33:18: ( 'février' )
-			// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:33:20: 'février'
+			// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:27:18: ( 'février' )
+			// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:27:20: 'février'
 			{
 			match("février"); 
 
@@ -784,8 +582,8 @@ public class sqlLexer extends Lexer {
 		try {
 			int _type = VAR_MOIS_MARS;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:34:15: ( 'mars' )
-			// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:34:17: 'mars'
+			// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:28:15: ( 'mars' )
+			// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:28:17: 'mars'
 			{
 			match("mars"); 
 
@@ -805,8 +603,8 @@ public class sqlLexer extends Lexer {
 		try {
 			int _type = VAR_MOIS_AVRIL;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:35:16: ( 'avril' )
-			// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:35:18: 'avril'
+			// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:29:16: ( 'avril' )
+			// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:29:18: 'avril'
 			{
 			match("avril"); 
 
@@ -826,8 +624,8 @@ public class sqlLexer extends Lexer {
 		try {
 			int _type = VAR_MOIS_MAI;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:36:14: ( 'mai' )
-			// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:36:16: 'mai'
+			// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:30:14: ( 'mai' )
+			// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:30:16: 'mai'
 			{
 			match("mai"); 
 
@@ -847,8 +645,8 @@ public class sqlLexer extends Lexer {
 		try {
 			int _type = VAR_MOIS_JUIN;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:37:15: ( 'juin' )
-			// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:37:17: 'juin'
+			// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:31:15: ( 'juin' )
+			// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:31:17: 'juin'
 			{
 			match("juin"); 
 
@@ -868,8 +666,8 @@ public class sqlLexer extends Lexer {
 		try {
 			int _type = VAR_MOIS_JUILLET;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:38:18: ( 'juillet' )
-			// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:38:20: 'juillet'
+			// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:32:18: ( 'juillet' )
+			// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:32:20: 'juillet'
 			{
 			match("juillet"); 
 
@@ -889,8 +687,8 @@ public class sqlLexer extends Lexer {
 		try {
 			int _type = VAR_MOIS_AOUT;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:39:15: ( 'août' )
-			// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:39:17: 'août'
+			// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:33:15: ( 'août' )
+			// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:33:17: 'août'
 			{
 			match("août"); 
 
@@ -910,8 +708,8 @@ public class sqlLexer extends Lexer {
 		try {
 			int _type = VAR_MOIS_SEPTEMBRE;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:40:20: ( 'septembre' )
-			// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:40:22: 'septembre'
+			// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:34:20: ( 'septembre' )
+			// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:34:22: 'septembre'
 			{
 			match("septembre"); 
 
@@ -931,8 +729,8 @@ public class sqlLexer extends Lexer {
 		try {
 			int _type = VAR_MOIS_OCTOBRE;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:41:18: ( 'octobre' )
-			// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:41:20: 'octobre'
+			// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:35:18: ( 'octobre' )
+			// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:35:20: 'octobre'
 			{
 			match("octobre"); 
 
@@ -952,8 +750,8 @@ public class sqlLexer extends Lexer {
 		try {
 			int _type = VAR_MOIS_NOVEMBRE;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:42:19: ( 'novembre' )
-			// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:42:21: 'novembre'
+			// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:36:19: ( 'novembre' )
+			// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:36:21: 'novembre'
 			{
 			match("novembre"); 
 
@@ -973,8 +771,8 @@ public class sqlLexer extends Lexer {
 		try {
 			int _type = VAR_MOIS_DECEMBRE;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:43:19: ( 'décembre' )
-			// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:43:21: 'décembre'
+			// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:37:19: ( 'décembre' )
+			// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:37:21: 'décembre'
 			{
 			match("décembre"); 
 
@@ -994,8 +792,8 @@ public class sqlLexer extends Lexer {
 		try {
 			int _type = VAR_MOT;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:45:10: ( ( 'A' .. 'Z' | 'a' .. 'z' ) ( 'a' .. 'z' )+ )
-			// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:45:12: ( 'A' .. 'Z' | 'a' .. 'z' ) ( 'a' .. 'z' )+
+			// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:39:10: ( ( 'A' .. 'Z' | 'a' .. 'z' ) ( 'a' .. 'z' )+ )
+			// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:39:12: ( 'A' .. 'Z' | 'a' .. 'z' ) ( 'a' .. 'z' )+
 			{
 			if ( (input.LA(1) >= 'A' && input.LA(1) <= 'Z')||(input.LA(1) >= 'a' && input.LA(1) <= 'z') ) {
 				input.consume();
@@ -1005,17 +803,17 @@ public class sqlLexer extends Lexer {
 				recover(mse);
 				throw mse;
 			}
-			// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:45:34: ( 'a' .. 'z' )+
-			int cnt5=0;
-			loop5:
+			// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:39:34: ( 'a' .. 'z' )+
+			int cnt4=0;
+			loop4:
 			while (true) {
-				int alt5=2;
-				int LA5_0 = input.LA(1);
-				if ( ((LA5_0 >= 'a' && LA5_0 <= 'z')) ) {
-					alt5=1;
+				int alt4=2;
+				int LA4_0 = input.LA(1);
+				if ( ((LA4_0 >= 'a' && LA4_0 <= 'z')) ) {
+					alt4=1;
 				}
 
-				switch (alt5) {
+				switch (alt4) {
 				case 1 :
 					// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:
 					{
@@ -1031,11 +829,11 @@ public class sqlLexer extends Lexer {
 					break;
 
 				default :
-					if ( cnt5 >= 1 ) break loop5;
-					EarlyExitException eee = new EarlyExitException(5, input);
+					if ( cnt4 >= 1 ) break loop4;
+					EarlyExitException eee = new EarlyExitException(4, input);
 					throw eee;
 				}
-				cnt5++;
+				cnt4++;
 			}
 
 			}
@@ -1054,99 +852,99 @@ public class sqlLexer extends Lexer {
 		try {
 			int _type = WS;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:47:5: ( ( ' ' | '\\t' | '\\r' | 'je' | 'qui' | 'dont' ) | '\\n' )
-			int alt7=2;
-			int LA7_0 = input.LA(1);
-			if ( (LA7_0=='\t'||LA7_0=='\r'||LA7_0==' '||LA7_0=='d'||LA7_0=='j'||LA7_0=='q') ) {
-				alt7=1;
+			// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:41:5: ( ( ' ' | '\\t' | '\\r' | 'je' | 'qui' | 'dont' ) | '\\n' )
+			int alt6=2;
+			int LA6_0 = input.LA(1);
+			if ( (LA6_0=='\t'||LA6_0=='\r'||LA6_0==' '||LA6_0=='d'||LA6_0=='j'||LA6_0=='q') ) {
+				alt6=1;
 			}
-			else if ( (LA7_0=='\n') ) {
-				alt7=2;
+			else if ( (LA6_0=='\n') ) {
+				alt6=2;
 			}
 
 			else {
 				NoViableAltException nvae =
-					new NoViableAltException("", 7, 0, input);
+					new NoViableAltException("", 6, 0, input);
 				throw nvae;
 			}
 
-			switch (alt7) {
+			switch (alt6) {
 				case 1 :
-					// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:47:7: ( ' ' | '\\t' | '\\r' | 'je' | 'qui' | 'dont' )
+					// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:41:7: ( ' ' | '\\t' | '\\r' | 'je' | 'qui' | 'dont' )
 					{
-					// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:47:7: ( ' ' | '\\t' | '\\r' | 'je' | 'qui' | 'dont' )
-					int alt6=6;
+					// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:41:7: ( ' ' | '\\t' | '\\r' | 'je' | 'qui' | 'dont' )
+					int alt5=6;
 					switch ( input.LA(1) ) {
 					case ' ':
 						{
-						alt6=1;
+						alt5=1;
 						}
 						break;
 					case '\t':
 						{
-						alt6=2;
+						alt5=2;
 						}
 						break;
 					case '\r':
 						{
-						alt6=3;
+						alt5=3;
 						}
 						break;
 					case 'j':
 						{
-						alt6=4;
+						alt5=4;
 						}
 						break;
 					case 'q':
 						{
-						alt6=5;
+						alt5=5;
 						}
 						break;
 					case 'd':
 						{
-						alt6=6;
+						alt5=6;
 						}
 						break;
 					default:
 						NoViableAltException nvae =
-							new NoViableAltException("", 6, 0, input);
+							new NoViableAltException("", 5, 0, input);
 						throw nvae;
 					}
-					switch (alt6) {
+					switch (alt5) {
 						case 1 :
-							// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:47:8: ' '
+							// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:41:8: ' '
 							{
 							match(' '); 
 							}
 							break;
 						case 2 :
-							// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:47:13: '\\t'
+							// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:41:13: '\\t'
 							{
 							match('\t'); 
 							}
 							break;
 						case 3 :
-							// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:47:20: '\\r'
+							// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:41:20: '\\r'
 							{
 							match('\r'); 
 							}
 							break;
 						case 4 :
-							// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:47:27: 'je'
+							// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:41:27: 'je'
 							{
 							match("je"); 
 
 							}
 							break;
 						case 5 :
-							// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:47:34: 'qui'
+							// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:41:34: 'qui'
 							{
 							match("qui"); 
 
 							}
 							break;
 						case 6 :
-							// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:47:42: 'dont'
+							// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:41:42: 'dont'
 							{
 							match("dont"); 
 
@@ -1159,7 +957,7 @@ public class sqlLexer extends Lexer {
 					}
 					break;
 				case 2 :
-					// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:47:62: '\\n'
+					// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:41:62: '\\n'
 					{
 					match('\n'); 
 					}
@@ -1180,8 +978,8 @@ public class sqlLexer extends Lexer {
 		try {
 			int _type = POINT;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:49:7: ( '.' )
-			// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:49:9: '.'
+			// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:43:7: ( '.' )
+			// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:43:9: '.'
 			{
 			match('.'); 
 			}
@@ -1197,10 +995,10 @@ public class sqlLexer extends Lexer {
 
 	@Override
 	public void mTokens() throws RecognitionException {
-		// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:1:8: ( SELECT | SELECT_ARTICLE | SELECT_BULLETIN | SELECT_AUTEUR | SELECT_DATE | SELECT_SHORT_AUTEUR | SELECT_SHORT_DATE | CONJ_OR | CONJ_AND | MOT | AUTEUR | RUBRIQUE | DATE | VAR_JOUR | VAR_ANNEE | VAR_DATE | VAR_MOIS_JANVIER | VAR_MOIS_FEVRIER | VAR_MOIS_MARS | VAR_MOIS_AVRIL | VAR_MOIS_MAI | VAR_MOIS_JUIN | VAR_MOIS_JUILLET | VAR_MOIS_AOUT | VAR_MOIS_SEPTEMBRE | VAR_MOIS_OCTOBRE | VAR_MOIS_NOVEMBRE | VAR_MOIS_DECEMBRE | VAR_MOT | WS | POINT )
-		int alt8=31;
-		alt8 = dfa8.predict(input);
-		switch (alt8) {
+		// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:1:8: ( SELECT | SELECT_ARTICLE | SELECT_BULLETIN | SELECT_DATE | SELECT_SHORT_DATE | CONJ_OR | CONJ_AND | MOT | RUBRIQUE | DATE | VAR_JOUR | VAR_ANNEE | VAR_DATE | VAR_MOIS_JANVIER | VAR_MOIS_FEVRIER | VAR_MOIS_MARS | VAR_MOIS_AVRIL | VAR_MOIS_MAI | VAR_MOIS_JUIN | VAR_MOIS_JUILLET | VAR_MOIS_AOUT | VAR_MOIS_SEPTEMBRE | VAR_MOIS_OCTOBRE | VAR_MOIS_NOVEMBRE | VAR_MOIS_DECEMBRE | VAR_MOT | WS | POINT )
+		int alt7=28;
+		alt7 = dfa7.predict(input);
+		switch (alt7) {
 			case 1 :
 				// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:1:10: SELECT
 				{
@@ -1223,196 +1021,175 @@ public class sqlLexer extends Lexer {
 				}
 				break;
 			case 4 :
-				// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:1:48: SELECT_AUTEUR
-				{
-				mSELECT_AUTEUR(); 
-
-				}
-				break;
-			case 5 :
-				// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:1:62: SELECT_DATE
+				// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:1:48: SELECT_DATE
 				{
 				mSELECT_DATE(); 
 
 				}
 				break;
-			case 6 :
-				// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:1:74: SELECT_SHORT_AUTEUR
-				{
-				mSELECT_SHORT_AUTEUR(); 
-
-				}
-				break;
-			case 7 :
-				// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:1:94: SELECT_SHORT_DATE
+			case 5 :
+				// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:1:60: SELECT_SHORT_DATE
 				{
 				mSELECT_SHORT_DATE(); 
 
 				}
 				break;
-			case 8 :
-				// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:1:112: CONJ_OR
+			case 6 :
+				// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:1:78: CONJ_OR
 				{
 				mCONJ_OR(); 
 
 				}
 				break;
-			case 9 :
-				// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:1:120: CONJ_AND
+			case 7 :
+				// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:1:86: CONJ_AND
 				{
 				mCONJ_AND(); 
 
 				}
 				break;
-			case 10 :
-				// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:1:129: MOT
+			case 8 :
+				// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:1:95: MOT
 				{
 				mMOT(); 
 
 				}
 				break;
-			case 11 :
-				// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:1:133: AUTEUR
-				{
-				mAUTEUR(); 
-
-				}
-				break;
-			case 12 :
-				// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:1:140: RUBRIQUE
+			case 9 :
+				// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:1:99: RUBRIQUE
 				{
 				mRUBRIQUE(); 
 
 				}
 				break;
-			case 13 :
-				// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:1:149: DATE
+			case 10 :
+				// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:1:108: DATE
 				{
 				mDATE(); 
 
 				}
 				break;
-			case 14 :
-				// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:1:154: VAR_JOUR
+			case 11 :
+				// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:1:113: VAR_JOUR
 				{
 				mVAR_JOUR(); 
 
 				}
 				break;
-			case 15 :
-				// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:1:163: VAR_ANNEE
+			case 12 :
+				// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:1:122: VAR_ANNEE
 				{
 				mVAR_ANNEE(); 
 
 				}
 				break;
-			case 16 :
-				// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:1:173: VAR_DATE
+			case 13 :
+				// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:1:132: VAR_DATE
 				{
 				mVAR_DATE(); 
 
 				}
 				break;
-			case 17 :
-				// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:1:182: VAR_MOIS_JANVIER
+			case 14 :
+				// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:1:141: VAR_MOIS_JANVIER
 				{
 				mVAR_MOIS_JANVIER(); 
 
 				}
 				break;
-			case 18 :
-				// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:1:199: VAR_MOIS_FEVRIER
+			case 15 :
+				// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:1:158: VAR_MOIS_FEVRIER
 				{
 				mVAR_MOIS_FEVRIER(); 
 
 				}
 				break;
-			case 19 :
-				// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:1:216: VAR_MOIS_MARS
+			case 16 :
+				// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:1:175: VAR_MOIS_MARS
 				{
 				mVAR_MOIS_MARS(); 
 
 				}
 				break;
-			case 20 :
-				// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:1:230: VAR_MOIS_AVRIL
+			case 17 :
+				// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:1:189: VAR_MOIS_AVRIL
 				{
 				mVAR_MOIS_AVRIL(); 
 
 				}
 				break;
-			case 21 :
-				// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:1:245: VAR_MOIS_MAI
+			case 18 :
+				// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:1:204: VAR_MOIS_MAI
 				{
 				mVAR_MOIS_MAI(); 
 
 				}
 				break;
-			case 22 :
-				// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:1:258: VAR_MOIS_JUIN
+			case 19 :
+				// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:1:217: VAR_MOIS_JUIN
 				{
 				mVAR_MOIS_JUIN(); 
 
 				}
 				break;
-			case 23 :
-				// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:1:272: VAR_MOIS_JUILLET
+			case 20 :
+				// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:1:231: VAR_MOIS_JUILLET
 				{
 				mVAR_MOIS_JUILLET(); 
 
 				}
 				break;
-			case 24 :
-				// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:1:289: VAR_MOIS_AOUT
+			case 21 :
+				// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:1:248: VAR_MOIS_AOUT
 				{
 				mVAR_MOIS_AOUT(); 
 
 				}
 				break;
-			case 25 :
-				// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:1:303: VAR_MOIS_SEPTEMBRE
+			case 22 :
+				// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:1:262: VAR_MOIS_SEPTEMBRE
 				{
 				mVAR_MOIS_SEPTEMBRE(); 
 
 				}
 				break;
-			case 26 :
-				// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:1:322: VAR_MOIS_OCTOBRE
+			case 23 :
+				// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:1:281: VAR_MOIS_OCTOBRE
 				{
 				mVAR_MOIS_OCTOBRE(); 
 
 				}
 				break;
-			case 27 :
-				// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:1:339: VAR_MOIS_NOVEMBRE
+			case 24 :
+				// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:1:298: VAR_MOIS_NOVEMBRE
 				{
 				mVAR_MOIS_NOVEMBRE(); 
 
 				}
 				break;
-			case 28 :
-				// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:1:357: VAR_MOIS_DECEMBRE
+			case 25 :
+				// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:1:316: VAR_MOIS_DECEMBRE
 				{
 				mVAR_MOIS_DECEMBRE(); 
 
 				}
 				break;
-			case 29 :
-				// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:1:375: VAR_MOT
+			case 26 :
+				// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:1:334: VAR_MOT
 				{
 				mVAR_MOT(); 
 
 				}
 				break;
-			case 30 :
-				// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:1:383: WS
+			case 27 :
+				// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:1:342: WS
 				{
 				mWS(); 
 
 				}
 				break;
-			case 31 :
-				// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:1:386: POINT
+			case 28 :
+				// /Users/Natan/Developer/lo17/td4/sql-grammar/src/main/sql.g:1:345: POINT
 				{
 				mPOINT(); 
 
@@ -1423,201 +1200,188 @@ public class sqlLexer extends Lexer {
 	}
 
 
-	protected DFA8 dfa8 = new DFA8(this);
-	static final String DFA8_eotS =
-		"\25\uffff\10\22\1\uffff\1\22\1\71\1\22\1\10\5\22\1\102\2\22\2\uffff\4"+
-		"\22\1\112\4\22\1\uffff\3\22\1\uffff\1\22\1\124\1\22\1\126\1\22\1\131\1"+
-		"\22\3\uffff\5\22\1\142\1\uffff\5\22\1\150\1\22\1\uffff\1\22\1\uffff\1"+
-		"\153\1\uffff\2\22\1\uffff\2\22\1\160\4\22\1\142\1\uffff\1\165\2\22\1\170"+
-		"\1\22\1\uffff\2\22\1\uffff\4\22\1\uffff\4\22\1\uffff\1\22\1\u0085\1\uffff"+
-		"\1\22\1\u0087\2\22\1\124\5\22\1\142\1\u0090\1\uffff\1\22\1\uffff\1\u0092"+
-		"\2\22\1\u0095\1\u0096\2\22\1\u0090\1\uffff\1\u0099\1\uffff\1\124\1\u009a"+
-		"\2\uffff\1\22\1\u009c\2\uffff\1\u009d\2\uffff";
-	static final String DFA8_eofS =
-		"\u009e\uffff";
-	static final String DFA8_minS =
-		"\1\11\7\141\1\uffff\4\141\1\60\4\141\3\uffff\1\165\1\141\2\164\1\162\1"+
+	protected DFA7 dfa7 = new DFA7(this);
+	static final String DFA7_eotS =
+		"\25\uffff\7\22\1\uffff\1\22\1\67\1\22\1\10\5\22\1\100\2\22\2\uffff\5\22"+
+		"\1\uffff\2\22\1\uffff\3\22\1\uffff\1\22\1\120\1\22\1\122\3\22\3\uffff"+
+		"\5\22\1\135\4\22\1\142\1\22\1\uffff\1\22\1\uffff\1\145\1\uffff\4\22\1"+
+		"\152\4\22\1\135\1\uffff\1\157\1\22\1\161\1\22\1\uffff\2\22\1\uffff\4\22"+
+		"\1\uffff\4\22\1\uffff\1\22\1\uffff\1\22\1\177\2\22\1\120\5\22\1\135\1"+
+		"\u0087\1\22\1\uffff\1\u0089\2\22\1\u008c\1\u008d\2\22\1\uffff\1\u0090"+
+		"\1\uffff\1\120\1\u0091\2\uffff\1\22\1\u0093\2\uffff\1\u0094\2\uffff";
+	static final String DFA7_eofS =
+		"\u0095\uffff";
+	static final String DFA7_minS =
+		"\1\11\7\141\1\uffff\4\141\1\60\4\141\3\uffff\1\165\1\141\1\164\1\162\1"+
 		"\u00fb\1\154\1\164\1\uffff\1\156\1\141\1\164\1\141\1\164\1\151\1\156\1"+
-		"\162\1\142\1\57\1\156\1\151\2\uffff\1\160\1\166\2\154\1\141\1\156\1\151"+
-		"\1\145\1\151\1\uffff\1\154\1\141\1\164\1\uffff\1\157\1\141\1\163\1\141"+
-		"\1\164\1\141\1\162\3\uffff\1\166\1\154\1\164\1\145\1\157\1\141\1\uffff"+
-		"\1\144\1\143\1\165\1\154\1\145\1\141\1\156\1\uffff\1\142\1\uffff\1\141"+
-		"\1\uffff\2\145\1\uffff\2\151\1\141\1\154\1\145\1\155\1\151\1\141\1\uffff"+
-		"\1\141\1\154\1\162\1\141\1\164\1\uffff\1\164\1\162\1\uffff\1\156\1\162"+
-		"\1\161\1\145\1\uffff\1\145\1\155\1\142\1\162\1\uffff\1\145\1\141\1\uffff"+
-		"\1\151\1\141\1\145\1\151\1\141\1\165\1\162\1\164\1\142\1\162\2\141\1\uffff"+
-		"\1\156\1\uffff\1\141\1\162\1\145\2\141\1\162\1\145\1\141\1\uffff\1\141"+
-		"\1\uffff\2\141\2\uffff\1\145\1\141\2\uffff\1\141\2\uffff";
-	static final String DFA8_maxS =
+		"\162\1\142\1\57\1\156\1\151\2\uffff\1\160\1\166\2\154\1\156\1\uffff\2"+
+		"\151\1\uffff\1\154\1\141\1\164\1\uffff\1\157\1\141\1\163\1\141\1\164\1"+
+		"\154\1\162\3\uffff\1\166\1\154\1\164\1\145\1\157\1\141\1\144\1\143\1\154"+
+		"\1\145\1\141\1\156\1\uffff\1\142\1\uffff\1\141\1\uffff\2\145\2\151\1\141"+
+		"\1\154\1\145\1\155\1\151\1\141\1\uffff\1\141\1\154\1\141\1\164\1\uffff"+
+		"\1\164\1\162\1\uffff\1\156\1\162\1\161\1\145\1\uffff\1\145\1\155\1\142"+
+		"\1\162\1\uffff\1\145\1\uffff\1\151\1\141\1\145\1\151\1\141\1\165\1\162"+
+		"\1\164\1\142\1\162\2\141\1\156\1\uffff\1\141\1\162\1\145\2\141\1\162\1"+
+		"\145\1\uffff\1\141\1\uffff\2\141\2\uffff\1\145\1\141\2\uffff\1\141\2\uffff";
+	static final String DFA7_maxS =
 		"\5\172\1\u00e9\2\172\1\uffff\4\172\1\71\1\172\1\u00e9\2\172\3\uffff\1"+
-		"\165\1\151\2\164\1\162\1\u00fb\1\154\1\164\1\uffff\1\156\1\172\1\164\1"+
+		"\165\1\151\1\164\1\162\1\u00fb\1\154\1\164\1\uffff\1\156\1\172\1\164\1"+
 		"\172\1\164\1\162\1\156\1\162\1\142\1\71\1\156\1\151\2\uffff\1\160\1\166"+
-		"\2\154\1\172\1\156\1\151\1\145\1\151\1\uffff\1\154\1\145\1\164\1\uffff"+
-		"\1\157\1\172\1\163\1\172\1\164\1\172\1\162\3\uffff\1\166\1\156\1\164\1"+
-		"\145\1\157\1\172\1\uffff\1\144\1\143\1\165\1\154\1\145\1\172\1\156\1\uffff"+
-		"\1\142\1\uffff\1\172\1\uffff\2\145\1\uffff\2\151\1\172\1\154\1\145\1\155"+
-		"\1\151\1\172\1\uffff\1\172\1\154\1\162\1\172\1\164\1\uffff\1\164\1\162"+
-		"\1\uffff\1\156\1\162\1\161\1\145\1\uffff\1\145\1\155\1\142\1\162\1\uffff"+
-		"\1\145\1\172\1\uffff\1\151\1\172\1\145\1\151\1\172\1\165\1\162\1\164\1"+
-		"\142\1\162\2\172\1\uffff\1\156\1\uffff\1\172\1\162\1\145\2\172\1\162\1"+
-		"\145\1\172\1\uffff\1\172\1\uffff\2\172\2\uffff\1\145\1\172\2\uffff\1\172"+
-		"\2\uffff";
-	static final String DFA8_acceptS =
-		"\10\uffff\1\11\11\uffff\1\35\1\36\1\37\10\uffff\1\34\14\uffff\1\35\1\22"+
-		"\11\uffff\1\30\3\uffff\1\10\7\uffff\1\17\1\16\1\20\6\uffff\1\6\7\uffff"+
-		"\1\35\1\uffff\1\12\1\uffff\1\25\2\uffff\1\13\10\uffff\1\1\5\uffff\1\5"+
-		"\2\uffff\1\23\4\uffff\1\26\4\uffff\1\7\2\uffff\1\24\14\uffff\1\4\1\uffff"+
-		"\1\15\10\uffff\1\2\1\uffff\1\32\2\uffff\1\21\1\27\2\uffff\1\3\1\14\1\uffff"+
-		"\1\33\1\31";
-	static final String DFA8_specialS =
-		"\u009e\uffff}>";
-	static final String[] DFA8_transitionS = {
+		"\2\154\1\156\1\uffff\2\151\1\uffff\1\154\1\145\1\164\1\uffff\1\157\1\172"+
+		"\1\163\1\172\1\164\1\154\1\162\3\uffff\1\166\1\156\1\164\1\145\1\157\1"+
+		"\172\1\144\1\143\1\154\1\145\1\172\1\156\1\uffff\1\142\1\uffff\1\172\1"+
+		"\uffff\2\145\2\151\1\172\1\154\1\145\1\155\1\151\1\172\1\uffff\1\172\1"+
+		"\154\1\172\1\164\1\uffff\1\164\1\162\1\uffff\1\156\1\162\1\161\1\145\1"+
+		"\uffff\1\145\1\155\1\142\1\162\1\uffff\1\145\1\uffff\1\151\1\172\1\145"+
+		"\1\151\1\172\1\165\1\162\1\164\1\142\1\162\2\172\1\156\1\uffff\1\172\1"+
+		"\162\1\145\2\172\1\162\1\145\1\uffff\1\172\1\uffff\2\172\2\uffff\1\145"+
+		"\1\172\2\uffff\1\172\2\uffff";
+	static final String DFA7_acceptS =
+		"\10\uffff\1\7\11\uffff\1\32\1\33\1\34\7\uffff\1\31\14\uffff\1\32\1\17"+
+		"\5\uffff\1\32\2\uffff\1\25\3\uffff\1\6\7\uffff\1\14\1\13\1\15\14\uffff"+
+		"\1\32\1\uffff\1\10\1\uffff\1\22\12\uffff\1\1\4\uffff\1\4\2\uffff\1\20"+
+		"\4\uffff\1\23\4\uffff\1\5\1\uffff\1\21\15\uffff\1\12\7\uffff\1\2\1\uffff"+
+		"\1\27\2\uffff\1\16\1\24\2\uffff\1\3\1\11\1\uffff\1\30\1\26";
+	static final String DFA7_specialS =
+		"\u0095\uffff}>";
+	static final String[] DFA7_transitionS = {
 			"\2\23\2\uffff\1\23\22\uffff\1\23\13\uffff\1\10\1\uffff\1\24\1\uffff\12"+
 			"\15\7\uffff\32\22\6\uffff\1\3\1\4\1\12\1\5\1\7\1\17\3\22\1\16\2\22\1"+
 			"\11\1\21\1\6\1\13\1\2\1\14\1\20\2\22\1\1\4\22",
 			"\16\22\1\25\13\22",
 			"\24\22\1\26\5\22",
-			"\16\22\1\32\2\22\1\27\2\22\1\30\1\31\4\22",
-			"\24\22\1\33\5\22",
-			"\1\34\15\22\1\36\13\22\156\uffff\1\35",
-			"\2\22\1\40\21\22\1\37\5\22",
-			"\23\22\1\41\6\22",
+			"\16\22\1\31\2\22\1\27\3\22\1\30\4\22",
+			"\24\22\1\32\5\22",
+			"\1\33\15\22\1\35\13\22\156\uffff\1\34",
+			"\2\22\1\37\21\22\1\36\5\22",
+			"\23\22\1\40\6\22",
 			"",
-			"\1\43\15\22\1\42\13\22",
-			"\16\22\1\44\13\22",
-			"\1\45\31\22",
-			"\24\22\1\46\5\22",
-			"\12\47",
-			"\1\50\3\22\1\52\17\22\1\51\5\22",
-			"\32\22\156\uffff\1\53",
-			"\4\22\1\54\25\22",
-			"\16\22\1\55\13\22",
+			"\1\42\15\22\1\41\13\22",
+			"\16\22\1\43\13\22",
+			"\1\44\31\22",
+			"\24\22\1\45\5\22",
+			"\12\46",
+			"\1\47\3\22\1\51\17\22\1\50\5\22",
+			"\32\22\156\uffff\1\52",
+			"\4\22\1\53\25\22",
+			"\16\22\1\54\13\22",
 			"",
 			"",
 			"",
-			"\1\56",
-			"\1\61\3\uffff\1\57\3\uffff\1\60",
+			"\1\55",
+			"\1\57\3\uffff\1\56\3\uffff\1\60",
+			"\1\61",
 			"\1\62",
 			"\1\63",
 			"\1\64",
 			"\1\65",
-			"\1\66",
-			"\1\67",
 			"",
+			"\1\66",
+			"\32\22",
 			"\1\70",
 			"\32\22",
-			"\1\72",
-			"\32\22",
-			"\1\73",
-			"\1\75\10\uffff\1\74",
+			"\1\71",
+			"\1\73\10\uffff\1\72",
+			"\1\74",
+			"\1\75",
 			"\1\76",
-			"\1\77",
-			"\1\100",
-			"\1\103\12\101",
+			"\1\101\12\77",
+			"\1\102",
+			"\1\103",
+			"",
+			"",
 			"\1\104",
 			"\1\105",
-			"",
-			"",
 			"\1\106",
 			"\1\107",
 			"\1\110",
+			"",
 			"\1\111",
-			"\32\22",
+			"\1\112",
+			"",
 			"\1\113",
-			"\1\114",
-			"\1\115",
+			"\1\115\3\uffff\1\114",
 			"\1\116",
 			"",
 			"\1\117",
-			"\1\121\3\uffff\1\120",
-			"\1\122",
-			"",
+			"\32\22",
+			"\1\121",
+			"\32\22",
 			"\1\123",
-			"\32\22",
+			"\1\124",
 			"\1\125",
-			"\32\22",
-			"\1\127",
-			"\13\22\1\130\16\22",
+			"",
+			"",
+			"",
+			"\1\126",
+			"\1\130\1\uffff\1\127",
+			"\1\131",
 			"\1\132",
-			"",
-			"",
-			"",
 			"\1\133",
-			"\1\135\1\uffff\1\134",
+			"\22\22\1\134\7\22",
 			"\1\136",
 			"\1\137",
 			"\1\140",
-			"\22\22\1\141\7\22",
-			"",
+			"\1\141",
+			"\32\22",
 			"\1\143",
+			"",
 			"\1\144",
-			"\1\145",
+			"",
+			"\32\22",
+			"",
 			"\1\146",
 			"\1\147",
-			"\32\22",
+			"\1\150",
 			"\1\151",
-			"",
-			"\1\152",
-			"",
 			"\32\22",
-			"",
+			"\1\153",
 			"\1\154",
 			"\1\155",
-			"",
 			"\1\156",
-			"\1\157",
 			"\32\22",
-			"\1\161",
+			"",
+			"\32\22",
+			"\1\160",
+			"\32\22",
 			"\1\162",
+			"",
 			"\1\163",
 			"\1\164",
-			"\32\22",
 			"",
-			"\32\22",
+			"\1\165",
 			"\1\166",
 			"\1\167",
-			"\32\22",
-			"\1\171",
+			"\1\170",
 			"",
+			"\1\171",
 			"\1\172",
 			"\1\173",
-			"",
 			"\1\174",
-			"\1\175",
-			"\1\176",
-			"\1\177",
 			"",
+			"\1\175",
+			"",
+			"\1\176",
+			"\32\22",
 			"\1\u0080",
 			"\1\u0081",
+			"\32\22",
 			"\1\u0082",
 			"\1\u0083",
-			"",
 			"\1\u0084",
-			"\32\22",
-			"",
+			"\1\u0085",
 			"\1\u0086",
 			"\32\22",
+			"\32\22",
 			"\1\u0088",
-			"\1\u0089",
+			"",
 			"\32\22",
 			"\1\u008a",
 			"\1\u008b",
-			"\1\u008c",
-			"\1\u008d",
+			"\32\22",
+			"\32\22",
 			"\1\u008e",
-			"\32\22",
-			"\22\22\1\u008f\7\22",
-			"",
-			"\1\u0091",
-			"",
-			"\32\22",
-			"\1\u0093",
-			"\1\u0094",
-			"\32\22",
-			"\32\22",
-			"\1\u0097",
-			"\1\u0098",
-			"\32\22",
+			"\1\u008f",
 			"",
 			"\32\22",
 			"",
@@ -1625,7 +1389,7 @@ public class sqlLexer extends Lexer {
 			"\32\22",
 			"",
 			"",
-			"\1\u009b",
+			"\1\u0092",
 			"\32\22",
 			"",
 			"",
@@ -1634,38 +1398,38 @@ public class sqlLexer extends Lexer {
 			""
 	};
 
-	static final short[] DFA8_eot = DFA.unpackEncodedString(DFA8_eotS);
-	static final short[] DFA8_eof = DFA.unpackEncodedString(DFA8_eofS);
-	static final char[] DFA8_min = DFA.unpackEncodedStringToUnsignedChars(DFA8_minS);
-	static final char[] DFA8_max = DFA.unpackEncodedStringToUnsignedChars(DFA8_maxS);
-	static final short[] DFA8_accept = DFA.unpackEncodedString(DFA8_acceptS);
-	static final short[] DFA8_special = DFA.unpackEncodedString(DFA8_specialS);
-	static final short[][] DFA8_transition;
+	static final short[] DFA7_eot = DFA.unpackEncodedString(DFA7_eotS);
+	static final short[] DFA7_eof = DFA.unpackEncodedString(DFA7_eofS);
+	static final char[] DFA7_min = DFA.unpackEncodedStringToUnsignedChars(DFA7_minS);
+	static final char[] DFA7_max = DFA.unpackEncodedStringToUnsignedChars(DFA7_maxS);
+	static final short[] DFA7_accept = DFA.unpackEncodedString(DFA7_acceptS);
+	static final short[] DFA7_special = DFA.unpackEncodedString(DFA7_specialS);
+	static final short[][] DFA7_transition;
 
 	static {
-		int numStates = DFA8_transitionS.length;
-		DFA8_transition = new short[numStates][];
+		int numStates = DFA7_transitionS.length;
+		DFA7_transition = new short[numStates][];
 		for (int i=0; i<numStates; i++) {
-			DFA8_transition[i] = DFA.unpackEncodedString(DFA8_transitionS[i]);
+			DFA7_transition[i] = DFA.unpackEncodedString(DFA7_transitionS[i]);
 		}
 	}
 
-	protected class DFA8 extends DFA {
+	protected class DFA7 extends DFA {
 
-		public DFA8(BaseRecognizer recognizer) {
+		public DFA7(BaseRecognizer recognizer) {
 			this.recognizer = recognizer;
-			this.decisionNumber = 8;
-			this.eot = DFA8_eot;
-			this.eof = DFA8_eof;
-			this.min = DFA8_min;
-			this.max = DFA8_max;
-			this.accept = DFA8_accept;
-			this.special = DFA8_special;
-			this.transition = DFA8_transition;
+			this.decisionNumber = 7;
+			this.eot = DFA7_eot;
+			this.eof = DFA7_eof;
+			this.min = DFA7_min;
+			this.max = DFA7_max;
+			this.accept = DFA7_accept;
+			this.special = DFA7_special;
+			this.transition = DFA7_transition;
 		}
 		@Override
 		public String getDescription() {
-			return "1:1: Tokens : ( SELECT | SELECT_ARTICLE | SELECT_BULLETIN | SELECT_AUTEUR | SELECT_DATE | SELECT_SHORT_AUTEUR | SELECT_SHORT_DATE | CONJ_OR | CONJ_AND | MOT | AUTEUR | RUBRIQUE | DATE | VAR_JOUR | VAR_ANNEE | VAR_DATE | VAR_MOIS_JANVIER | VAR_MOIS_FEVRIER | VAR_MOIS_MARS | VAR_MOIS_AVRIL | VAR_MOIS_MAI | VAR_MOIS_JUIN | VAR_MOIS_JUILLET | VAR_MOIS_AOUT | VAR_MOIS_SEPTEMBRE | VAR_MOIS_OCTOBRE | VAR_MOIS_NOVEMBRE | VAR_MOIS_DECEMBRE | VAR_MOT | WS | POINT );";
+			return "1:1: Tokens : ( SELECT | SELECT_ARTICLE | SELECT_BULLETIN | SELECT_DATE | SELECT_SHORT_DATE | CONJ_OR | CONJ_AND | MOT | RUBRIQUE | DATE | VAR_JOUR | VAR_ANNEE | VAR_DATE | VAR_MOIS_JANVIER | VAR_MOIS_FEVRIER | VAR_MOIS_MARS | VAR_MOIS_AVRIL | VAR_MOIS_MAI | VAR_MOIS_JUIN | VAR_MOIS_JUILLET | VAR_MOIS_AOUT | VAR_MOIS_SEPTEMBRE | VAR_MOIS_OCTOBRE | VAR_MOIS_NOVEMBRE | VAR_MOIS_DECEMBRE | VAR_MOT | WS | POINT );";
 		}
 	}
 

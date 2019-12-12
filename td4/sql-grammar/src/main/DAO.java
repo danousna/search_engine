@@ -61,4 +61,25 @@ public class DAO  {
             }
         }
 	}
+	
+	public static void main(String args[]) {
+		DAO d = new DAO();
+		String request = "";
+		BufferedReader br = null;
+
+		try {
+			try {
+				br = new BufferedReader(new InputStreamReader(System.in));
+				System.out.print("saisie : ");
+				request = br.readLine();
+				d.query(request);
+			} 
+			catch(EOFException e) {
+				br.close();
+			}
+		} 
+		catch(IOException e) {
+			System.out.println("IO Exception");
+		}
+	}
 }
