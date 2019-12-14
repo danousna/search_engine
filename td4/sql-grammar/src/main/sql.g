@@ -10,6 +10,8 @@ SELECT_DATE : 'date';
 
 SELECT_SHORT_DATE : 'quand';
 
+COUNT: 'combien';
+
 CONJ_OR : 'ou';
 
 CONJ_AND : 'et' | ',';
@@ -19,8 +21,13 @@ MOT : 'mot' | 'contenir' | 'parler';
 RUBRIQUE: 'rubrique';
 
 DATE : 'datant';
+DATE_TO : 'jusque'; // <=
+DATE_BEFORE : 'avant'; // <
+DATE_FROM : 'depuis'; // >=
+DATE_AFTER : 'apres'; // >
+DATE_BETWEEN : 'entre'; // >= and <
 
-VAR_JOUR	: ('0'..'9') ('0'..'9');
+VAR_JOUR	: ('0'..'9') ('0'..'9')?;
 VAR_ANNEE	: ('0'..'9') ('0'..'9') ('0'..'9') ('0'..'9');
 VAR_DATE	: VAR_JOUR'/'VAR_JOUR'/'VAR_ANNEE;
 VAR_MOIS_JANVIER: 'janvier';
@@ -83,6 +90,17 @@ select returns [Arbre arbre_select = new Arbre("select")] :
 	)
 	|
 	SELECT_SHORT_DATE { arbre_select.ajouteFils(new Arbre("", "date")); }
+	|
+	(
+		COUNT 
+		(
+			SELECT_ARTICLE { arbre_select.ajouteFils(new Arbre("", "count(fichier)")); }
+			|
+			SELECT_BULLETIN { arbre_select.ajouteFils(new Arbre("", "count(numero)")); }
+			| 
+			RUBRIQUE { arbre_select.ajouteFils(new Arbre("", "count(rubrique)")); }
+		)
+	)
 ;
 
 params returns [Arbre arbre_params = new Arbre("params")]
@@ -115,11 +133,11 @@ param returns [Arbre arbre_param = new Arbre("param")] :
 	)
 	|
 	(
-		AUTEUR { arbre_param.ajouteFils(new Arbre("table", "auteur")); }
-		var_auteur_1 = VAR_MOT { arbre_param.ajouteFils(new Arbre("auteur=", "'"+var_auteur_1.getText()+"'")); }
+		RUBRIQUE { arbre_param.ajouteFils(new Arbre("table", "rubrique")); }
+		var_rubrique_1 = VAR_MOT { arbre_param.ajouteFils(new Arbre("rubrique=", "'"+var_rubrique_1.getText()+"'")); }
 		(
 			conj1 = conj { arbre_param.ajouteFils(conj1); }
-			var_auteur_2 = VAR_MOT { arbre_param.ajouteFils(new Arbre("auteur=", "'"+var_auteur_2.getText()+"'")); }
+			var_rubrique_1 = VAR_MOT { arbre_param.ajouteFils(new Arbre("rubrique=", "'"+var_rubrique_1.getText()+"'")); }
 		)*
 	)
 	|
@@ -133,6 +151,48 @@ param returns [Arbre arbre_param = new Arbre("param")] :
 			conj1 = conj { arbre_param.ajouteFils(conj1); }
 			var_date_2 = var_date { arbre_param.ajouteFils(var_date_2); }
 		)*
+	)
+	|
+	(
+		(
+			DATE_TO {
+				arbre_param.ajouteFils(new Arbre("table", "date"));
+				arbre_param.ajouteFils(new Arbre("comp", "<="));
+			}
+			|
+			DATE_BEFORE {
+				arbre_param.ajouteFils(new Arbre("table", "date"));
+				arbre_param.ajouteFils(new Arbre("comp", "<"));
+			}
+			|
+			DATE_FROM {
+				arbre_param.ajouteFils(new Arbre("table", "date"));
+				arbre_param.ajouteFils(new Arbre("comp", ">="));
+			}
+			|
+			DATE_AFTER {
+				arbre_param.ajouteFils(new Arbre("table", "date"));
+				arbre_param.ajouteFils(new Arbre("comp", ">"));
+			}
+		)
+		var_date_1 = var_date {
+			arbre_param.ajouteFils(var_date_1);
+		}
+	)
+	|
+	(
+		var_date_comp = DATE_BETWEEN 
+		var_date_1 = var_date
+		CONJ_AND
+		var_date_2 = var_date
+		{
+			arbre_param.ajouteFils(new Arbre("table", "date"));
+			arbre_param.ajouteFils(new Arbre("comp", ">="));
+			arbre_param.ajouteFils(var_date_1);
+			arbre_param.ajouteFils(new Arbre("", "and"));
+			arbre_param.ajouteFils(new Arbre("comp", "<"));
+			arbre_param.ajouteFils(var_date_2);
+		}
 	)
 ;
 
@@ -198,7 +258,7 @@ var_date returns [Arbre arbre_var = new Arbre("var_date")] :
 		// élements : annne = , mois =, jour =
 		var1 = VAR_DATE
 		{
-			arbre_var.ajouteFils(new Arbre("date =", "'"+var1.getText()+"'"));
+			arbre_var.ajouteFils(new Arbre("date=", "'"+var1.getText()+"'"));
 		}
 	)
 ;

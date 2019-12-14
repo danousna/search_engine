@@ -13,7 +13,7 @@ public class Lexicon {
         
         try {
             try {
-                br = new BufferedReader(new FileReader("lexicon.txt"));
+                br = new BufferedReader(new FileReader("src/main/lexicon.txt"));
                 while ((chaine = br.readLine()) != null) {
                     String[] entry = chaine.split(";");
                     lexicon.put(entry[0], entry[1]);

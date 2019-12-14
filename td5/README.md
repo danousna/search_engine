@@ -30,14 +30,14 @@ En effet, prenons l'exemple suivant :
 
 lexique.txt :
 ```
-fichier => fichier
+article => article
 ```
 structure.txt :
 ```
-fichier => article
+article => fichier
 ```
 
-Si on combine les deux listes, on est forcément baisé étant donné que soit fichier sera toujours remplacé par fichier ce qui n'est souhaitable pour les mots de structure soit il sera toujours remplacé par article, ce qui n'est pas souhaitable si l'utilisateur recherche réellement le mot 'fichier'.
+Si on combine les deux listes, on est forcément baisé étant donné que soit article sera toujours remplacé par article ce qui n'est souhaitable pour les mots de structure soit il sera toujours remplacé par fichier, ce qui n'est pas souhaitable si l'utilisateur recherche réellement le mot 'article'.
 
 ### Problème de cette approche
 

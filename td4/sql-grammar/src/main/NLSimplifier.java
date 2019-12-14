@@ -39,51 +39,53 @@ public class NLSimplifier {
     }
 
     public NLSimplifier() {
-        storeFileInHashMap("keeplist.txt", keeplist);
-        storeFileInHashMap("stoplist.txt", stoplist);
-        storeFileInHashMap("structure.txt", structure);
+        storeFileInHashMap("src/main/keeplist.txt", keeplist);
+        storeFileInHashMap("src/main/stoplist.txt", stoplist);
+        storeFileInHashMap("src/main/structure.txt", structure);
     }
 
-    public List<String> process(String[] request) {
-        Lexicon lexicon = new Lexicon();
-        List<String> result = new ArrayList<String>();
-        Boolean bypass = false;
+    public String process(String request) {
+    	Lexicon lexicon = new Lexicon();
+    	String[] words = request.split("\\s");
+    	List<String> result = new ArrayList<String>();
+        
+    	Boolean bypass = false;
 
-        for (int i = 0; i < request.length; i++) {
+        for (int i = 0; i < words.length; i++) {
             //TODO: if first word is "qui", we keep it.
             
-            request[i] = request[i].toLowerCase();
+        	words[i] = words[i].toLowerCase();
             
-            if (keeplist.containsKey(request[i])) {
+            if (keeplist.containsKey(words[i])) {
                 // Do nothing
             } 
-            else if (stoplist.containsKey(request[i])) {
-                request[i] = stoplist.get(request[i]);
+            else if (stoplist.containsKey(words[i])) {
+            	words[i] = stoplist.get(words[i]);
             } 
-            else if (structure.containsKey(request[i]) && bypass == false) {
-                request[i] = structure.get(request[i]);
+            else if (structure.containsKey(words[i]) && bypass == false) {
+            	words[i] = structure.get(words[i]);
             } 
             else {
                 // Check word is a valid number, if it is, we don't process it
                 try { 
-                    Float.parseFloat(request[i]);  
+                    Float.parseFloat(words[i]);  
                 } catch (NumberFormatException nf_e) { 
                     List<String> candidates = new ArrayList<String>();
                     try {
-                        candidates = lexicon.wordProcessing(request[i]);
+                        candidates = lexicon.wordProcessing(words[i]);
 
                         if (candidates.size() == 1) {
-                            request[i] = candidates.get(0);
+                        	words[i] = candidates.get(0);
                         }
                         else {
-                            System.out.println("Plusieurs mots candidats ont été trouvés pour le mot " + request[i] + ". Faites votre choix :");
+                            System.out.println("Plusieurs mots candidats ont été trouvés pour le mot " + words[i] + ". Faites votre choix :");
                             for (int j = 0; j < candidates.size(); j++) {
                                 System.out.println("- " + candidates.get(j) + " (" + j + ")");
                             }
 
                             Scanner input = new Scanner(System.in);
                             int choice = input.nextInt();
-                            request[i] = candidates.get(choice);
+                            words[i] = candidates.get(choice);
                         }
                     }
                     catch (Error e) {
@@ -96,23 +98,48 @@ public class NLSimplifier {
             // n'est pas passée dans la liste de structure, ce qui permet de chercher
             // des termes présent dans la liste de stucture sans qu'ils soient transformés
             // par celle-ci.
-            if (request[i].equals("mot")) {
+            if (words[i].equals("mot")) {
                 bypass = true;
             }
 
-            if (request[i] != "") {
-                result.add(request[i]);
+            if (words[i] != "") {
+                result.add(words[i]);
             }
         }
 
-        return result;
+        String requestSimplified = "";
+        for (int i = 0; i < result.size(); i++) {
+        	requestSimplified += result.get(i);
+        	if (i != result.size() - 1) {
+        		requestSimplified += " ";
+        	}
+        }
+        
+        return requestSimplified;
     }
 
     public static void main (String[] args) {
     	NLSimplifier simplifier = new NLSimplifier();
-        List<String> result = simplifier.process(args[0].split("\\s"));
-        for (int i = 0; i < result.size(); i++) {
-            System.out.println(result.get(i));
-        }
+    	BufferedReader br = null;
+
+		try {
+			try {
+				br = new BufferedReader(new InputStreamReader(System.in));
+				
+				System.out.print("Request : ");
+				
+				String nlRequest = br.readLine();
+				System.out.println("Request : " + nlRequest);
+				
+				String result = simplifier.process(nlRequest);
+				System.out.println("Simplified : " + result);
+			} 
+			catch(EOFException e) {
+				br.close();
+			}
+		} 
+		catch(IOException e) {
+			System.out.println("IO Exception");
+		}
     }
 }

@@ -7,6 +7,41 @@ import org.antlr.runtime.ANTLRReaderStream;
 import org.antlr.runtime.CommonTokenStream;
 
 public class Grammar {	
+	private String dateCompParser(String comp, Arbre param) throws Exception {
+		String[] date = new String[3];
+		Arbre _param = param;
+				
+		if (_param.categorie.equals("date=")) {
+			// Enlever le premier et dernier char car il y a un " ' ".
+			String _value = _param.mot.substring(1, _param.mot.length() - 1);
+			date = _value.split("\\/");
+		} else {
+			// Si la date est déjà séparée, on parcourt juste les frere (jour=, mois=, annee=).
+			do {
+				if (_param.categorie.equals("jour=")) {
+					date[0] = _param.mot;
+				} else if (_param.categorie.equals("mois=")) {
+					date[1] = _param.mot;
+				} else if (_param.categorie.equals("annee=")) {
+					date[2] = _param.mot;
+				}
+				
+				_param = _param.frere;
+			} while (_param != null);
+		}
+		
+		// on a forcément l'info de l'année selon notre grammaire.
+		String result = String.format("(annee%s%s)", comp, date[2]);
+		if (date[1] != null) {
+			result += String.format(" and (annee=%s and mois%s%s)", date[2], comp, date[1]);
+		}
+		if (date[0] != null) {
+			result += String.format(" and (annee=%s and mois=%s and jour%s%s)", date[2], date[1], comp, date[0]);
+		}
+		
+		return result;
+	}
+	
 	private String postProcessing(ANTLRReaderStream antlrStream) {
 		String selects = "";
 		String tables = " from ";
@@ -19,7 +54,7 @@ public class Grammar {
 			Arbre tree = parser.requete().fils;
 						
 			while (tree != null) {
-				if (tree.categorie == "select") {
+				if (tree.categorie.equals("select")) {
 					Arbre fils = tree.fils;
 					do {
 						selects += fils.mot;
@@ -30,15 +65,16 @@ public class Grammar {
 						}
 					} while (fils != null);
 				}
-				else if (tree.categorie == "params") {
+				else if (tree.categorie.equals("params")) {
 					Arbre fils = tree.fils;
 					String firstTableName = "";
+					String compName = null;
 					
 					do {
-						if (fils.categorie == "param") {
+						if (fils.categorie.equals("param")) {
 							Arbre param = fils.fils;
 							do {
-								if (param.categorie == "table") {																											
+								if (param.categorie.equals("table")) {																											
 									if (firstTableName == "") {
 										firstTableName = param.mot;
 										tables += param.mot;
@@ -56,30 +92,43 @@ public class Grammar {
 												param.mot
 										);
 									}
-								} else if (param.categorie == "conj") {
+								} else if (param.categorie.equals("conj")) {
 									params += " " + param.fils.mot + " ";
-								} else {
-									if (param.categorie == "var_date") {
-										// on parcours les fils et on append categorie et mot en séparant par un "and"
-										Arbre paramDate = param.fils;
-										do {
-											params += paramDate.categorie + paramDate.mot;
-											paramDate = paramDate.frere;
-											
-											// Si c'est le dernier fils, on ajoute pas de "and".
-											if (paramDate != null) {
-												params += " and ";
-											}
-										} while (paramDate != null);
-										
-									} else {
-										params += param.categorie + param.mot;
+								} else if (param.categorie.equals("comp")) {
+									// On stocke le comparateur pour ensuite le traiter au prochain fils de catégorie var_date.
+									compName = param.mot;
+								} else if (param.categorie.equals("var_date")) {
+									Arbre paramDate = param.fils;
+									
+									if (compName != null) {
+										// parsing special de la date.
+										params += dateCompParser(compName, paramDate);
+										compName = null;
+									} else {	
+										// Si la date est en format complet, il faut la parser.
+										if (paramDate.categorie.equals("date=")) {
+											String[] components = paramDate.mot.split("\\/");
+											params += "jour=" + components[0] + "' and mois='" + components[1] + "' and annee='" + components[2];
+										} else {
+											// Si la date est déjà séparée, on parcourt juste les frere (jour=, mois=, annee=).
+											do {
+												params += paramDate.categorie + paramDate.mot;
+												paramDate = paramDate.frere;
+												
+												// Si c'est le dernier fils, on ajoute pas de "and".
+												if (paramDate != null) {
+													params += " and ";
+												}
+											} while (paramDate != null);
+										}
 									}
+								} else {
+									params += param.categorie + param.mot;
 								}
 								
 								param = param.frere;
 							} while (param != null);
-						} else if (fils.categorie == "conj") {
+						} else if (fils.categorie.equals("conj")) {
 							params += " " + fils.fils.mot + " ";
 						}
 						
@@ -92,7 +141,7 @@ public class Grammar {
 			
 			selects = "select " + selects;
 			
-			if (params != "") {
+			if (!params.equals("")) {
 				params = " where " + params;
 			}
 			
