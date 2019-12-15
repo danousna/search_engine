@@ -65,6 +65,30 @@ public class SpellParserTest {
                     String.format("vouloir %s rubrique focus février 2014", pair.getValue())
             );
             cases.put(
+                    String.format("Quels sont les %s qui parlent d'innovation ?", pair.getKey()),
+                    String.format("vouloir %s mot innovation", pair.getValue())
+            );
+            cases.put(
+                    String.format("Quels sont les %s qui contiennent hexa ?", pair.getKey()),
+                    String.format("vouloir %s mot hexagon", pair.getValue())
+            );
+            cases.put(
+                    String.format("Quels sont les %s qui traitent d'hexa ou d'innovation entre le 01/02/2014 et le 01/05/2014 ?", pair.getKey()),
+                    String.format("vouloir %s mot hexagon ou innovation entre 01/02/2014 et 01/05/2014", pair.getValue())
+            );
+            cases.put(
+                    String.format("Combien d'%s datent de 2012 ?", pair.getKey()),
+                    String.format("combien %s date 2012", pair.getValue())
+            );
+            cases.put(
+                    String.format("Combien d'%s parlent d'hexa ?", pair.getKey()),
+                    String.format("combien %s mot hexagon", pair.getValue())
+            );
+            cases.put(
+                    String.format("Combien d'%s contiennent les mots innovation ou hexa et ont été publiés entre 1945 et 2000 ?", pair.getKey()),
+                    String.format("combien %s mot innovation ou hexagon et date entre 1945 et 2000", pair.getValue())
+            );
+            cases.put(
                     String.format("Combien d'%s parlent de hexa ou d'innovation et datent du 01/01/2012 ?", pair.getKey()),
                     String.format("combien %s mot hexagon ou innovation et date 01/01/2012", pair.getValue())
             );

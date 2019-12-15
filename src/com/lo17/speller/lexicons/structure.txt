@@ -2,6 +2,10 @@ veux;vouloir
 donne;vouloir
 affiche;vouloir
 voudrait;vouloir
+quel;vouloir
+quels;vouloir
+quelles;vouloir
+quelle;vouloir
 page;fichier
 article;fichier
 articles;fichier
@@ -13,6 +17,11 @@ parlant;mot
 contient;mot
 contiennent;mot
 contenir;mot
+traiter;mot
+traitent;mot
+traitant;mot
+traitait;mot
+traitaient;mot
 datant;date
 datent;date
 dater;date
