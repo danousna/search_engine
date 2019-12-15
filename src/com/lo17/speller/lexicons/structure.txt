@@ -11,9 +11,10 @@ parlent;mot
 parler;mot
 parlant;mot
 contient;mot
-contiennent:mot
+contiennent;mot
 contenir;mot
 datant;date
+datent;date
 dater;date
 publié;date
 publiés;date

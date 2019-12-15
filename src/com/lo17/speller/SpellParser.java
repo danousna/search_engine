@@ -48,33 +48,24 @@ public class SpellParser {
         String[] words = request.split("\\s+|\\,+|\\'+|[\\-\\+\\$\\?\\.@&].*");
         List<String> result = new ArrayList<String>();
 
-        boolean structFlag;
-        boolean motFlag = false;
-
         for (int i = 0; i < words.length; i++) {
             //TODO: if first word is "qui", we keep it.
-
-            structFlag = false;
 
             words[i] = words[i].toLowerCase();
 
             if (keeplist.containsKey(words[i])) {
-                // Do nothing, we keep it.
+                // Do nothing.
             }
-            // Même si motFlag est à true, on veux quand même passer dans la stoplist pour supprimer les mots inutiles
+            // Même si flagMot est à true, on veux quand même passer dans la stoplist pour supprimer les mots inutiles
             // à la recherche ("parlant de innnovation", par ex, on veut enlever "de").
             else if (stoplist.containsKey(words[i])) {
                 words[i] = stoplist.get(words[i]);
             }
             else if (structure.containsKey(words[i])) {
-                // Si motFlag est true, on ne cherche pas à remplacer par un mot de structure
-                if (!motFlag) {
-                    words[i] = structure.get(words[i]);
-                }
-                structFlag = true;
+                words[i] = structure.get(words[i]);
             }
             // On lemmatise selon le CorpusLexer uniquement si on sur une recherche de mot.
-            else if (motFlag) {
+            else {
                 // Check word is a valid number, if it is, we don't process it
                 try {
                     Float.parseFloat(words[i]);
@@ -101,20 +92,6 @@ public class SpellParser {
                         // Do nothing, we do not replace the current word.
                     }
                 }
-            }
-
-            System.out.println("word: " +  words[i] + ", motFlag: " + motFlag + ", structFlag: " + structFlag);
-
-            // Si on rencontre le terme de structure mot, on met le flag à true et on saura par la suite
-            // qu'il lemmatiser selon le lexique du corpus uniquement et ce, jusqu'à rencontrer une conjonction.
-            if (words[i].equals("mot")) {
-                motFlag = true;
-            }
-            // Si on rencontre un mot de structure qui n'est pas égal à "mot", on remet motFlag = false
-            // car on ne veut pas lemmatiser la suite selon le lexique du corpus (ex: ce qui suit après "datant",
-            // ne doit pas être lemmatisé).
-            if (!words[i].equals("mot") && structFlag) {
-                motFlag = false;
             }
 
             if (!words[i].equals("")) {

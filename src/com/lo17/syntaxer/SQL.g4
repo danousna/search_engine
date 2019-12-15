@@ -14,7 +14,7 @@ select returns [Arbre arbre = new Arbre("select")] :
 			|
 			SELECT_NUMERO { $arbre.ajouteFils(new Arbre("", "numero")); }
 			|
-			SELECT_DATE { $arbre.ajouteFils(new Arbre("", "date")); }
+			DATE { $arbre.ajouteFils(new Arbre("", "date")); }
 			|
 			RUBRIQUE { $arbre.ajouteFils(new Arbre("", "rubrique")); }
 		)
@@ -25,7 +25,7 @@ select returns [Arbre arbre = new Arbre("select")] :
 				|
 				SELECT_NUMERO { $arbre.ajouteFils(new Arbre("", ", numero")); }
 				|
-				SELECT_DATE { $arbre.ajouteFils(new Arbre("", ", date")); }
+				DATE { $arbre.ajouteFils(new Arbre("", ", date")); }
 				|
 				RUBRIQUE { $arbre.ajouteFils(new Arbre("", "rubrique")); }
 			)
@@ -235,8 +235,6 @@ SELECT_FICHIER : 'fichier';
 
 SELECT_NUMERO : 'bulletin';
 
-SELECT_DATE : 'date';
-
 SELECT_SHORT_DATE : 'quand';
 
 COUNT: 'combien';
@@ -252,7 +250,7 @@ MOT_TEXTE : 'texte';
 
 RUBRIQUE: 'rubrique';
 
-DATE : 'datant';
+DATE : 'date';
 DATE_TO : 'jusque'; // <=
 DATE_BEFORE : 'avant'; // <
 DATE_FROM : 'depuis'; // >=
@@ -279,4 +277,4 @@ VAR_MOT 	: ('A'..'Z' | 'a'..'z') ('a'..'z')+;
 
 WS  : (' ' |'\t' | '\r' | 'je' | 'qui' | 'dont') {skip();} | '\n' ;
 
-POINT : '.';
+POINT : '.' | '?' | '!';
