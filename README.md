@@ -21,7 +21,7 @@
 - [ ] tester requête inner join à trois tables.
 - [ ] gérer email
 - [ ] gérer la distinction entre titre et texte
-- [ ] gros refacto du projet avant passage au webserver
+- [x] gros refacto du projet avant passage au webserver
 - [ ] serveur web fonctionnel
 - [ ] application web avec moteur de recherche
 

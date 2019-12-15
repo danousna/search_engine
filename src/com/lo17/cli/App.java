@@ -21,10 +21,10 @@ public class App {
                 String nlRequest = br.readLine();
 
                 String correctedRequest = spellParser.process(nlRequest);
-                System.out.println("Simplfied : " + correctedRequest);
+                System.out.println("Simplified : " + correctedRequest);
 
-                String sqlRequest = syntaxParser.analyze(correctedRequest);
-                System.out.println("SQL : " + sqlRequest);
+//                String sqlRequest = syntaxParser.analyze(correctedRequest);
+//                System.out.println("SQL : " + sqlRequest);
 //
 //                System.out.println();
 //

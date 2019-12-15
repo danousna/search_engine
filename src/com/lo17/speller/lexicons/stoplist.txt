@@ -3,6 +3,8 @@ le
 de
 d'
 l'
+d
+l
 mes
 tes
 ses
@@ -11,3 +13,5 @@ sont
 leur
 je
 qui
+ont
+été

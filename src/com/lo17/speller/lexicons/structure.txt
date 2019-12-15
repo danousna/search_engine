@@ -9,5 +9,11 @@ fichiers;fichier
 parle;mot
 parlent;mot
 parler;mot
+parlant;mot
 contient;mot
+contiennent:mot
 contenir;mot
+datant;date
+dater;date
+publié;date
+publiés;date
