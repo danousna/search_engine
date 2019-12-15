@@ -6,7 +6,7 @@ import com.lo17.syntaxer.SyntaxParser;
 
 import java.io.*;
 
-public class App {
+public class Main {
     public static void main(String[] args) {
         SpellParser spellParser = new SpellParser();
         SyntaxParser syntaxParser = new SyntaxParser();

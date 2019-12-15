@@ -1,4 +1,4 @@
-package com.lo17.test;
+package com.lo17.test.unit;
 
 import com.lo17.syntaxer.SyntaxParser;
 import org.junit.Test;
