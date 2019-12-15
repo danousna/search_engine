@@ -16,5 +16,8 @@ contenir;mot
 datant;date
 datent;date
 dater;date
+dates;date
 publié;date
 publiés;date
+rubrique;rubrique
+rubriques;rubrique
