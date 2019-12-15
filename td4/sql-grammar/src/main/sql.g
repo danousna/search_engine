@@ -1,5 +1,9 @@
 grammar sql;
 
+@header {
+    package main;
+}
+
 SELECT : 'vouloir' | 'quels' | 'quel';
 
 SELECT_ARTICLE : 'article';
@@ -16,7 +20,10 @@ CONJ_OR : 'ou';
 
 CONJ_AND : 'et' | ',';
 
+// Titre ou texte
 MOT : 'mot' | 'contenir' | 'parler';
+MOT_TITRE : 'titre';
+MOT_TEXTE : 'texte';
 
 RUBRIQUE: 'rubrique';
 
@@ -124,7 +131,29 @@ params returns [Arbre arbre_params = new Arbre("params")]
 
 param returns [Arbre arbre_param = new Arbre("param")] :
 	(
-		MOT { arbre_param.ajouteFils(new Arbre("table", "texte")); }
+		MOT { arbre_param.ajouteFils(new Arbre("table", "titretexte")); }
+		var_mot_1 = VAR_MOT { arbre_param.ajouteFils(new Arbre("mot=", "'"+var_mot_1.getText()+"'")); }
+		(
+			conj1 = conj { arbre_param.ajouteFils(conj1); }
+			var_mot_2 = VAR_MOT { arbre_param.ajouteFils(new Arbre("mot=", "'"+var_mot_2.getText()+"'")); }
+		)*
+	)
+	(
+		MOT_TEXTE 
+		MOT? { 
+			arbre_param.ajouteFils(new Arbre("table", "texte")); 
+		}
+		var_mot_1 = VAR_MOT { arbre_param.ajouteFils(new Arbre("mot=", "'"+var_mot_1.getText()+"'")); }
+		(
+			conj1 = conj { arbre_param.ajouteFils(conj1); }
+			var_mot_2 = VAR_MOT { arbre_param.ajouteFils(new Arbre("mot=", "'"+var_mot_2.getText()+"'")); }
+		)*
+	)
+	(
+		MOT_TITRE 
+		MOT? { 
+			arbre_param.ajouteFils(new Arbre("table", "titre")); 
+		}
 		var_mot_1 = VAR_MOT { arbre_param.ajouteFils(new Arbre("mot=", "'"+var_mot_1.getText()+"'")); }
 		(
 			conj1 = conj { arbre_param.ajouteFils(conj1); }
