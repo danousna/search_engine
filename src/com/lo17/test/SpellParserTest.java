@@ -13,22 +13,26 @@ public class SpellParserTest {
     Map<String, String> cases = new HashMap<String, String>();
 
     public SpellParserTest() {
-        cases.put(
-            "Je veux les articles qui parlent de hexa et qui datent de 2012.",
-            "vouloir fichier mot hexagon et date 2012"
-        );
-        cases.put(
-            "Je veux les articles qui parlent de hexa et d'innovation et qui datent de janvier 2012.",
-            "vouloir fichier mot hexagon et innovation et date janvier 2012"
-        );
-        cases.put(
-            "Je veux les fichiers qui parlent d'innovation ou d'hexa, qui datent de janvier 2012 et de février 2013.",
-            "vouloir fichier mot innovation ou hexagon date janvier 2012 et février 2013"
-        );
-        cases.put(
-            "Combien d'articles parlent de hexa ou d'innovation et datent du 01/01/2012 ?",
-            "combien fichier mot hexagon ou innovation et date 01/01/2012"
-        );
+        Map<String, String> structureLexicon = parser.getStructure();
+
+        for (Map.Entry<String, String> pair : structureLexicon.entrySet()) {
+            cases.put(
+                    String.format("Je veux les %s qui parlent de hexa et qui datent de 2012.", pair.getKey()),
+                    String.format("vouloir %s mot hexagon et date 2012", pair.getValue())
+            );
+            cases.put(
+                    String.format("Je veux les %s qui parlent de hexa et d'innovation et qui datent de janvier 2012.", pair.getKey()),
+                    String.format("vouloir %s mot hexagon et innovation et date janvier 2012", pair.getValue())
+            );
+            cases.put(
+                    String.format("Je veux les %s qui parlent d'innovation ou d'hexa, qui datent de janvier 2012 ou de février 2013.", pair.getKey()),
+                    String.format("vouloir %s mot innovation ou hexagon date janvier 2012 ou février 2013", pair.getValue())
+            );
+            cases.put(
+                    String.format("Combien d'%s parlent de hexa ou d'innovation et datent du 01/01/2012 ?", pair.getKey()),
+                    String.format("combien %s mot hexagon ou innovation et date 01/01/2012", pair.getValue())
+            );
+        }
     }
 
     @Test

@@ -8,6 +8,10 @@ public class SpellParser {
     Map<String, String> stoplist = new HashMap<String, String>();
     Map<String, String> structure = new HashMap<String, String>();
 
+    public Map<String, String> getStructure() {
+        return structure;
+    }
+
     void storeFileInHashMap(String filename, Map<String, String> hashmap) {
         BufferedReader br = null;
         String chaine;
