@@ -1,0 +1,13 @@
+veux;vouloir
+donne;vouloir
+affiche;vouloir
+voudrait;vouloir
+page;fichier
+article;fichier
+articles;fichier
+fichiers;fichier
+parle;mot
+parlent;mot
+parler;mot
+contient;mot
+contenir;mot

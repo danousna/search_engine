@@ -21,6 +21,26 @@
 - [ ] tester requête inner join à trois tables.
 - [ ] gérer email
 - [ ] gérer la distinction entre titre et texte
+- [ ] gros refacto du projet avant passage au webserver
+- [ ] serveur web fonctionnel
+- [ ] application web avec moteur de recherche
+
+## Structure
+
+Le projet est divisé actuellement en deux packages Java :
+- `com.lo17.speller`
+- `com.lo17.syntaxer`
+- `com.lo17.cli`
+
+Ceux-ci représentent les deux étapes de la transformation de la requête. Le package `speller` s'occupe de simplifier la 
+requête en langage naturel pour que celle-ci soit assimilable à des concepts SQL et que les mots recherchés correspondent
+à des lemmes du corpus. 
+
+Le package `syntaxer` s'occupe d'analyser la requête simplifiée à l'aide d'une grammaire ANTLR et génère la requête SQL
+correspondante.
+
+Le package `cli` permet de faire tourner l'application via la ligne de commande. À partir d'une requête utilisateur, 
+toute la chaine de traitement est effectuée et elle renvoie le résultat de la recherche.
 
 ## Présentation
 
