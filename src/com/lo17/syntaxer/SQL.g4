@@ -10,9 +10,9 @@ select returns [Arbre arbre = new Arbre("select")] :
 	(
 		SELECT
 		(
-			SELECT_ARTICLE { $arbre.ajouteFils(new Arbre("", "fichier")); }
+			SELECT_FICHIER { $arbre.ajouteFils(new Arbre("", "fichier")); }
 			|
-			SELECT_BULLETIN { $arbre.ajouteFils(new Arbre("", "numero")); }
+			SELECT_NUMERO { $arbre.ajouteFils(new Arbre("", "numero")); }
 			|
 			SELECT_DATE { $arbre.ajouteFils(new Arbre("", "date")); }
 			|
@@ -21,9 +21,9 @@ select returns [Arbre arbre = new Arbre("select")] :
 		(
 			CONJ_AND
 			(
-				SELECT_ARTICLE { $arbre.ajouteFils(new Arbre("", ", fichier")); }
+				SELECT_FICHIER { $arbre.ajouteFils(new Arbre("", ", fichier")); }
 				|
-				SELECT_BULLETIN { $arbre.ajouteFils(new Arbre("", ", numero")); }
+				SELECT_NUMERO { $arbre.ajouteFils(new Arbre("", ", numero")); }
 				|
 				SELECT_DATE { $arbre.ajouteFils(new Arbre("", ", date")); }
 				|
@@ -37,9 +37,9 @@ select returns [Arbre arbre = new Arbre("select")] :
 	(
 		COUNT
 		(
-			SELECT_ARTICLE { $arbre.ajouteFils(new Arbre("", "count(fichier)")); }
+			SELECT_FICHIER { $arbre.ajouteFils(new Arbre("", "count(fichier)")); }
 			|
-			SELECT_BULLETIN { $arbre.ajouteFils(new Arbre("", "count(numero)")); }
+			SELECT_NUMERO { $arbre.ajouteFils(new Arbre("", "count(numero)")); }
 			|
 			RUBRIQUE { $arbre.ajouteFils(new Arbre("", "count(rubrique)")); }
 		)
@@ -231,9 +231,9 @@ var_date returns [Arbre arbre = new Arbre("var_date")] :
 
 SELECT : 'vouloir' | 'quels' | 'quel';
 
-SELECT_ARTICLE : 'article';
+SELECT_FICHIER : 'fichier';
 
-SELECT_BULLETIN : 'bulletin';
+SELECT_NUMERO : 'bulletin';
 
 SELECT_DATE : 'date';
 

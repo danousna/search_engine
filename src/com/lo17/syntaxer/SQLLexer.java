@@ -17,7 +17,7 @@ public class SQLLexer extends Lexer {
 	protected static final PredictionContextCache _sharedContextCache =
 		new PredictionContextCache();
 	public static final int
-		SELECT=1, SELECT_ARTICLE=2, SELECT_BULLETIN=3, SELECT_DATE=4, SELECT_SHORT_DATE=5, 
+		SELECT=1, SELECT_FICHIER=2, SELECT_NUMERO=3, SELECT_DATE=4, SELECT_SHORT_DATE=5, 
 		COUNT=6, CONJ_OR=7, CONJ_AND=8, MOT=9, MOT_TITRE=10, MOT_TEXTE=11, RUBRIQUE=12, 
 		DATE=13, DATE_TO=14, DATE_BEFORE=15, DATE_FROM=16, DATE_AFTER=17, DATE_BETWEEN=18, 
 		VAR_JOUR=19, VAR_ANNEE=20, VAR_DATE=21, VAR_MOIS_JANVIER=22, VAR_MOIS_FEVRIER=23, 
@@ -34,7 +34,7 @@ public class SQLLexer extends Lexer {
 
 	private static String[] makeRuleNames() {
 		return new String[] {
-			"SELECT", "SELECT_ARTICLE", "SELECT_BULLETIN", "SELECT_DATE", "SELECT_SHORT_DATE", 
+			"SELECT", "SELECT_FICHIER", "SELECT_NUMERO", "SELECT_DATE", "SELECT_SHORT_DATE", 
 			"COUNT", "CONJ_OR", "CONJ_AND", "MOT", "MOT_TITRE", "MOT_TEXTE", "RUBRIQUE", 
 			"DATE", "DATE_TO", "DATE_BEFORE", "DATE_FROM", "DATE_AFTER", "DATE_BETWEEN", 
 			"VAR_JOUR", "VAR_ANNEE", "VAR_DATE", "VAR_MOIS_JANVIER", "VAR_MOIS_FEVRIER", 
@@ -47,7 +47,7 @@ public class SQLLexer extends Lexer {
 
 	private static String[] makeLiteralNames() {
 		return new String[] {
-			null, null, "'article'", "'bulletin'", "'date'", "'quand'", "'combien'", 
+			null, null, "'fichier'", "'bulletin'", "'date'", "'quand'", "'combien'", 
 			"'ou'", null, null, "'titre'", "'texte'", "'rubrique'", "'datant'", "'jusque'", 
 			"'avant'", "'depuis'", "'apres'", "'entre'", null, null, null, "'janvier'", 
 			"'f\u00E9vrier'", "'mars'", "'avril'", "'mai'", "'juin'", "'juillet'", 
@@ -58,7 +58,7 @@ public class SQLLexer extends Lexer {
 	private static final String[] _LITERAL_NAMES = makeLiteralNames();
 	private static String[] makeSymbolicNames() {
 		return new String[] {
-			null, "SELECT", "SELECT_ARTICLE", "SELECT_BULLETIN", "SELECT_DATE", "SELECT_SHORT_DATE", 
+			null, "SELECT", "SELECT_FICHIER", "SELECT_NUMERO", "SELECT_DATE", "SELECT_SHORT_DATE", 
 			"COUNT", "CONJ_OR", "CONJ_AND", "MOT", "MOT_TITRE", "MOT_TEXTE", "RUBRIQUE", 
 			"DATE", "DATE_TO", "DATE_BEFORE", "DATE_FROM", "DATE_AFTER", "DATE_BETWEEN", 
 			"VAR_JOUR", "VAR_ANNEE", "VAR_DATE", "VAR_MOIS_JANVIER", "VAR_MOIS_FEVRIER", 
@@ -184,7 +184,7 @@ public class SQLLexer extends Lexer {
 		"\u0152\3\2\2\2KL\7x\2\2LM\7q\2\2MN\7w\2\2NO\7n\2\2OP\7q\2\2PQ\7k\2\2Q"+
 		"\\\7t\2\2RS\7s\2\2ST\7w\2\2TU\7g\2\2UV\7n\2\2V\\\7u\2\2WX\7s\2\2XY\7w"+
 		"\2\2YZ\7g\2\2Z\\\7n\2\2[K\3\2\2\2[R\3\2\2\2[W\3\2\2\2\\\4\3\2\2\2]^\7"+
-		"c\2\2^_\7t\2\2_`\7v\2\2`a\7k\2\2ab\7e\2\2bc\7n\2\2cd\7g\2\2d\6\3\2\2\2"+
+		"h\2\2^_\7k\2\2_`\7e\2\2`a\7j\2\2ab\7k\2\2bc\7g\2\2cd\7t\2\2d\6\3\2\2\2"+
 		"ef\7d\2\2fg\7w\2\2gh\7n\2\2hi\7n\2\2ij\7g\2\2jk\7v\2\2kl\7k\2\2lm\7p\2"+
 		"\2m\b\3\2\2\2no\7f\2\2op\7c\2\2pq\7v\2\2qr\7g\2\2r\n\3\2\2\2st\7s\2\2"+
 		"tu\7w\2\2uv\7c\2\2vw\7p\2\2wx\7f\2\2x\f\3\2\2\2yz\7e\2\2z{\7q\2\2{|\7"+

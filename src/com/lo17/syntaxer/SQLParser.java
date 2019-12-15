@@ -17,7 +17,7 @@ public class SQLParser extends Parser {
 	protected static final PredictionContextCache _sharedContextCache =
 		new PredictionContextCache();
 	public static final int
-		SELECT=1, SELECT_ARTICLE=2, SELECT_BULLETIN=3, SELECT_DATE=4, SELECT_SHORT_DATE=5, 
+		SELECT=1, SELECT_FICHIER=2, SELECT_NUMERO=3, SELECT_DATE=4, SELECT_SHORT_DATE=5, 
 		COUNT=6, CONJ_OR=7, CONJ_AND=8, MOT=9, MOT_TITRE=10, MOT_TEXTE=11, RUBRIQUE=12, 
 		DATE=13, DATE_TO=14, DATE_BEFORE=15, DATE_FROM=16, DATE_AFTER=17, DATE_BETWEEN=18, 
 		VAR_JOUR=19, VAR_ANNEE=20, VAR_DATE=21, VAR_MOIS_JANVIER=22, VAR_MOIS_FEVRIER=23, 
@@ -36,7 +36,7 @@ public class SQLParser extends Parser {
 
 	private static String[] makeLiteralNames() {
 		return new String[] {
-			null, null, "'article'", "'bulletin'", "'date'", "'quand'", "'combien'", 
+			null, null, "'fichier'", "'bulletin'", "'date'", "'quand'", "'combien'", 
 			"'ou'", null, null, "'titre'", "'texte'", "'rubrique'", "'datant'", "'jusque'", 
 			"'avant'", "'depuis'", "'apres'", "'entre'", null, null, null, "'janvier'", 
 			"'f\u00E9vrier'", "'mars'", "'avril'", "'mai'", "'juin'", "'juillet'", 
@@ -47,7 +47,7 @@ public class SQLParser extends Parser {
 	private static final String[] _LITERAL_NAMES = makeLiteralNames();
 	private static String[] makeSymbolicNames() {
 		return new String[] {
-			null, "SELECT", "SELECT_ARTICLE", "SELECT_BULLETIN", "SELECT_DATE", "SELECT_SHORT_DATE", 
+			null, "SELECT", "SELECT_FICHIER", "SELECT_NUMERO", "SELECT_DATE", "SELECT_SHORT_DATE", 
 			"COUNT", "CONJ_OR", "CONJ_AND", "MOT", "MOT_TITRE", "MOT_TEXTE", "RUBRIQUE", 
 			"DATE", "DATE_TO", "DATE_BEFORE", "DATE_FROM", "DATE_AFTER", "DATE_BETWEEN", 
 			"VAR_JOUR", "VAR_ANNEE", "VAR_DATE", "VAR_MOIS_JANVIER", "VAR_MOIS_FEVRIER", 
@@ -171,13 +171,13 @@ public class SQLParser extends Parser {
 	public static class SelectContext extends ParserRuleContext {
 		public Arbre arbre = new Arbre("select");
 		public TerminalNode SELECT() { return getToken(SQLParser.SELECT, 0); }
-		public List<TerminalNode> SELECT_ARTICLE() { return getTokens(SQLParser.SELECT_ARTICLE); }
-		public TerminalNode SELECT_ARTICLE(int i) {
-			return getToken(SQLParser.SELECT_ARTICLE, i);
+		public List<TerminalNode> SELECT_FICHIER() { return getTokens(SQLParser.SELECT_FICHIER); }
+		public TerminalNode SELECT_FICHIER(int i) {
+			return getToken(SQLParser.SELECT_FICHIER, i);
 		}
-		public List<TerminalNode> SELECT_BULLETIN() { return getTokens(SQLParser.SELECT_BULLETIN); }
-		public TerminalNode SELECT_BULLETIN(int i) {
-			return getToken(SQLParser.SELECT_BULLETIN, i);
+		public List<TerminalNode> SELECT_NUMERO() { return getTokens(SQLParser.SELECT_NUMERO); }
+		public TerminalNode SELECT_NUMERO(int i) {
+			return getToken(SQLParser.SELECT_NUMERO, i);
 		}
 		public List<TerminalNode> SELECT_DATE() { return getTokens(SQLParser.SELECT_DATE); }
 		public TerminalNode SELECT_DATE(int i) {
@@ -224,17 +224,17 @@ public class SQLParser extends Parser {
 				setState(28);
 				_errHandler.sync(this);
 				switch (_input.LA(1)) {
-				case SELECT_ARTICLE:
+				case SELECT_FICHIER:
 					{
 					setState(20);
-					match(SELECT_ARTICLE);
+					match(SELECT_FICHIER);
 					 _localctx.arbre.ajouteFils(new Arbre("", "fichier")); 
 					}
 					break;
-				case SELECT_BULLETIN:
+				case SELECT_NUMERO:
 					{
 					setState(22);
-					match(SELECT_BULLETIN);
+					match(SELECT_NUMERO);
 					 _localctx.arbre.ajouteFils(new Arbre("", "numero")); 
 					}
 					break;
@@ -266,17 +266,17 @@ public class SQLParser extends Parser {
 					setState(39);
 					_errHandler.sync(this);
 					switch (_input.LA(1)) {
-					case SELECT_ARTICLE:
+					case SELECT_FICHIER:
 						{
 						setState(31);
-						match(SELECT_ARTICLE);
+						match(SELECT_FICHIER);
 						 _localctx.arbre.ajouteFils(new Arbre("", ", fichier")); 
 						}
 						break;
-					case SELECT_BULLETIN:
+					case SELECT_NUMERO:
 						{
 						setState(33);
-						match(SELECT_BULLETIN);
+						match(SELECT_NUMERO);
 						 _localctx.arbre.ajouteFils(new Arbre("", ", numero")); 
 						}
 						break;
@@ -323,17 +323,17 @@ public class SQLParser extends Parser {
 				setState(55);
 				_errHandler.sync(this);
 				switch (_input.LA(1)) {
-				case SELECT_ARTICLE:
+				case SELECT_FICHIER:
 					{
 					setState(49);
-					match(SELECT_ARTICLE);
+					match(SELECT_FICHIER);
 					 _localctx.arbre.ajouteFils(new Arbre("", "count(fichier)")); 
 					}
 					break;
-				case SELECT_BULLETIN:
+				case SELECT_NUMERO:
 					{
 					setState(51);
-					match(SELECT_BULLETIN);
+					match(SELECT_NUMERO);
 					 _localctx.arbre.ajouteFils(new Arbre("", "count(numero)")); 
 					}
 					break;

@@ -1,7 +1,7 @@
 token literal names:
 null
 null
-'article'
+'fichier'
 'bulletin'
 'date'
 'quand'
@@ -40,8 +40,8 @@ null
 token symbolic names:
 null
 SELECT
-SELECT_ARTICLE
-SELECT_BULLETIN
+SELECT_FICHIER
+SELECT_NUMERO
 SELECT_DATE
 SELECT_SHORT_DATE
 COUNT
