@@ -64,18 +64,6 @@ params returns [Arbre arbre = new Arbre("params")] :
 
 param returns [Arbre arbre = new Arbre("param")] :
 	(
-		MOT { $arbre.ajouteFils(new Arbre("table", "titretexte")); }
-		var_mot_1=VAR_MOT {
-		    $arbre.ajouteFils(new Arbre("mot=", "'" + $var_mot_1.getText() + "'"));
-		}
-		(
-			conj1=conj { $arbre.ajouteFils($conj1.arbre); }
-			var_mot_2=VAR_MOT {
-			    $arbre.ajouteFils(new Arbre("mot=", "'" + $var_mot_2.getText() + "'"));
-			}
-		)*
-	)
-	(
 		MOT_TEXTE
 		MOT? {
 			$arbre.ajouteFils(new Arbre("table", "texte"));
@@ -86,6 +74,7 @@ param returns [Arbre arbre = new Arbre("param")] :
 			var_mot_2 = VAR_MOT { $arbre.ajouteFils(new Arbre("mot=", "'"+$var_mot_2.getText()+"'")); }
 		)*
 	)
+	|
 	(
 		MOT_TITRE
 		MOT? {
@@ -97,6 +86,19 @@ param returns [Arbre arbre = new Arbre("param")] :
 			var_mot_2 = VAR_MOT { $arbre.ajouteFils(new Arbre("mot=", "'"+$var_mot_2.getText()+"'")); }
 		)*
 	)
+	|
+	(
+        MOT { $arbre.ajouteFils(new Arbre("table", "titretexte")); }
+        var_mot_1=VAR_MOT {
+            $arbre.ajouteFils(new Arbre("mot=", "'" + $var_mot_1.getText() + "'"));
+        }
+        (
+            conj1=conj { $arbre.ajouteFils($conj1.arbre); }
+            var_mot_2=VAR_MOT {
+                $arbre.ajouteFils(new Arbre("mot=", "'" + $var_mot_2.getText() + "'"));
+            }
+        )*
+    )
 	|
 	(
 		RUBRIQUE { $arbre.ajouteFils(new Arbre("table", "rubrique")); }
@@ -275,6 +277,6 @@ VAR_MOIS_DECEMBRE : 'décembre';
 
 VAR_MOT 	: ('A'..'Z' | 'a'..'z') ('a'..'z')+;
 
-WS  : (' ' |'\t' | '\r' | 'je' | 'qui' | 'dont') {skip();} | '\n' ;
+WS  : [ \t\r\n]+ -> skip;
 
 POINT : '.' | '?' | '!';

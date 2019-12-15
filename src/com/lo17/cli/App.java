@@ -23,7 +23,7 @@ public class App {
                 String correctedRequest = spellParser.process(nlRequest);
                 System.out.println("Simplified : " + correctedRequest);
 
-                String sqlRequest = syntaxParser.analyze(correctedRequest);
+                String sqlRequest = syntaxParser.process(correctedRequest);
                 System.out.println("SQL : " + sqlRequest);
 //
 //                System.out.println();

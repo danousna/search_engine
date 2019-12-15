@@ -30,3 +30,6 @@ publié;date
 publiés;date
 rubrique;rubrique
 rubriques;rubrique
+titre:titre
+titré:titre
+texte:texte

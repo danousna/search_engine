@@ -147,7 +147,7 @@ public class SyntaxParser {
         }
     }
 
-    public String analyze(String request) {
+    public String process(String request) {
         SQLLexer lexer = new SQLLexer(CharStreams.fromString(request));
         CommonTokenStream tokens = new CommonTokenStream(lexer);
         SQLParser parser = new SQLParser(tokens);
@@ -163,7 +163,7 @@ public class SyntaxParser {
         while (!stop.equals("stop")) {
             System.out.print("Texte : ");
             String s = scanner.nextLine();
-            String sql = parser.analyze(s);
+            String sql = parser.process(s);
             System.out.println(sql);
             stop = scanner.nextLine();
         }

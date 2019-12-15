@@ -29,6 +29,10 @@ public class SpellParserTest {
                     String.format("vouloir %s mot hexagon et date 2012", pair.getValue())
             );
             cases.put(
+                    String.format("Je veux les %s dont le titre parlent de hexa et qui datent de 2012 et dont le texte contient innovation.", pair.getKey()),
+                    String.format("vouloir %s titre mot hexagon et date 2012 et texte mot innovation", pair.getValue())
+            );
+            cases.put(
                     String.format("Je veux les %s qui parlent de hexa et d'innovation et qui datent de janvier 2012.", pair.getKey()),
                     String.format("vouloir %s mot hexagon et innovation et date janvier 2012", pair.getValue())
             );
