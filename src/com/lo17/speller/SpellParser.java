@@ -48,6 +48,8 @@ public class SpellParser {
         String[] words = request.split("\\s+|\\,+|\\'+|[\\-\\+\\$\\?\\.@&].*");
         List<String> result = new ArrayList<String>();
 
+        boolean flagMot = false;
+
         for (int i = 0; i < words.length; i++) {
             //TODO: if first word is "qui", we keep it.
 
@@ -63,9 +65,15 @@ public class SpellParser {
             }
             else if (structure.containsKey(words[i])) {
                 words[i] = structure.get(words[i]);
+
+                if (words[i].equals("mot")) {
+                    flagMot = true;
+                } else {
+                    flagMot = false;
+                }
             }
             // On lemmatise selon le CorpusLexer uniquement si on sur une recherche de mot.
-            else {
+            else if (flagMot) {
                 // Check word is a valid number, if it is, we don't process it
                 try {
                     Float.parseFloat(words[i]);
