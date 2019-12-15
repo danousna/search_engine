@@ -22,7 +22,7 @@ public class SyntaxParserTest {
             );
             cases.put(
                     String.format("vouloir %s titre mot hexagon et date 2012 et texte mot innovation", info),
-                    String.format("select titre.%s from titre inner join date on (titre.fichier = date.fichier) inner join texte on (titre.fichier = texte.fichier) where mot='hexagon' and annee='2012';", info)
+                    String.format("select titre.%s from titre inner join date on (titre.fichier = date.fichier) inner join texte on (titre.fichier = texte.fichier) where mot='hexagon' and annee='2012' and mot='innovation';", info)
             );
 //            cases.put(
 //                    String.format("vouloir %s mot hexagon et innovation et date janvier 2012", info),
