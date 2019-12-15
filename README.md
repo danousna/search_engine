@@ -1,5 +1,27 @@
 # LO17
 
+## Avancement
+
+- [x] vouloir article parler hexe
+- [x] vouloir article parler hexa et titi
+- [x] vouloir article parler hexa et titi et datant 2019
+- [x] vouloir article parler hexa et titi et datant 20/03/2019
+- [x] qui parler hexa (et titi et datant 2019)
+- [x] vouloir auteur et article parler hexa
+- [x] conjonction AND, OR
+- [x] changer ref à article en ref à fichier
+- [x] mois et jour à mettre en string et non pas int coté grammaire
+- [x] jointures
+- [x] gérer "quel articles de la rubrique machin"
+- [x] gérer "combien"
+- [x] générer la requête SQL
+- [x] parser dans le post-traitement les dates "complète" : 01/01/2012
+- [x] entre, avant, après
+- [x] à partir de (>=), avant (<), après (>)
+- [ ] tester requête inner join à trois tables.
+- [ ] gérer email
+- [ ] gérer la distinction entre titre et texte
+
 ## Présentation
 
 A partir d'un ensemble de page html, on crée un corpus xml avec les différents composants de ces pages html.
