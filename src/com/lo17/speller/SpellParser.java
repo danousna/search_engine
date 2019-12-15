@@ -1,5 +1,7 @@
 package com.lo17.speller;
 
+import com.lo17.util.Utilities;
+
 import java.io.*;
 import java.util.*;
 
@@ -8,39 +10,10 @@ public class SpellParser {
     Map<String, String> stoplist = new HashMap<String, String>();
     Map<String, String> structure = new HashMap<String, String>();
 
-    void storeFileInHashMap(String filename, Map<String, String> hashmap) {
-        BufferedReader br = null;
-        String chaine;
-
-        try {
-            try {
-                br = new BufferedReader(new FileReader(filename));
-                while ((chaine = br.readLine()) != null) {
-                    String[] entry = chaine.split(";");
-
-                    try {
-                        hashmap.put(entry[0], entry[1]);
-                    } catch (ArrayIndexOutOfBoundsException e) {
-                        hashmap.put(entry[0], "");
-                    }
-                }
-            }
-            catch(EOFException e) {
-                br.close();
-            }
-        }
-        catch(FileNotFoundException e) {
-            System.out.println("Le fichier " + filename + " n'a pas été trouvé.");
-        }
-        catch(IOException e) {
-            System.out.println("IO Exception");
-        }
-    }
-
     public SpellParser() {
-        storeFileInHashMap("src/com/lo17/speller/lexicons/keeplist.txt", keeplist);
-        storeFileInHashMap("src/com/lo17/speller/lexicons/stoplist.txt", stoplist);
-        storeFileInHashMap("src/com/lo17/speller/lexicons/structure.txt", structure);
+        keeplist = Utilities.csvImport("src/com/lo17/speller/lexicons/keeplist.txt");
+        stoplist = Utilities.csvImport("src/com/lo17/speller/lexicons/stoplist.txt");
+        structure = Utilities.csvImport("src/com/lo17/speller/lexicons/structure.txt");
     }
 
     public String process(String request) {
