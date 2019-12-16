@@ -21,3 +21,5 @@ des
 mot
 mots
 dont
+tous
+toutes

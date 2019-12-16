@@ -3,6 +3,7 @@ package com.lo17.speller;
 import com.lo17.util.Utilities;
 
 import java.io.*;
+import java.net.URL;
 import java.util.*;
 
 public class SpellParser {
@@ -11,9 +12,21 @@ public class SpellParser {
     Map<String, String> structure = new HashMap<String, String>();
 
     public SpellParser() {
-        keeplist = Utilities.csvImport("src/com/lo17/speller/lexicons/keeplist.txt");
-        stoplist = Utilities.csvImport("src/com/lo17/speller/lexicons/stoplist.txt");
-        structure = Utilities.csvImport("src/com/lo17/speller/lexicons/structure.txt");
+        ClassLoader classLoader = getClass().getClassLoader();
+
+        URL keeplistRes = classLoader.getResource("keeplist.txt");
+        URL stoplistRes = classLoader.getResource("stoplist.txt");
+        URL structureRes = classLoader.getResource("structure.txt");
+
+        if (keeplistRes != null) {
+            keeplist = Utilities.csvImport(keeplistRes.getFile());
+        }
+        if (stoplistRes != null) {
+            stoplist = Utilities.csvImport(stoplistRes.getFile());
+        }
+        if (structureRes != null) {
+            structure = Utilities.csvImport(structureRes.getFile());
+        }
     }
 
     public String process(String request) {

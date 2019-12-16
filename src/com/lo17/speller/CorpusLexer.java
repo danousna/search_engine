@@ -1,6 +1,9 @@
 package com.lo17.speller;
 
+import com.lo17.util.Utilities;
+
 import java.io.*;
+import java.net.URL;
 import java.util.*;
 
 public class CorpusLexer {
@@ -13,10 +16,15 @@ public class CorpusLexer {
 
         try {
             try {
-                br = new BufferedReader(new FileReader("src/com/lo17/speller/lexicons/corpus.txt"));
-                while ((chaine = br.readLine()) != null) {
-                    String[] entry = chaine.split(";");
-                    lexicon.put(entry[0], entry[1]);
+                ClassLoader classLoader = getClass().getClassLoader();
+                URL corpusRes = classLoader.getResource("corpus.txt");
+
+                if (corpusRes != null) {
+                    br = new BufferedReader(new FileReader(corpusRes.getFile()));
+                    while ((chaine = br.readLine()) != null) {
+                        String[] entry = chaine.split(";");
+                        lexicon.put(entry[0], entry[1]);
+                    }
                 }
             }
             catch(EOFException e) {
@@ -24,7 +32,7 @@ public class CorpusLexer {
             }
         }
         catch(FileNotFoundException e) {
-            System.out.println("Le fichier corpus.txt n'a pas été trouvé.");
+            System.out.println("Le fichier res/corpus.txt n'a pas été trouvé.");
         }
         catch(IOException e) {
             System.out.println("IO Exception");

@@ -5,12 +5,14 @@ import com.lo17.speller.SpellParser;
 import com.lo17.syntaxer.SyntaxParser;
 
 import java.io.*;
+import java.util.List;
+import java.util.Map;
 
 public class Main {
     public static void main(String[] args) {
         SpellParser spellParser = new SpellParser();
         SyntaxParser syntaxParser = new SyntaxParser();
-        SQLInterface db = new SQLInterface();
+        SQLInterface sqlInterface = new SQLInterface();
         BufferedReader br = null;
 
         try {
@@ -25,11 +27,17 @@ public class Main {
 
                 String sqlRequest = syntaxParser.process(correctedRequest);
                 System.out.println("SQL : " + sqlRequest);
-//
-//                System.out.println();
-//
-//                System.out.println("Results :");
-//                db.query(sqlRequest);
+
+                System.out.println();
+
+                System.out.println("Results :");
+                List<Map<String, String>> results = sqlInterface.query(sqlRequest);
+                for (Map<String, String> result : results) {
+                    for (Map.Entry<String, String> entry : result.entrySet()) {
+                        System.out.print(entry.getValue());
+                    }
+                    System.out.println();
+                }
             }
             catch(EOFException e) {
                 br.close();
