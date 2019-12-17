@@ -227,28 +227,28 @@ public class SQLParser extends Parser {
 					{
 					setState(20);
 					match(SELECT_FICHIER);
-					 _localctx.arbre.ajouteFils(new Arbre("", "fichier")); 
+					 _localctx.arbre.ajouteFils(new Arbre("", "distinct fichier")); 
 					}
 					break;
 				case SELECT_NUMERO:
 					{
 					setState(22);
 					match(SELECT_NUMERO);
-					 _localctx.arbre.ajouteFils(new Arbre("", "numero")); 
+					 _localctx.arbre.ajouteFils(new Arbre("", "distinct numero")); 
 					}
 					break;
 				case DATE:
 					{
 					setState(24);
 					match(DATE);
-					 _localctx.arbre.ajouteFils(new Arbre("", "date")); 
+					 _localctx.arbre.ajouteFils(new Arbre("", "distinct date")); 
 					}
 					break;
 				case RUBRIQUE:
 					{
 					setState(26);
 					match(RUBRIQUE);
-					 _localctx.arbre.ajouteFils(new Arbre("", "rubrique")); 
+					 _localctx.arbre.ajouteFils(new Arbre("", "distinct rubrique")); 
 					}
 					break;
 				default:
@@ -290,7 +290,7 @@ public class SQLParser extends Parser {
 						{
 						setState(37);
 						match(RUBRIQUE);
-						 _localctx.arbre.ajouteFils(new Arbre("", "rubrique")); 
+						 _localctx.arbre.ajouteFils(new Arbre("", ", rubrique")); 
 						}
 						break;
 					default:
@@ -326,21 +326,21 @@ public class SQLParser extends Parser {
 					{
 					setState(49);
 					match(SELECT_FICHIER);
-					 _localctx.arbre.ajouteFils(new Arbre("", "count(fichier)")); 
+					 _localctx.arbre.ajouteFils(new Arbre("", "count(distinct fichier)")); 
 					}
 					break;
 				case SELECT_NUMERO:
 					{
 					setState(51);
 					match(SELECT_NUMERO);
-					 _localctx.arbre.ajouteFils(new Arbre("", "count(numero)")); 
+					 _localctx.arbre.ajouteFils(new Arbre("", "count(distinct numero)")); 
 					}
 					break;
 				case RUBRIQUE:
 					{
 					setState(53);
 					match(RUBRIQUE);
-					 _localctx.arbre.ajouteFils(new Arbre("", "count(rubrique)")); 
+					 _localctx.arbre.ajouteFils(new Arbre("", "count(distinct rubrique)")); 
 					}
 					break;
 				default:

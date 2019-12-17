@@ -18,14 +18,16 @@
 - [x] parser dans le post-traitement les dates "complète" : 01/01/2012
 - [x] entre, avant, après
 - [x] à partir de (>=), avant (<), après (>)
-- [ ] tester requête inner join à trois tables.
-- [ ] gérer email
-- [ ] gérer la distinction entre titre et texte
-- [ ] pas réussi à traiter la recherche de termes réservés avec les flags qu'on a
+- [x] tester requête inner join à trois tables.
 - [x] gros refacto du projet avant passage au webserver
 - [x] serveur web fonctionnel
+- [x] ajouter distinct (les différent)
+- [ ] gérer email
+- [ ] gérer la distinction entre titre et texte => gérer bonne table.mot
+- [ ] pas réussi à traiter la recherche de termes réservés avec les flags qu'on a
 - [ ] application web avec moteur de recherche
 - [ ] checker que les mots composés fonctionnent (genre jean-marie).
+- [ ] ajouter NOT (pas, sans)
 
 ## Structure
 

@@ -10,13 +10,13 @@ select returns [Arbre arbre = new Arbre("select")] :
 	(
 		SELECT
 		(
-			SELECT_FICHIER { $arbre.ajouteFils(new Arbre("", "fichier")); }
+			SELECT_FICHIER { $arbre.ajouteFils(new Arbre("", "distinct fichier")); }
 			|
-			SELECT_NUMERO { $arbre.ajouteFils(new Arbre("", "numero")); }
+			SELECT_NUMERO { $arbre.ajouteFils(new Arbre("", "distinct numero")); }
 			|
-			DATE { $arbre.ajouteFils(new Arbre("", "date")); }
+			DATE { $arbre.ajouteFils(new Arbre("", "distinct date")); }
 			|
-			RUBRIQUE { $arbre.ajouteFils(new Arbre("", "rubrique")); }
+			RUBRIQUE { $arbre.ajouteFils(new Arbre("", "distinct rubrique")); }
 		)
 		(
 			CONJ_AND
@@ -27,7 +27,7 @@ select returns [Arbre arbre = new Arbre("select")] :
 				|
 				DATE { $arbre.ajouteFils(new Arbre("", ", date")); }
 				|
-				RUBRIQUE { $arbre.ajouteFils(new Arbre("", "rubrique")); }
+				RUBRIQUE { $arbre.ajouteFils(new Arbre("", ", rubrique")); }
 			)
 		)*
 	)
@@ -37,11 +37,11 @@ select returns [Arbre arbre = new Arbre("select")] :
 	(
 		COUNT
 		(
-			SELECT_FICHIER { $arbre.ajouteFils(new Arbre("", "count(fichier)")); }
+			SELECT_FICHIER { $arbre.ajouteFils(new Arbre("", "count(distinct fichier)")); }
 			|
-			SELECT_NUMERO { $arbre.ajouteFils(new Arbre("", "count(numero)")); }
+			SELECT_NUMERO { $arbre.ajouteFils(new Arbre("", "count(distinct numero)")); }
 			|
-			RUBRIQUE { $arbre.ajouteFils(new Arbre("", "count(rubrique)")); }
+			RUBRIQUE { $arbre.ajouteFils(new Arbre("", "count(distinct rubrique)")); }
 		)
 	)
 ;

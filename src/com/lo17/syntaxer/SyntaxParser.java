@@ -30,13 +30,15 @@ public class SyntaxParser {
         }
 
         // on a forcément l'info de l'année selon notre grammaire.
-        String result = String.format("(annee%s%s)", comp, date[2]);
+        String result = String.format("((annee%s%s)", comp, date[2]);
         if (date[1] != null) {
             result += String.format(" and (annee=%s and mois%s%s)", date[2], comp, date[1]);
         }
         if (date[0] != null) {
             result += String.format(" and (annee=%s and mois=%s and jour%s%s)", date[2], date[1], comp, date[0]);
         }
+
+        result += ")";
 
         return result;
     }
@@ -55,10 +57,6 @@ public class SyntaxParser {
                     do {
                         selects += fils.mot;
                         fils = fils.frere;
-                        // Si c'est le dernier fils, on ajoute pas de "and".
-                        if (fils != null) {
-                            selects += ", ";
-                        }
                     } while (fils != null);
                 }
                 else if (tree.categorie.equals("params")) {
@@ -69,8 +67,12 @@ public class SyntaxParser {
                     do {
                         if (fils.categorie.equals("param")) {
                             Arbre param = fils.fils;
+                            String currentTableName = "";
+
                             do {
                                 if (param.categorie.equals("table")) {
+                                    currentTableName = param.mot;
+
                                     if (firstTableName == "") {
                                         firstTableName = param.mot;
                                         tables += param.mot;
@@ -119,7 +121,7 @@ public class SyntaxParser {
                                         }
                                     }
                                 } else {
-                                    params += param.categorie + param.mot;
+                                    params += currentTableName + "." + param.categorie + param.mot;
                                 }
 
                                 param = param.frere;
