@@ -23,8 +23,9 @@
 - [ ] gérer la distinction entre titre et texte
 - [ ] pas réussi à traiter la recherche de termes réservés avec les flags qu'on a
 - [x] gros refacto du projet avant passage au webserver
-- [ ] serveur web fonctionnel
+- [x] serveur web fonctionnel
 - [ ] application web avec moteur de recherche
+- [ ] checker que les mots composés fonctionnent (genre jean-marie).
 
 ## Structure
 

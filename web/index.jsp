@@ -112,7 +112,7 @@
   </head>
   <body>
     <div class="search__wrapper">
-      <h1>Goolo17</h1>
+      <h1>Recherche BE</h1>
       <div class="search__form">
         <input id="search-input" type="text" autocomplete="off" name="q" tabindex="1" value="" autocapitalize="off" autocorrect="off" />
         <button id="search-button" tabindex="2">
