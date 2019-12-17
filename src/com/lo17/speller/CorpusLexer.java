@@ -87,7 +87,7 @@ public class CorpusLexer {
         return dp[wordA.length()][wordB.length()];
     }
 
-    public List<String> wordProcessing(String word) {
+    public List<String> process(String word) {
         int COMMON_LETTERS_THRESHOLD = 4;
         int LEVENSHTEIN_THRESHOLD = 3;
         String w = word.toLowerCase();
@@ -153,7 +153,7 @@ public class CorpusLexer {
         String[] words = args[0].split("\\s");
 
         for (String word : words) {
-            System.out.println(corpusLexer.wordProcessing(word));
+            System.out.println(corpusLexer.process(word));
         }
     }
 }

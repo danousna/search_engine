@@ -66,7 +66,7 @@ public class SpellParser {
                 } catch (NumberFormatException nf_e) {
                     List<String> candidates = new ArrayList<String>();
                     try {
-                        candidates = corpusLexer.wordProcessing(words[i]);
+                        candidates = corpusLexer.process(words[i]);
 
                         if (candidates.size() == 1) {
                             words[i] = candidates.get(0);

@@ -275,7 +275,7 @@ VAR_MOIS_OCTOBRE : 'octobre';
 VAR_MOIS_NOVEMBRE : 'novembre';
 VAR_MOIS_DECEMBRE : 'décembre';
 
-VAR_MOT 	: ('A'..'Z' | 'a'..'z') ('a'..'z')+;
+VAR_MOT     : ('A'..'Z' | 'a'..'z'|'\u00a0'..'\u00ff')(('a'..'z')|('0'..'9')|'-'|('\u00a0'..'\u00ff'))+;
 
 WS  : [ \t\r\n]+ -> skip;
 
