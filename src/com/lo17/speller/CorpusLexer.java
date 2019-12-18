@@ -43,20 +43,48 @@ public class CorpusLexer {
         return Arrays.stream(numbers).min().orElse(Integer.MAX_VALUE);
     }
 
-    private static int countCommonLetters(String wordA, String wordB) {
-        int n = 0;
-        int length = Math.min(wordA.length(), wordB.length());
-        for (int i = 0; i < length; i++) {
-            if (wordA.charAt(i) != wordB.charAt(i)) {
-                return n;
-            } else {
-                n++;
+    public static double prefix(String wordA, String wordB) {
+        int MIN_LENGTH = 3; // on traite les mots supérieurs à 3 lettres.
+        int MAX_DIFF_LENGTH = 4; // on accepte une différence de 4 lettres entre les deux mots au maximum.
+        int MAX_COMMON_LETTERS = 4; // nombre de lettres communes pour que le résultat soit non nul.
+
+        double result;
+
+        // Si l'un des deux mots est trop court, pas nécessaire de continuer.
+        // En effet, peu utile de comparer LARGE à LA.
+        // Pareil si les deux sont petits : LA et LE, en théorie il ne sont plus là à ce niveau (stoplist)
+        // Deplus, une seule lettre suffit à clairement les différencier.
+        if (wordA.length() < MIN_LENGTH || wordB.length() < MIN_LENGTH) {
+            result = 0;
+        }
+        else {
+            // Si la différence de longueur entre les mots est trop grande, pas besoin de continuer
+            // Logique...
+            if (Math.abs(wordA.length() - wordB.length()) > MAX_DIFF_LENGTH) {
+                result = 0;
+            }
+            else {
+                int i = 0;
+
+                // On compte le nombre de lettres communes.
+                while (i < Math.min(wordA.length(), wordB.length()) && wordA.charAt(i) == wordB.charAt(i)) {
+                    i = i + 1;
+                }
+
+                if (i < MAX_COMMON_LETTERS) {
+                    result = 0;
+                }
+                else {
+                    // On normalise le résultat en pourcentage.
+                    result = ( (double) i / (double) (Math.max(wordA.length(), wordB.length()))) * 100;
+                }
             }
         }
-        return n;
+
+        return result;
     }
 
-    private static int levenshtein(String wordA, String wordB) {
+    public static int levenshtein(String wordA, String wordB) {
         int[][] dp = new int[wordA.length() + 1][wordB.length() + 1];
         int costOfSubstitution = 1;
 
@@ -88,34 +116,39 @@ public class CorpusLexer {
     }
 
     public List<String> process(String word) {
-        int COMMON_LETTERS_THRESHOLD = 4;
         int LEVENSHTEIN_THRESHOLD = 3;
         String w = word.toLowerCase();
 
         List<String> candidates = new ArrayList<String>();
 
-        if (this.lexicon.containsKey(w)) {
-            candidates.add(this.lexicon.get(w));
+        if (lexicon.containsKey(w)) {
+            candidates.add(lexicon.get(w));
             return candidates;
         } else {
-            // Find best common letters candidates.
-            int maxCommonLetters = 0;
-            for (String key : this.lexicon.keySet()) {
-                int result = CorpusLexer.countCommonLetters(w, key);
+            // Recherche par préfixe.
 
-                if (result >= COMMON_LETTERS_THRESHOLD) {
-                    // If result is greater than previous max, the previous candidates are
-                    // no longer the best, so we flush the array.
-                    if (result > maxCommonLetters) {
-                        maxCommonLetters = result;
-                        candidates.clear();
-                        candidates.add(this.lexicon.get(key));
-                    }
-                    // If result is equal to previous max, we just add it, only if the lemme is
-                    // not already present.
-                    else if (result == maxCommonLetters && !candidates.contains(this.lexicon.get(key))) {
-                        candidates.add(this.lexicon.get(key));
-                    }
+            double maxCommonLetters = 0;
+
+            for (String key : lexicon.keySet()) {
+                double result = prefix(w, key);
+
+                if (result == 0) {
+                    continue;
+                }
+
+                // Si le resultat est supérieur à maxCommonLetters (donc 0 au début) dans la liste des candidats,
+                // on change la valeur max, on vide la liste car les précédents candidats ne sont plus les meilleurs,
+                // et on ajoute le lemme à la liste.
+                // De cette manière, on fait directement le traitement pour trouver le meilleur candidat.
+                if (result > maxCommonLetters) {
+                    maxCommonLetters = result;
+                    candidates.clear();
+                    candidates.add(lexicon.get(key));
+                }
+                // Si le résultat est égal au précédent max, on ajoute juste le lemme à la liste seulement si il n'est
+                // pas déjà présent.
+                else if (result == maxCommonLetters && !candidates.contains(lexicon.get(key))) {
+                    candidates.add(lexicon.get(key));
                 }
             }
 
@@ -123,18 +156,20 @@ public class CorpusLexer {
                 return candidates;
             }
             else {
+                // Recherche par distance de Levenshtein.
+
                 int minDistance = Integer.MAX_VALUE;
-                for (String key : this.lexicon.keySet()) {
+                for (String key : lexicon.keySet()) {
                     int result = CorpusLexer.levenshtein(w, key);
 
                     if (result <= key.length() / LEVENSHTEIN_THRESHOLD) {
                         if (result < minDistance) {
                             minDistance = result;
                             candidates.clear();
-                            candidates.add(this.lexicon.get(key));
+                            candidates.add(lexicon.get(key));
                         }
-                        else if (result == minDistance && !candidates.contains(this.lexicon.get(key))) {
-                            candidates.add(this.lexicon.get(key));
+                        else if (result == minDistance && !candidates.contains(lexicon.get(key))) {
+                            candidates.add(lexicon.get(key));
                         }
                     }
                 }

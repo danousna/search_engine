@@ -79,9 +79,9 @@ public class SyntaxParser {
 
                                         // We know that almost all tables have these three columns (TODO: handle those that don't)
                                         // so the table that is referenced for these "confusing" columns is the first one.
-                                        selects = selects.replace("fichier", param.mot + ".fichier");
-                                        selects = selects.replace("rubrique", param.mot + ".rubrique");
                                         selects = selects.replace("numero", param.mot + ".numero");
+                                        selects = selects.replace("rubrique", param.mot + ".rubrique");
+                                        selects = selects.replace("fichier", param.mot + ".fichier");
                                     } else {
                                         tables += String.format(
                                                 " inner join %s on (%s.fichier = %s.fichier)",
