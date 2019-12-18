@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
 public class SyntaxParserTest {
     SyntaxParser parser = new SyntaxParser();
@@ -98,7 +99,11 @@ public class SyntaxParserTest {
     @Test
     public final void testProcess() {
         for (Map.Entry<String, String> pair : cases.entrySet()) {
-            assertEquals(pair.getValue(), parser.process(pair.getKey()));
+            try {
+                assertEquals(pair.getValue(), parser.process(pair.getKey()));
+            } catch (Exception e) {
+                fail("Should not have thrown any exception");
+            }
         }
     }
 }

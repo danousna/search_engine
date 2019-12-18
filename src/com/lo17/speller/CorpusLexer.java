@@ -182,13 +182,4 @@ public class CorpusLexer {
             }
         }
     }
-
-    public static void main (String[] args) {
-        CorpusLexer corpusLexer = new CorpusLexer();
-        String[] words = args[0].split("\\s");
-
-        for (String word : words) {
-            System.out.println(corpusLexer.process(word));
-        }
-    }
 }

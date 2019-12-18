@@ -123,21 +123,25 @@ param returns [Arbre arbre = new Arbre("param")] :
 	|
 	(
 		(
+		    DATE?
 			DATE_TO {
 				$arbre.ajouteFils(new Arbre("table", "date"));
 				$arbre.ajouteFils(new Arbre("comp", "<="));
 			}
 			|
+			DATE?
 			DATE_BEFORE {
 				$arbre.ajouteFils(new Arbre("table", "date"));
 				$arbre.ajouteFils(new Arbre("comp", "<"));
 			}
 			|
+			DATE?
 			DATE_FROM {
 				$arbre.ajouteFils(new Arbre("table", "date"));
 				$arbre.ajouteFils(new Arbre("comp", ">="));
 			}
 			|
+			DATE?
 			DATE_AFTER {
 				$arbre.ajouteFils(new Arbre("table", "date"));
 				$arbre.ajouteFils(new Arbre("comp", ">"));
@@ -149,6 +153,7 @@ param returns [Arbre arbre = new Arbre("param")] :
 	)
 	|
 	(
+	    DATE?
 		var_date_comp = DATE_BETWEEN
 		var_date_1 = var_date
 		CONJ_AND
@@ -157,7 +162,7 @@ param returns [Arbre arbre = new Arbre("param")] :
 			$arbre.ajouteFils(new Arbre("table", "date"));
 			$arbre.ajouteFils(new Arbre("comp", ">="));
 			$arbre.ajouteFils($var_date_1.arbre);
-			$arbre.ajouteFils(new Arbre("", "and"));
+			$arbre.ajouteFils(new Arbre("conj", "and"));
 			$arbre.ajouteFils(new Arbre("comp", "<"));
 			$arbre.ajouteFils($var_date_2.arbre);
 		}

@@ -43,131 +43,113 @@ public class SyntaxParser {
         return result;
     }
 
-    private String postProcessing(SQLParser parser) {
+    private String postProcessing(SQLParser parser) throws Exception {
         String selects = "";
         String tables = " from ";
         String params = "";
 
-        try {
-            Arbre tree = parser.requete().arbre.fils;
+        Arbre tree = parser.requete().arbre.fils;
 
-            while (tree != null) {
-                if (tree.categorie.equals("select")) {
-                    Arbre fils = tree.fils;
-                    do {
-                        selects += fils.mot;
-                        fils = fils.frere;
-                    } while (fils != null);
-                }
-                else if (tree.categorie.equals("params")) {
-                    Arbre fils = tree.fils;
-                    String firstTableName = "";
-                    String compName = null;
+        while (tree != null) {
+            if (tree.categorie.equals("select")) {
+                Arbre fils = tree.fils;
+                do {
+                    selects += fils.mot;
+                    fils = fils.frere;
+                } while (fils != null);
+            }
+            else if (tree.categorie.equals("params")) {
+                Arbre fils = tree.fils;
+                String firstTableName = "";
+                String compName = null;
 
-                    do {
-                        if (fils.categorie.equals("param")) {
-                            Arbre param = fils.fils;
-                            String currentTableName = "";
+                do {
+                    if (fils.categorie.equals("param")) {
+                        Arbre param = fils.fils;
+                        String currentTableName = "";
 
-                            do {
-                                if (param.categorie.equals("table")) {
-                                    currentTableName = param.mot;
+                        do {
+                            if (param.categorie.equals("table")) {
+                                currentTableName = param.mot;
 
-                                    if (firstTableName == "") {
-                                        firstTableName = param.mot;
-                                        tables += param.mot;
+                                if (firstTableName == "") {
+                                    firstTableName = param.mot;
+                                    tables += param.mot;
 
-                                        // We know that almost all tables have these three columns (TODO: handle those that don't)
-                                        // so the table that is referenced for these "confusing" columns is the first one.
-                                        selects = selects.replace("numero", param.mot + ".numero");
-                                        selects = selects.replace("rubrique", param.mot + ".rubrique");
-                                        selects = selects.replace("fichier", param.mot + ".fichier");
-                                    } else {
-                                        tables += String.format(
-                                                " inner join %s on (%s.fichier = %s.fichier)",
-                                                param.mot,
-                                                firstTableName,
-                                                param.mot
-                                        );
-                                    }
-                                } else if (param.categorie.equals("conj")) {
-                                    params += " " + param.fils.mot + " ";
-                                } else if (param.categorie.equals("comp")) {
-                                    // On stocke le comparateur pour ensuite le traiter au prochain fils de catégorie var_date.
-                                    compName = param.mot;
-                                } else if (param.categorie.equals("var_date")) {
-                                    Arbre paramDate = param.fils;
-
-                                    if (compName != null) {
-                                        // parsing special de la date.
-                                        params += dateCompParser(compName, paramDate);
-                                        compName = null;
-                                    } else {
-                                        // Si la date est en format complet, il faut la parser.
-                                        if (paramDate.categorie.equals("date=")) {
-                                            String[] components = paramDate.mot.split("\\/");
-                                            params += "jour=" + components[0] + "' and mois='" + components[1] + "' and annee='" + components[2];
-                                        } else {
-                                            // Si la date est déjà séparée, on parcourt juste les frere (jour=, mois=, annee=).
-                                            do {
-                                                params += paramDate.categorie + paramDate.mot;
-                                                paramDate = paramDate.frere;
-
-                                                // Si c'est le dernier fils, on ajoute pas de "and".
-                                                if (paramDate != null) {
-                                                    params += " and ";
-                                                }
-                                            } while (paramDate != null);
-                                        }
-                                    }
+                                    // We know that almost all tables have these three columns (TODO: handle those that don't)
+                                    // so the table that is referenced for these "confusing" columns is the first one.
+                                    selects = selects.replace("numero", param.mot + ".numero");
+                                    selects = selects.replace("rubrique", param.mot + ".rubrique");
+                                    selects = selects.replace("fichier", param.mot + ".fichier");
                                 } else {
-                                    params += currentTableName + "." + param.categorie + param.mot;
+                                    tables += String.format(
+                                            " inner join %s on (%s.fichier = %s.fichier)",
+                                            param.mot,
+                                            firstTableName,
+                                            param.mot
+                                    );
                                 }
+                            } else if (param.categorie.equals("conj")) {
+                                params += " " + param.fils.mot + " ";
+                            } else if (param.categorie.equals("comp")) {
+                                // On stocke le comparateur pour ensuite le traiter au prochain fils de catégorie var_date.
+                                compName = param.mot;
+                            } else if (param.categorie.equals("var_date")) {
+                                Arbre paramDate = param.fils;
 
-                                param = param.frere;
-                            } while (param != null);
-                        } else if (fils.categorie.equals("conj")) {
-                            params += " " + fils.fils.mot + " ";
-                        }
+                                if (compName != null) {
+                                    // parsing special de la date.
+                                    params += dateCompParser(compName, paramDate);
+                                    compName = null;
+                                } else {
+                                    // Si la date est en format complet, il faut la parser.
+                                    if (paramDate.categorie.equals("date=")) {
+                                        String[] components = paramDate.mot.split("\\/");
+                                        params += "jour=" + components[0] + "' and mois='" + components[1] + "' and annee='" + components[2];
+                                    } else {
+                                        // Si la date est déjà séparée, on parcourt juste les freres (jour=, mois=, annee=).
+                                        do {
+                                            params += paramDate.categorie + paramDate.mot;
+                                            paramDate = paramDate.frere;
 
-                        fils = fils.frere;
-                    } while (fils != null);
-                }
+                                            // Si c'est le dernier fils, on ajoute pas de "and".
+                                            if (paramDate != null) {
+                                                params += " and ";
+                                            }
+                                        } while (paramDate != null);
+                                    }
+                                }
+                            } else {
+                                params += currentTableName + "." + param.categorie + param.mot;
+                            }
 
-                tree = tree.frere;
+                            param = param.frere;
+                        } while (param != null);
+                    } else if (fils.categorie.equals("conj")) {
+                        params += " " + fils.fils.mot + " ";
+                    }
+
+                    fils = fils.frere;
+                } while (fils != null);
             }
 
-            selects = "select " + selects;
-
-            if (!params.equals("")) {
-                params = " where " + params;
-            }
-
-            return selects + tables + params + ";";
-        } catch (Exception e) {
-            return e.toString();
+            tree = tree.frere;
         }
+
+        selects = "select " + selects;
+
+        if (!params.equals("")) {
+            params = " where " + params;
+        }
+
+        return selects + tables + params + ";";
     }
 
-    public String process(String request) {
+    public String process(String request) throws Exception {
         SQLLexer lexer = new SQLLexer(CharStreams.fromString(request));
         CommonTokenStream tokens = new CommonTokenStream(lexer);
         SQLParser parser = new SQLParser(tokens);
 
         return postProcessing(parser);
-    }
-
-    public static void main(String args[]) {
-        SyntaxParser parser = new SyntaxParser();
-        Scanner scanner = new Scanner(System.in);
-
-        String stop = "";
-        while (!stop.equals("stop")) {
-            System.out.print("Texte : ");
-            String s = scanner.nextLine();
-            String sql = parser.process(s);
-            System.out.println(sql);
-            stop = scanner.nextLine();
-        }
     }
 }

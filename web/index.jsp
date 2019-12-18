@@ -8,7 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
   <head>
-    <title>Goolo17</title>
+    <title>Recherche BE</title>
 
     <style type="text/css">
       html, body {
@@ -44,7 +44,7 @@
       .search__form {
         position: relative;
         padding-left: .75em;
-        padding-right: 6.5em;
+        padding-right: 3.75em;
         border-radius: 4px;
         height: 2.8em;
         background: white;
@@ -77,7 +77,8 @@
         padding: 0 14px;
         height: auto;
       }
-      #search-button:hover {
+      #search-button:hover,
+      #search-button.active {
         background: #68AC5B;
         cursor: pointer;
       }
@@ -88,7 +89,8 @@
       #search-button svg path {
         fill: #999;
       }
-      #search-button:hover svg path {
+      #search-button:hover svg path,
+      #search-button.active svg path {
         fill: white;
       }
 
@@ -114,7 +116,7 @@
       #search-results-data .item.header {
         padding: 5px 0;
         font-weight: bold;
-        border-bottom: 1px solid #999;
+        text-transform: capitalize;
       }
 
       #search-results-data .cell {
@@ -135,7 +137,7 @@
         </button>
       </div>
 
-      <div id="search-results" style="display: none">
+      <div id="search-results">
         <code id="search-results-sql"></code>
         <div id="search-results-data">
         </div>
@@ -143,6 +145,21 @@
     </div>
 
     <script type="application/javascript">
+      function debounce(func, wait, immediate) {
+        var timeout;
+        return function() {
+          var context = this, args = arguments;
+          var later = function() {
+            timeout = null;
+            if (!immediate) func.apply(context, args);
+          };
+          var callNow = immediate && !timeout;
+          clearTimeout(timeout);
+          timeout = setTimeout(later, wait);
+          if (callNow) func.apply(context, args);
+        };
+      };
+
       const searchInput = document.getElementById("search-input");
       const searchButton = document.getElementById("search-button");
 
@@ -151,20 +168,26 @@
       const searchResultsData = document.getElementById("search-results-data");
 
       if (searchInput) {
-        searchInput.addEventListener("change", function (e) {
-          console.log(searchInput.value);
-          //TODO: autocomplete, debounce
-          fetch("/sql?q=" + searchInput.value, {method: "GET"}).then(function(response) {
+        searchInput.addEventListener("keydown", debounce(function(e) {
+          fetch("/sql?q=" + e.target.value, {method: "GET"}).then(function(response) {
             // Reset HTML
             searchResultsSQL.innerHTML = "";
 
             const contentType = response.headers.get("Content-Type");
             if (contentType && contentType.indexOf("application/json") !== -1) {
               response.json().then(function(data) {
-                console.log(data);
+                if (data.error) {
+                  searchResultsSQL.innerHTML = "<span style=\"color: red;\">" + data.error + "</span>";
+                } else {
+                  if (data.sql) {
+                    searchResultsSQL.innerHTML = data.sql;
+                  }
 
-                if (data.sql) {
-                  searchResultsSQL.innerHTML = data.sql;
+                  if (searchInput.value !== "") {
+                    searchButton.classList.add("active");
+                  } else {
+                    searchButton.classList.remove("active");
+                  }
                 }
               });
             } else {
@@ -173,7 +196,7 @@
           }).catch(function(error) {
             console.log(error);
           });
-        });
+        }, 250));
       }
 
       if (searchButton) {
@@ -188,30 +211,36 @@
               response.json().then(function(data) {
                 console.log(data);
 
-                searchResults.style.display = "block";
-
-                if (data.sql) {
-                  searchResultsSQL.innerHTML = data.sql;
-                }
-                if (data.results) {
-                  const header = Object.keys(data.results[0]);
-                  var headerItem = document.createElement("div");
-                  headerItem.setAttribute("class", "item header");
-                  console.log(header);
-                  for (var h = 0; h < header.length; h++) {
-                    headerItem.innerHTML += "<span class=\"cell\">" + header[h] + "</span>";
+                if (data.error) {
+                  searchResultsSQL.innerHTML = "<span style=\"color: red;\">" + data.error + "</span>";
+                } else {
+                  if (data.sql) {
+                    searchResultsSQL.innerHTML = data.sql;
                   }
-                  searchResultsData.appendChild(headerItem);
 
-                  for (var i = 0; i < data.results.length; i++) {
-                    var item = document.createElement("div");
-                    item.setAttribute("class", "item");
-
-                    const cols = Object.keys(data.results[i]);
-                    for (var j = 0; j < cols.length; j++) {
-                      item.innerHTML += "<span class=\"cell\">" + data.results[i][cols[j]] + "</span>";
+                  if (data.results && data.results.length !== 0) {
+                    // Display header
+                    const header = Object.keys(data.results[0]);
+                    var headerItem = document.createElement("div");
+                    headerItem.setAttribute("class", "item header");
+                    for (var h = 0; h < header.length; h++) {
+                      headerItem.innerHTML += "<span class=\"cell\">" + header[h] + "</span>";
                     }
-                    searchResultsData.appendChild(item);
+                    searchResultsData.appendChild(headerItem);
+
+                    // Display data
+                    for (var i = 0; i < data.results.length; i++) {
+                      var item = document.createElement("div");
+                      item.setAttribute("class", "item");
+
+                      const cols = Object.keys(data.results[i]);
+                      for (var j = 0; j < cols.length; j++) {
+                        item.innerHTML += "<span class=\"cell\">" + data.results[i][cols[j]] + "</span>";
+                      }
+                      searchResultsData.appendChild(item);
+                    }
+                  } else {
+                    searchResultsData.innerHTML = "Aucun résultat.";
                   }
                 }
               });

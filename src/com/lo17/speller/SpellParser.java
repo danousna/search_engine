@@ -103,27 +103,4 @@ public class SpellParser {
 
         return requestSimplified.toString();
     }
-
-    public static void main (String[] args) {
-        SpellParser parser = new SpellParser();
-        BufferedReader br = null;
-
-        try {
-            try {
-                br = new BufferedReader(new InputStreamReader(System.in));
-
-                System.out.print("Request : ");
-                String nlRequest = br.readLine();
-
-                String result = parser.process(nlRequest);
-                System.out.println("Result : " + result);
-            }
-            catch(EOFException e) {
-                br.close();
-            }
-        }
-        catch(IOException e) {
-            System.out.println("IO Exception");
-        }
-    }
 }

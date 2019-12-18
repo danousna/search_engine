@@ -25,18 +25,21 @@ public class Main {
                 String correctedRequest = spellParser.process(nlRequest);
                 System.out.println("Simplified : " + correctedRequest);
 
-                String sqlRequest = syntaxParser.process(correctedRequest);
-                System.out.println("SQL : " + sqlRequest);
+                try {
+                    String sqlRequest = syntaxParser.process(correctedRequest);
 
-                System.out.println();
-
-                System.out.println("Results :");
-                List<Map<String, String>> results = sqlInterface.query(sqlRequest);
-                for (Map<String, String> result : results) {
-                    for (Map.Entry<String, String> entry : result.entrySet()) {
-                        System.out.print(entry.getValue());
-                    }
                     System.out.println();
+
+                    System.out.println("Results :");
+                    List<Map<String, String>> results = sqlInterface.query(sqlRequest);
+                    for (Map<String, String> result : results) {
+                        for (Map.Entry<String, String> entry : result.entrySet()) {
+                            System.out.print(entry.getValue());
+                        }
+                        System.out.println();
+                    }
+                } catch (Exception e) {
+                    System.err.println("Expression non valide.");
                 }
             }
             catch(EOFException e) {

@@ -30,24 +30,28 @@ public class QueryServlet extends HttpServlet {
 
         if (query != null) {
             String corrected = spellParser.process(query);
-            String sql = syntaxParser.process(corrected);
 
             data.put("query", query);
             data.put("corrected", corrected);
-            data.put("sql", sql);
 
-            JSONArray dataResults = new JSONArray();
-            SQLInterface sqlInterface = new SQLInterface();
-            List<Map<String, String>> results = sqlInterface.query(sql);
-            for (Map<String, String> result : results) {
-                JSONObject dataResult = new JSONObject();
-                for (Map.Entry<String, String> entry : result.entrySet()) {
-                    dataResult.put(entry.getKey(), entry.getValue());
+            try {
+                String sql = syntaxParser.process(corrected);
+                data.put("sql", sql);
+
+                JSONArray dataResults = new JSONArray();
+                SQLInterface sqlInterface = new SQLInterface();
+                List<Map<String, String>> results = sqlInterface.query(sql);
+                for (Map<String, String> result : results) {
+                    JSONObject dataResult = new JSONObject();
+                    for (Map.Entry<String, String> entry : result.entrySet()) {
+                        dataResult.put(entry.getKey(), entry.getValue());
+                    }
+                    dataResults.add(dataResult);
                 }
-                dataResults.add(dataResult);
+                data.put("results", results);
+            } catch (Exception e) {
+                data.put("error", e.toString());
             }
-
-            data.put("results", results);
         }
 
         out.print(data.toJSONString());

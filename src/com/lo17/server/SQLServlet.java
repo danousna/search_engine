@@ -26,10 +26,16 @@ public class SQLServlet extends HttpServlet {
 
         if (query != null) {
             String corrected = spellParser.process(query);
-            String sql = syntaxParser.process(corrected);
 
             data.put("query", query);
-            data.put("sql", sql);
+            data.put("corrected", corrected);
+
+            try {
+                String sql = syntaxParser.process(corrected);
+                data.put("sql", sql);
+            } catch (Exception e) {
+                data.put("error", e.toString());
+            }
         }
 
         out.print(data.toJSONString());
