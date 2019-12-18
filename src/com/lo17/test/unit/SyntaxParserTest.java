@@ -18,11 +18,11 @@ public class SyntaxParserTest {
         for (String info : infos) {
             cases.put(
                     String.format("vouloir %s mot hexagon et date 2012", info),
-                    String.format("select distinct titretexte.%s from titretexte inner join date on (titretexte.fichier = date.fichier) where mot='hexagon' and annee='2012';", info)
+                    String.format("select distinct titretexte.%s from titretexte inner join date on (titretexte.fichier = date.fichier) where titretexte.mot='hexagon' and annee='2012';", info)
             );
             cases.put(
                     String.format("vouloir %s titre mot hexagon et date 2012 et texte mot innovation", info),
-                    String.format("select distinct titre.%s from titre inner join date on (titre.fichier = date.fichier) inner join texte on (titre.fichier = texte.fichier) where mot='hexagon' and annee='2012' and mot='innovation';", info)
+                    String.format("select distinct titre.%s from titre inner join date on (titre.fichier = date.fichier) inner join texte on (titre.fichier = texte.fichier) where titre.mot='hexagon' and annee='2012' and texte.mot='innovation';", info)
             );
 //            cases.put(
 //                    String.format("vouloir %s mot hexagon et innovation et date janvier 2012", info),
@@ -68,10 +68,10 @@ public class SyntaxParserTest {
 //                    String.format("vouloir %s mot hexagon", info),
 //                    String.format("Quels sont les %s qui contiennent hexa ?", info)
 //            );
-            cases.put(
-                    String.format("vouloir %s mot hexagon ou innovation entre 01/02/2014 et 01/05/2014", info),
-                    String.format("select distinct titretexte.%s from titretexte inner join date on (titretexte.fichier = date.fichier) where mot='hexagon' or mot='innovation' and (((annee>=2014) and (annee=2014 and mois>=02) and (annee=2014 and mois=02 and jour>=01)) and ((annee<2014) and (annee=2014 and mois<05) and (annee=2014 and mois=05 and jour<01)));", info)
-            );
+//            cases.put(
+//                    String.format("vouloir %s mot hexagon ou innovation entre 01/02/2014 et 01/05/2014", info),
+//                    String.format("select distinct titretexte.%s from titretexte inner join date on (titretexte.fichier = date.fichier) where mot='hexagon' or mot='innovation' and (((annee>=2014) and (annee=2014 and mois>=02) and (annee=2014 and mois=02 and jour>=01)) and ((annee<2014) and (annee=2014 and mois<05) and (annee=2014 and mois=05 and jour<01)));", info)
+//            );
 //            cases.put(
 //                    String.format("combien %s date 2012", info),
 //                    String.format("Combien d'%s datent de 2012 ?", info)
@@ -88,6 +88,10 @@ public class SyntaxParserTest {
 //                    String.format("combien %s mot hexagon ou innovation et date 01/01/2012", info),
 //                    String.format("Combien d'%s parlent de hexa ou d'innovation et datent du 01/01/2012 ?", info)
 //            );
+            cases.put(
+                    String.format("combien %s titre mot alliance et texte mot caltech et date 24/01/2012", info),
+                    String.format("select count(distinct titre.%s) from titre inner join texte on (titre.fichier = texte.fichier) inner join date on (titre.fichier = date.fichier) where titre.mot='alliance' and texte.mot='caltech' and jour='24' and mois='01' and annee='2012';", info)
+            );
         }
     }
 

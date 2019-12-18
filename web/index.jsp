@@ -106,7 +106,20 @@
       }
 
       #search-results-data .item {
+        display: flex;
+        width: 100%;
         margin: 10px 0;
+      }
+
+      #search-results-data .item.header {
+        padding: 5px 0;
+        font-weight: bold;
+        border-bottom: 1px solid #999;
+      }
+
+      #search-results-data .cell {
+        display: block;
+        flex: 1;
       }
     </style>
   </head>
@@ -139,13 +152,37 @@
 
       if (searchInput) {
         searchInput.addEventListener("change", function (e) {
+          console.log(searchInput.value);
           //TODO: autocomplete, debounce
+          fetch("/sql?q=" + searchInput.value, {method: "GET"}).then(function(response) {
+            // Reset HTML
+            searchResultsSQL.innerHTML = "";
+
+            const contentType = response.headers.get("Content-Type");
+            if (contentType && contentType.indexOf("application/json") !== -1) {
+              response.json().then(function(data) {
+                console.log(data);
+
+                if (data.sql) {
+                  searchResultsSQL.innerHTML = data.sql;
+                }
+              });
+            } else {
+              console.error("Response is not JSON.");
+            }
+          }).catch(function(error) {
+            console.log(error);
+          });
         });
       }
 
       if (searchButton) {
         searchButton.addEventListener("click", function () {
           fetch("/query?q=" + searchInput.value, {method: "GET"}).then(function(response) {
+            // Reset HTML
+            searchResultsSQL.innerHTML = "";
+            searchResultsData.innerHTML = "";
+
             const contentType = response.headers.get("Content-Type");
             if (contentType && contentType.indexOf("application/json") !== -1) {
               response.json().then(function(data) {
@@ -157,11 +194,22 @@
                   searchResultsSQL.innerHTML = data.sql;
                 }
                 if (data.results) {
+                  const header = Object.keys(data.results[0]);
+                  var headerItem = document.createElement("div");
+                  headerItem.setAttribute("class", "item header");
+                  console.log(header);
+                  for (var h = 0; h < header.length; h++) {
+                    headerItem.innerHTML += "<span class=\"cell\">" + header[h] + "</span>";
+                  }
+                  searchResultsData.appendChild(headerItem);
+
                   for (var i = 0; i < data.results.length; i++) {
                     var item = document.createElement("div");
                     item.setAttribute("class", "item");
-                    if (data.results[i].fichier) {
-                      item.append(data.results[i].fichier);
+
+                    const cols = Object.keys(data.results[i]);
+                    for (var j = 0; j < cols.length; j++) {
+                      item.innerHTML += "<span class=\"cell\">" + data.results[i][cols[j]] + "</span>";
                     }
                     searchResultsData.appendChild(item);
                   }

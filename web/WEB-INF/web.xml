@@ -8,8 +8,16 @@
         <servlet-name>QueryServlet</servlet-name>
         <servlet-class>com.lo17.server.QueryServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SQLServlet</servlet-name>
+        <servlet-class>com.lo17.server.SQLServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>QueryServlet</servlet-name>
         <url-pattern>/query</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SQLServlet</servlet-name>
+        <url-pattern>/sql</url-pattern>
     </servlet-mapping>
 </web-app>

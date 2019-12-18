@@ -28,6 +28,7 @@
 - [ ] application web avec moteur de recherche
 - [ ] checker que les mots composés fonctionnent (genre jean-marie).
 - [ ] ajouter NOT (pas, sans)
+- [ ] ajouter choix multiples quand plusieurs lemmes candidats sur l'UI web.
 
 ## Structure
 
