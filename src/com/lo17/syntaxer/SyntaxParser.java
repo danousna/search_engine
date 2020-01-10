@@ -15,7 +15,7 @@ public class SyntaxParser {
             String _value = _param.mot.substring(1, _param.mot.length() - 1);
             date = _value.split("\\/");
         } else {
-            // Si la date est déjà séparée, on parcourt juste les frere (jour=, mois=, annee=).
+            // Si la date est déjà séparée, on parcourt juste les freres (jour=, mois=, annee=).
             do {
                 if (_param.categorie.equals("jour=")) {
                     date[0] = _param.mot;
@@ -30,12 +30,12 @@ public class SyntaxParser {
         }
 
         // on a forcément l'info de l'année selon notre grammaire.
-        String result = String.format("((annee%s%s)", comp, date[2]);
+        String result = String.format("((annee%s'%s')", comp, date[2]);
         if (date[1] != null) {
-            result += String.format(" and (annee=%s and mois%s%s)", date[2], comp, date[1]);
+            result += String.format(" or (annee='%s' and mois%s'%s')", date[2], comp, date[1]);
         }
         if (date[0] != null) {
-            result += String.format(" and (annee=%s and mois=%s and jour%s%s)", date[2], date[1], comp, date[0]);
+            result += String.format(" or (annee='%s' and mois='%s' and jour%s'%s')", date[2], date[1], comp, date[0]);
         }
 
         result += ")";
@@ -47,6 +47,7 @@ public class SyntaxParser {
         String selects = "";
         String tables = " from ";
         String params = "";
+
 
         Arbre tree = parser.requete().arbre.fils;
 
@@ -98,7 +99,7 @@ public class SyntaxParser {
                                 Arbre paramDate = param.fils;
 
                                 if (compName != null) {
-                                    // parsing special de la date.
+                                    // Parsing special de la date.
                                     params += dateCompParser(compName, paramDate);
                                     compName = null;
                                 } else {

@@ -1,0 +1,23 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="search-engine:war exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/search_engine_war_exploded</output-path>
+    <root id="root">
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="search-engine" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="lib" />
+          <element id="library" level="project" name="antlr-4.7.2-complete" />
+          <element id="library" level="project" name="postgresql-9.0-801.jdbc4" />
+        </element>
+        <element id="file-copy" path="$PROJECT_DIR$/web/WEB-INF/web.xml" />
+      </element>
+      <element id="directory" name="res">
+        <element id="dir-copy" path="$PROJECT_DIR$/res" />
+      </element>
+      <element id="dir-copy" path="$PROJECT_DIR$/web" />
+      <element id="javaee-facet-resources" facet="search-engine/web/Web" />
+    </root>
+  </artifact>
+</component>
