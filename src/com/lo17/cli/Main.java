@@ -27,6 +27,7 @@ public class Main {
 
                 try {
                     String sqlRequest = syntaxParser.process(correctedRequest);
+                    System.out.println("SQL : " + sqlRequest);
 
                     System.out.println();
 
