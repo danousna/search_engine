@@ -2,7 +2,6 @@ package com.lo17.speller;
 
 import com.lo17.util.Utilities;
 
-import java.io.*;
 import java.net.URL;
 import java.util.*;
 
@@ -29,10 +28,11 @@ public class SpellParser {
         }
     }
 
-    public String process(String request) {
+    public SpellParserResult process(String request) {
         CorpusLexer corpusLexer = new CorpusLexer();
         String[] words = request.split("\\s+|\\,+|\\'+|[\\-\\+\\$\\?\\.@&].*");
         List<String> result = new ArrayList<String>();
+        Map<String, List<String>> suggestions = new HashMap<>();
 
         boolean flagMot = false;
 
@@ -68,19 +68,11 @@ public class SpellParser {
                     try {
                         candidates = corpusLexer.process(words[i]);
 
-                        if (candidates.size() == 1) {
-                            words[i] = candidates.get(0);
+                        if (candidates.size() > 1) {
+                            suggestions.put(words[i], candidates);
                         }
-                        else {
-                            System.out.println("Plusieurs mots candidats ont été trouvés pour le mot " + words[i] + ". Faites votre choix :");
-                            for (int j = 0; j < candidates.size(); j++) {
-                                System.out.println("- " + candidates.get(j) + " (" + j + ")");
-                            }
 
-                            Scanner input = new Scanner(System.in);
-                            int choice = input.nextInt();
-                            words[i] = candidates.get(choice);
-                        }
+                        words[i] = candidates.get(0);
                     }
                     catch (Error e) {
                         // Do nothing, we do not replace the current word.
@@ -93,14 +85,14 @@ public class SpellParser {
             }
         }
 
-        StringBuilder requestSimplified = new StringBuilder();
+        StringBuilder simplified = new StringBuilder();
         for (int i = 0; i < result.size(); i++) {
-            requestSimplified.append(result.get(i));
+            simplified.append(result.get(i));
             if (i != result.size() - 1) {
-                requestSimplified.append(" ");
+                simplified.append(" ");
             }
         }
 
-        return requestSimplified.toString();
+        return new SpellParserResult(simplified.toString(), suggestions);
     }
 }

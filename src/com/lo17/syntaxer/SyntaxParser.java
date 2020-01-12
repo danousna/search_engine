@@ -3,7 +3,7 @@ package com.lo17.syntaxer;
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
 
-import java.util.Scanner;
+import java.util.*;
 
 public class SyntaxParser {
     private String dateCompParser(String comp, Arbre param) throws Exception {
@@ -47,7 +47,7 @@ public class SyntaxParser {
         String selects = "";
         String tables = " from ";
         String params = "";
-
+        Map<Arbre, String> paramMotMap = new LinkedHashMap<>();
 
         Arbre tree = parser.requete().arbre.fils;
 
@@ -120,7 +120,21 @@ public class SyntaxParser {
                                         } while (paramDate != null);
                                     }
                                 }
-                            } else {
+                            }
+                            else if (param.categorie.equals("mot=")) {
+                                String joinType = "";
+                                if (param.frere != null && param.frere.categorie.equals("conj")) {
+                                    if (param.frere.fils.mot.equals("and")) {
+                                        joinType = " intersect ";
+                                    }
+                                    if (param.frere.fils.mot.equals("or")) {
+                                        joinType = " union ";
+                                    }
+                                }
+                                Arbre changedParam = new Arbre(joinType, param.mot);
+                                paramMotMap.put(changedParam, currentTableName);
+                            }
+                            else {
                                 params += currentTableName + "." + param.categorie + param.mot;
                             }
 
@@ -143,7 +157,23 @@ public class SyntaxParser {
             params = " where " + params;
         }
 
-        return selects + tables + params + ";";
+        String query = selects + tables + params;
+
+        // Intersect word processing.
+        if (paramMotMap.size() > 0) {
+            StringBuilder finalQuery = new StringBuilder();
+            for (Map.Entry<Arbre, String> entry : paramMotMap.entrySet()) {
+                finalQuery
+                        .append(query)
+                        .append(entry.getValue())
+                        .append(".mot=")
+                        .append(entry.getKey().mot)
+                        .append(entry.getKey().categorie);
+            }
+            return finalQuery.toString() + ";";
+        }
+
+        return query + ";";
     }
 
     public String process(String request) throws Exception {

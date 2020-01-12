@@ -2,6 +2,7 @@ package com.lo17.cli;
 
 import com.lo17.database.SQLInterface;
 import com.lo17.speller.SpellParser;
+import com.lo17.speller.SpellParserResult;
 import com.lo17.syntaxer.SyntaxParser;
 
 import java.io.*;
@@ -22,11 +23,11 @@ public class Main {
                 System.out.print("Request : ");
                 String nlRequest = br.readLine();
 
-                String correctedRequest = spellParser.process(nlRequest);
-                System.out.println("Simplified : " + correctedRequest);
+                SpellParserResult spellParserResult = spellParser.process(nlRequest);
+                System.out.println("Simplified : " + spellParserResult.simplified);
 
                 try {
-                    String sqlRequest = syntaxParser.process(correctedRequest);
+                    String sqlRequest = syntaxParser.process(spellParserResult.simplified);
                     System.out.println("SQL : " + sqlRequest);
 
                     System.out.println();

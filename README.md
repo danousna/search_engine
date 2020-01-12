@@ -22,7 +22,7 @@
 - [x] gros refacto du projet avant passage au webserver
 - [x] serveur web fonctionnel
 - [x] ajouter distinct (les différent)
-- [x] gérer la distinction entre titre et texte => gérer bonne table.mot
+- [x] gérer la distinction ent  re titre et texte => gérer bonne table.mot
 - [x] application web avec moteur de recherche
 - [ ] gérer email
 - [ ] pas réussi à traiter la recherche de termes réservés avec les flags qu'on a
@@ -30,6 +30,7 @@
 - [ ] ajouter NOT (pas, sans)
 - [ ] ajouter choix multiples quand plusieurs lemmes candidats sur l'UI web.
 - [ ] gérer case sensitive pour rubrique ("Focus" en table et "focus" lorsque lemmatisé)
+- [ ] fix date comp (>= for all except last param ">", c.f rapport !)
 
 ## Structure
 

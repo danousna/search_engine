@@ -31,6 +31,19 @@
         text-align: center;
       }
 
+      .btn-link {
+        border: 0;
+        padding: 0;
+        background: none;
+        font-size: initial;
+        color: blue;
+      }
+
+      .btn-link:hover {
+        color: darkblue;
+        cursor: pointer;
+      }
+
       .search__wrapper {
         padding: 1.3em .8em 1em;
         max-width: 590px;
@@ -138,6 +151,7 @@
       </div>
 
       <div id="search-results">
+        <div id="search-results-for"></div>
         <code id="search-results-sql"></code>
         <div id="search-results-data">
         </div>
@@ -163,7 +177,7 @@
       const searchInput = document.getElementById("search-input");
       const searchButton = document.getElementById("search-button");
 
-      const searchResults = document.getElementById("search-results");
+      const searchResultsFor = document.getElementById("search-results-for");
       const searchResultsSQL = document.getElementById("search-results-sql");
       const searchResultsData = document.getElementById("search-results-data");
 
@@ -209,13 +223,32 @@
             const contentType = response.headers.get("Content-Type");
             if (contentType && contentType.indexOf("application/json") !== -1) {
               response.json().then(function(data) {
-                console.log(data);
-
                 if (data.error) {
                   searchResultsSQL.innerHTML = "<span style=\"color: red;\">" + data.error + "</span>";
                 } else {
                   if (data.sql) {
                     searchResultsSQL.innerHTML = data.sql;
+                  }
+
+                  if (data.suggestions) {
+                    // On prend le premier mot qui a une orthographe suggérée.
+                    const firstWord = Object.keys(data.suggestions)[0];
+                    const suggestions = data.suggestions[firstWord];
+                    var html = "Résultats pour <i>" + firstWord + "</i>";
+                    html = html + "<br/>Essayez avec les orthographes suivantes :";
+                    searchResultsFor.innerHTML = html;
+
+                    // On ne prend pas le premier suggéré il est déjà choisit par défaut.
+                    for (var i = 1; i < suggestions.length; i++) {
+                      var button = document.createElement("button");
+                      button.innerHTML = suggestions[i];
+                      button.classList.add("btn-link");
+                      button.onclick = function() {
+                        console.log("Clicked : " + suggestions[i]);
+                      };
+                      console.log(button);
+                      searchResultsFor.appendChild(button);
+                    }
                   }
 
                   if (data.results && data.results.length !== 0) {

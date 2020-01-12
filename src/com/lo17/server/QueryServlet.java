@@ -2,6 +2,7 @@ package com.lo17.server;
 
 import com.lo17.database.SQLInterface;
 import com.lo17.speller.SpellParser;
+import com.lo17.speller.SpellParserResult;
 import com.lo17.syntaxer.SyntaxParser;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -13,6 +14,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Function;
 
 public class QueryServlet extends HttpServlet {
     SpellParser spellParser = new SpellParser();
@@ -29,13 +31,23 @@ public class QueryServlet extends HttpServlet {
         String query = request.getParameter("q");
 
         if (query != null) {
-            String corrected = spellParser.process(query);
+            SpellParserResult spellParserResult = spellParser.process(query);
 
             data.put("query", query);
-            data.put("corrected", corrected);
+            data.put("corrected", spellParserResult.simplified);
+
+            if (spellParserResult.suggestions.size() > 0) {
+                JSONObject dataSuggestions = new JSONObject();
+                for (Map.Entry entry : spellParserResult.suggestions.entrySet()) {
+                    JSONArray arr = new JSONArray();
+                    arr.addAll((List<String>) entry.getValue());
+                    dataSuggestions.put(entry.getKey(), arr);
+                }
+                data.put("suggestions", dataSuggestions);
+            }
 
             try {
-                String sql = syntaxParser.process(corrected);
+                String sql = syntaxParser.process(spellParserResult.simplified);
                 data.put("sql", sql);
 
                 JSONArray dataResults = new JSONArray();

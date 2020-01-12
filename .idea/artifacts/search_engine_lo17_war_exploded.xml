@@ -8,10 +8,10 @@
           <element id="module-output" name="search_engine_lo17" />
         </element>
         <element id="directory" name="lib">
-          <element id="library" level="project" name="postgresql-9.0-801.jdbc4" />
           <element id="library" level="project" name="antlr-4.7.2-complete" />
           <element id="library" level="project" name="com.bluecatcode.junit:junit-4.10-extended:1.0.4" />
           <element id="library" level="project" name="com.googlecode.json-simple:json-simple:1.1.1" />
+          <element id="library" level="project" name="postgresql:postgresql:9.0-801.jdbc4" />
         </element>
       </element>
       <element id="directory" name="res">
