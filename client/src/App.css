@@ -1,0 +1,134 @@
+html, body {
+    font-size: 100%;
+}
+
+body {
+    width: 100%;
+    height: 100vh;
+    background: #f7f7f7;
+    padding: 0;
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+
+h1 {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-size: 40px;
+    font-weight: normal;
+    text-align: center;
+}
+
+.btn-link {
+    border: 0;
+    padding: 0;
+    background: none;
+    font-size: initial;
+    color: blue;
+}
+
+.btn-link:hover {
+    color: darkblue;
+    cursor: pointer;
+}
+
+.search__wrapper {
+    padding: 1.3em .8em 1em;
+    max-width: 590px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    float: none;
+    width: 70%;
+}
+
+.search__form {
+    position: relative;
+    padding-left: .75em;
+    padding-right: 3.75em;
+    border-radius: 4px;
+    height: 2.8em;
+    background: white;
+    border: 1px solid rgba(0,0,0,0.15);
+    box-shadow: 0 2px 3px rgba(0,0,0,0.06);
+}
+
+.search-input {
+    display: block;
+    width: 100%;
+    height: 100%;
+    background: none;
+    outline: none;
+    border: none;
+    padding: 0;
+    font-size: 1.1em;
+    color: #222;
+}
+
+.search-button {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: auto;
+    outline: none;
+    border: none;
+    border-radius: 0 3px 3px 0;
+    min-width: 26px;
+    padding: 0 14px;
+    height: auto;
+}
+.search-button:hover,
+.search-button.active {
+    background: #68AC5B;
+    cursor: pointer;
+}
+.search-button svg {
+    width: 20px;
+    height: 20px;
+}
+.search-button svg path {
+    fill: #999;
+}
+.search-button:hover svg path,
+.search-button.active svg path {
+    fill: white;
+}
+
+.search-results-sql {
+    display: block;
+    margin-top: 10px;
+    font-size: 13px;
+}
+
+.search-results-data {
+    margin-top: 20px;
+}
+
+.search-results-data .item {
+    display: flex;
+    width: 100%;
+    margin: 10px 0;
+}
+
+.search-results-data .item.header {
+    padding: 5px 0;
+    font-weight: bold;
+    text-transform: capitalize;
+}
+
+.search-results-data .cell {
+    display: block;
+    flex: 1;
+}
+
+.suggestions {
+    margin-top: 10px;
+}

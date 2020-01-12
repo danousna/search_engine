@@ -25,6 +25,7 @@ public class QueryServlet extends HttpServlet {
     {
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
+        response.setHeader("Access-Control-Allow-Origin", "*");
         PrintWriter out = response.getWriter();
         JSONObject data = new JSONObject();
 
