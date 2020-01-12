@@ -153,7 +153,7 @@ public class SyntaxParser {
 
         selects = "select " + selects;
 
-        if (!params.equals("")) {
+        if (!params.equals("") || paramMotMap.size() > 0) {
             params = " where " + params;
         }
 

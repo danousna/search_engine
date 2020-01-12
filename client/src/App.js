@@ -168,9 +168,19 @@ export default class App extends Component {
                                 {data.results.map((item, index) => (
                                     <div key={index} className="item">
                                         {Object.keys(item).map(cell => (
-                                            <span key={cell} className="cell">
-                                                {item[cell]}
-                                            </span>
+                                            cell === "fichier" ? (
+                                                <a 
+                                                    key={cell} 
+                                                    className="cell"
+                                                    href={API_URL + "/" + item[cell]}
+                                                >
+                                                    {item[cell]}
+                                                </a>
+                                            ) : (
+                                                <span key={cell} className="cell">
+                                                    {item[cell]}
+                                                </span>
+                                            )
                                         ))}
                                     </div>
                                 ))}
