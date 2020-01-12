@@ -226,6 +226,14 @@
                 if (data.error) {
                   searchResultsSQL.innerHTML = "<span style=\"color: red;\">" + data.error + "</span>";
                 } else {
+                  if (data.query) {
+                    const newURL = window.location.protocol + "//" +
+                            window.location.host +
+                            window.location.pathname +
+                            '?q=' + data.query;
+                    window.history.pushState({ path: newURL }, '', newURL);
+                  }
+
                   if (data.sql) {
                     searchResultsSQL.innerHTML = data.sql;
                   }
@@ -242,11 +250,16 @@
                     for (var i = 1; i < suggestions.length; i++) {
                       var button = document.createElement("button");
                       button.innerHTML = suggestions[i];
+                      button.id = firstWord + "-" + suggestions[i];
                       button.classList.add("btn-link");
-                      button.onclick = function() {
-                        console.log("Clicked : " + suggestions[i]);
+                      button.onclick = function(e) {
+                        const idArr = e.target.id.split('-');
+                        const newURL = window.location.protocol + "//" +
+                                window.location.host +
+                                window.location.pathname +
+                                '?q=' + searchInput.value.replace(/idArr[0]/, idArr[1]);
+                        window.location.replace(newURL);
                       };
-                      console.log(button);
                       searchResultsFor.appendChild(button);
                     }
                   }
