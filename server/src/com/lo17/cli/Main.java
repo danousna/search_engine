@@ -4,6 +4,7 @@ import com.lo17.database.SQLInterface;
 import com.lo17.speller.SpellParser;
 import com.lo17.speller.SpellParserResult;
 import com.lo17.syntaxer.SyntaxParser;
+import com.lo17.syntaxer.SyntaxParserResult;
 
 import java.io.*;
 import java.util.List;
@@ -27,16 +28,16 @@ public class Main {
                 System.out.println("Simplified : " + spellParserResult.simplified);
 
                 try {
-                    String sqlRequest = syntaxParser.process(spellParserResult.simplified);
-                    System.out.println("SQL : " + sqlRequest);
+                    SyntaxParserResult result = syntaxParser.process(spellParserResult.simplified);
+                    System.out.println("SQL : " + result.sql);
 
                     System.out.println();
 
                     System.out.println("Results :");
-                    List<Map<String, String>> results = sqlInterface.query(sqlRequest);
-                    for (Map<String, String> result : results) {
-                        for (Map.Entry<String, String> entry : result.entrySet()) {
-                            System.out.print(entry.getValue());
+                    List<Map<String, String>> results = sqlInterface.query(result.sql);
+                    for (Map<String, String> entry : results) {
+                        for (Map.Entry<String, String> subEntry : entry.entrySet()) {
+                            System.out.print(subEntry.getValue());
                         }
                         System.out.println();
                     }

@@ -143,13 +143,29 @@ export default class App extends Component {
                     <div>
                         {data.suggestions && this.renderSuggestions()}
 
-                        {data.error && (
-                            <code className="search-results-sql" style={{color: "red"}}>
-                                {data.error}
-                            </code>
-                        )}
+                        <div className="search-results-meta">
+                            <div className="mb-1">
+                                Requête simplifiée :<br />
+                                {data.corrected && <code>{data.corrected}</code>}
+                            </div>
 
-                        {data.sql && <code className="search-results-sql">{data.sql}</code>}
+                            <div className="mb-1">
+                                Requête avant post-traitement :<br />
+                                {data.tree && <code>{data.tree}</code>}
+                            </div>
+
+                            <div className="mb-1">
+                                Requête SQL :<br />
+                                {data.sql && <code>{data.sql}</code>}
+                            </div>
+
+                            {data.error && (
+                                <div>
+                                    Erreur :<br />
+                                    <code style={{color: "red"}}>{data.error}</code>
+                                </div>
+                            )}
+                        </div>
                         
                         {data.results && data.results.length === 0 && (
                             <div className="search-results-data">

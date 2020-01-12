@@ -3,6 +3,7 @@ package com.lo17.server;
 import com.lo17.speller.SpellParser;
 import com.lo17.speller.SpellParserResult;
 import com.lo17.syntaxer.SyntaxParser;
+import com.lo17.syntaxer.SyntaxParserResult;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
@@ -46,8 +47,8 @@ public class SQLServlet extends HttpServlet {
             data.put("suggestions", dataSuggestions);
 
             try {
-                String sql = syntaxParser.process(spellParserResult.simplified);
-                data.put("sql", sql);
+                SyntaxParserResult result = syntaxParser.process(spellParserResult.simplified);
+                data.put("sql", result.sql);
             } catch (Exception e) {
                 data.put("error", e.toString());
             }

@@ -4,6 +4,7 @@ import com.lo17.database.SQLInterface;
 import com.lo17.speller.SpellParser;
 import com.lo17.speller.SpellParserResult;
 import com.lo17.syntaxer.SyntaxParser;
+import com.lo17.syntaxer.SyntaxParserResult;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
@@ -14,7 +15,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 import java.util.Map;
-import java.util.function.Function;
 
 public class QueryServlet extends HttpServlet {
     SpellParser spellParser = new SpellParser();
@@ -48,16 +48,18 @@ public class QueryServlet extends HttpServlet {
             }
 
             try {
-                String sql = syntaxParser.process(spellParserResult.simplified);
-                data.put("sql", sql);
+                SyntaxParserResult result = syntaxParser.process(spellParserResult.simplified);
+
+                data.put("tree", result.tree.toString());
+                data.put("sql", result.sql);
 
                 JSONArray dataResults = new JSONArray();
                 SQLInterface sqlInterface = new SQLInterface();
-                List<Map<String, String>> results = sqlInterface.query(sql);
-                for (Map<String, String> result : results) {
+                List<Map<String, String>> results = sqlInterface.query(result.sql);
+                for (Map<String, String> entry : results) {
                     JSONObject dataResult = new JSONObject();
-                    for (Map.Entry<String, String> entry : result.entrySet()) {
-                        dataResult.put(entry.getKey(), entry.getValue());
+                    for (Map.Entry<String, String> subEntry : entry.entrySet()) {
+                        dataResult.put(subEntry.getKey(), subEntry.getValue());
                     }
                     dataResults.add(dataResult);
                 }

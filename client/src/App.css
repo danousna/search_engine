@@ -26,17 +26,8 @@ h1 {
     text-align: center;
 }
 
-.btn-link {
-    border: 0;
-    padding: 0;
-    background: none;
-    font-size: initial;
-    color: blue;
-}
-
-.btn-link:hover {
-    color: darkblue;
-    cursor: pointer;
+.mb-1 {
+    margin-bottom: 10px;
 }
 
 .search__wrapper {
@@ -102,7 +93,7 @@ h1 {
     fill: white;
 }
 
-.search-results-sql {
+.search-results-meta {
     display: block;
     margin-top: 10px;
     font-size: 13px;

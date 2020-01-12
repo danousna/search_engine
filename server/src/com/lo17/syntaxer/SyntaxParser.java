@@ -43,13 +43,12 @@ public class SyntaxParser {
         return result;
     }
 
-    private String postProcessing(SQLParser parser) throws Exception {
+    private String postProcessing(Arbre tree) throws Exception {
         String selects = "";
         String tables = " from ";
+
         String params = "";
         Map<Arbre, String> paramMotMap = new LinkedHashMap<>();
-
-        Arbre tree = parser.requete().arbre.fils;
 
         while (tree != null) {
             if (tree.categorie.equals("select")) {
@@ -176,11 +175,13 @@ public class SyntaxParser {
         return query + ";";
     }
 
-    public String process(String request) throws Exception {
+    public SyntaxParserResult process(String request) throws Exception {
         SQLLexer lexer = new SQLLexer(CharStreams.fromString(request));
         CommonTokenStream tokens = new CommonTokenStream(lexer);
         SQLParser parser = new SQLParser(tokens);
+        Arbre tree = parser.requete().arbre;
+        String sql = postProcessing(tree.fils);
 
-        return postProcessing(parser);
+        return new SyntaxParserResult(tree, sql);
     }
 }
