@@ -22,7 +22,6 @@ export default class App extends Component {
             fetching: false,
             dropdownOpen: false
         };
-        this.inputRef = React.createRef();
     }
 
     /**
@@ -61,7 +60,7 @@ export default class App extends Component {
     }, 250);
 
     fetchResults(query) {
-        this.setState({fetching: true});
+        this.setState({fetching: true, dropdownOpen: false});
 
         fetch(API_URL + "/query?q=" + query, {method: "GET"}).then(res => {
             const contentType = res.headers.get("Content-Type");
@@ -116,11 +115,11 @@ export default class App extends Component {
         );
     }
 
-    handleClickOutside(e) {
-        if (this.inputRef && !this.inputRef.contains(e.target)) {
-            this.setState({dropdownOpen: false});
+    handleClickOutside = (e) => {
+        if (this.searchRef) {
+            this.setState({dropdownOpen: this.searchRef.contains(e.target)});
         }
-    }
+    };
 
     /**
      * React lifecycle.
@@ -131,7 +130,7 @@ export default class App extends Component {
         return (
             <div className="search__wrapper">
                 <h1>Recherche BE</h1>
-                <div className="search__form">
+                <div className="search__form" ref={el => this.searchRef = el}>
                     <input 
                         className="search-input" 
                         type="text" 
@@ -140,10 +139,8 @@ export default class App extends Component {
                         autoComplete="off"  
                         autoCapitalize="off" 
                         autoCorrect="off"
-                        onChange={(e) => this.setState({query: e.target.value, dropdownOpen: true})}
+                        onChange={(e) => this.setState({query: e.target.value})}
                         onKeyDown={(e) => this.fetchSQL(e.target.value)}
-                        onClick={() => this.setState({dropdownOpen: true})}
-                        ref={this.inputRef}
                     />
                     <button 
                         className={query !== "" ? "search-button active" : "search-button"}
