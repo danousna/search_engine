@@ -10,7 +10,7 @@
     </servlet>
     <servlet>
         <servlet-name>SQLServlet</servlet-name>
-        <servlet-class>com.lo17.server.SQLServlet</servlet-class>
+        <servlet-class>com.lo17.server.PredictServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>QueryServlet</servlet-name>

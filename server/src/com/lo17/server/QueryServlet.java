@@ -1,6 +1,7 @@
 package com.lo17.server;
 
 import com.lo17.database.SQLInterface;
+import com.lo17.predictor.Predictor;
 import com.lo17.speller.SpellParser;
 import com.lo17.speller.SpellParserResult;
 import com.lo17.syntaxer.SyntaxParser;
@@ -19,6 +20,7 @@ import java.util.Map;
 public class QueryServlet extends HttpServlet {
     SpellParser spellParser = new SpellParser();
     SyntaxParser syntaxParser = new SyntaxParser();
+    Predictor predictor = Predictor.getInstance();
 
     public void doGet(HttpServletRequest request, HttpServletResponse response)
         throws IOException
@@ -64,6 +66,9 @@ public class QueryServlet extends HttpServlet {
                     dataResults.add(dataResult);
                 }
                 data.put("results", results);
+
+                // Query worked, so store it to predict new ones.
+                predictor.saveQuery(query);
             } catch (Exception e) {
                 data.put("error", e.toString());
             }

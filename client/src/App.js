@@ -19,8 +19,10 @@ export default class App extends Component {
         this.state = {
             query: "",
             data: null,
-            fetching: false
+            fetching: false,
+            dropdownOpen: false
         };
+        this.inputRef = React.createRef();
     }
 
     /**
@@ -33,6 +35,15 @@ export default class App extends Component {
             this.setState({query});
             this.fetchResults(query);
         }
+
+        document.addEventListener('mousedown', this.handleClickOutside);
+    }
+
+    /**
+     * React lifecycle.
+     */
+    componentWillUnmount() {
+        document.removeEventListener('mousedown', this.handleClickOutside);
     }
 
     fetchSQL = debounce((query) => {
@@ -105,11 +116,17 @@ export default class App extends Component {
         );
     }
 
+    handleClickOutside(e) {
+        if (this.inputRef && !this.inputRef.contains(e.target)) {
+            this.setState({dropdownOpen: false});
+        }
+    }
+
     /**
      * React lifecycle.
      */
     render() {
-        const { query, data, fetching } = this.state;
+        const { query, data, fetching, dropdownOpen } = this.state;
 
         return (
             <div className="search__wrapper">
@@ -123,8 +140,10 @@ export default class App extends Component {
                         autoComplete="off"  
                         autoCapitalize="off" 
                         autoCorrect="off"
-                        onChange={(e) => this.setState({query: e.target.value})}
+                        onChange={(e) => this.setState({query: e.target.value, dropdownOpen: true})}
                         onKeyDown={(e) => this.fetchSQL(e.target.value)}
+                        onClick={() => this.setState({dropdownOpen: true})}
+                        ref={this.inputRef}
                     />
                     <button 
                         className={query !== "" ? "search-button active" : "search-button"}
@@ -135,14 +154,26 @@ export default class App extends Component {
                             <path d="M12.9 14.32a8 8 0 1 1 1.41-1.41l5.35 5.33-1.42 1.42-5.33-5.34zM8 14A6 6 0 1 0 8 2a6 6 0 0 0 0 12z"/>
                         </svg>
                     </button>
+                    {dropdownOpen && data && data.predictions && data.predictions.length > 0 && (
+                        <div className="search__predictions">
+                            {data.predictions.map(prediction => (
+                                <a 
+                                    key={prediction}
+                                    href={window.location.origin + "?q=" + prediction}
+                                    className="search__prediction" 
+                                    dangerouslySetInnerHTML={{
+                                        __html: prediction.replace(query, `<span style="font-weight: normal;">${query}</span>`)
+                                    }}
+                                ></a>
+                            ))}
+                        </div>
+                    )}
                 </div>
 
                 {fetching && <div className="search-results-data">Chargement...</div>}
 
                 {data && !fetching && (
                     <div>
-                        {data.suggestions && this.renderSuggestions()}
-
                         <div className="search-results-meta">
                             <div className="mb-1">
                                 Requête simplifiée :<br />
@@ -166,6 +197,8 @@ export default class App extends Component {
                                 </div>
                             )}
                         </div>
+
+                        {data.suggestions && this.renderSuggestions()}
                         
                         {data.results && data.results.length === 0 && (
                             <div className="search-results-data">

@@ -1,7 +1,5 @@
 package com.lo17.speller;
 
-import com.lo17.util.Utilities;
-
 import java.io.*;
 import java.net.URL;
 import java.util.*;
