@@ -44,7 +44,7 @@ public class PredictServlet extends HttpServlet {
             }
 
             JSONArray predictions = new JSONArray();
-            predictions.addAll(predictor.predict(query));
+            predictions.addAll(predictor.predict(query).keySet());
             data.put("predictions", predictions);
         }
 

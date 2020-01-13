@@ -2,13 +2,14 @@ package com.lo17.predictor;
 
 import java.io.*;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 public class Predictor {
     private static final Predictor instance = new Predictor();
 
-    List<String> data = new ArrayList<>();
+    Map<String, Integer> data = new LinkedHashMap<>();
 
     private Predictor() {
         BufferedReader br = null;
@@ -22,7 +23,8 @@ public class Predictor {
                 if (queriesRes != null) {
                     br = new BufferedReader(new FileReader(queriesRes.getFile()));
                     while ((query = br.readLine()) != null) {
-                        data.add(query);
+                        String[] entry = query.split(";");
+                        data.put(entry[0], Integer.parseInt(entry[1]));
                     }
                 }
             }
@@ -42,28 +44,28 @@ public class Predictor {
         return instance;
     }
 
-    public void saveQuery(String query) {
-        if (!data.contains(query)) {
+    public void saveQuery(String query, Integer resultsNumber) {
+        if (resultsNumber == 0) {
+            return;
+        }
+
+        if (!data.containsKey(query)) {
             try {
                 File file = new File("/Users/Natan/Developer/search_engine_lo17/server/res/queries.txt");
-                System.out.println(file.getAbsolutePath());
                 FileWriter fileWriter = new FileWriter(file, true);
-                fileWriter.write("\n" + query);
+                fileWriter.write(query + ";" + resultsNumber + "\n");
                 fileWriter.close();
-                data.add(query);
+                data.put(query, resultsNumber);
             } catch (IOException e) {
                 System.out.println("IO Exception");
             }
         }
     }
 
-    public List<String> predict(String query) {
-        List<String> results = new ArrayList<>();
-        for (String q : data) {
-            if (q.startsWith(query)) {
-                results.add(q);
-            }
-        }
-        return results;
+    public Map<String, Integer> predict(String query) {
+        return data.entrySet().stream()
+                .filter(x -> x.getKey().startsWith(query))
+                .sorted(Map.Entry.<String, Integer>comparingByValue().reversed())
+                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
     }
 }

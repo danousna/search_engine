@@ -68,7 +68,7 @@ public class QueryServlet extends HttpServlet {
                 data.put("results", results);
 
                 // Query worked, so store it to predict new ones.
-                predictor.saveQuery(query);
+                predictor.saveQuery(query, results.size());
             } catch (Exception e) {
                 data.put("error", e.toString());
             }
