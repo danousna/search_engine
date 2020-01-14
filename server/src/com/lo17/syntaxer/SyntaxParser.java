@@ -92,7 +92,9 @@ public class SyntaxParser {
                                     );
                                 }
                             } else if (param.categorie.equals("conj")) {
-                                params += " " + param.fils.mot + " ";
+                                if (!flagMot) {
+                                    params += " " + param.fils.mot + " ";
+                                }
                             } else if (param.categorie.equals("comp")) {
                                 // On stocke le comparateur pour ensuite le traiter au prochain fils de catégorie var_date.
                                 compName = param.mot;
