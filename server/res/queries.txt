@@ -1,2 +1,8 @@
 Je veux les articles datant de 2012 et parlant de chercheur;59
 Je veux les articles datant de 2012;107
+Je veux les articles datant de 2012 et parlant de chercheur ou cellule;61
+Je veux les articles datant de 2012 et parlant de chercheur et cellule;10
+Je veux les articles parlant de chercheur ou datant de 2012;218
+Je veux les articles parlant de chercheur et datant de 2012;59
+Je veux les articles parlant de chercheur et de cellule et datant de 2012;10
+Je veux les articles datant de 2012 et parlant de chercheur et de cellule;10

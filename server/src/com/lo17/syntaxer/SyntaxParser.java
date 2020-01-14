@@ -49,6 +49,7 @@ public class SyntaxParser {
 
         String params = "";
         Map<Arbre, String> paramMotMap = new LinkedHashMap<>();
+        String paramMotSavedConj = null;
 
         while (tree != null) {
             if (tree.categorie.equals("select")) {
@@ -62,6 +63,7 @@ public class SyntaxParser {
                 Arbre fils = tree.fils;
                 String firstTableName = "";
                 String compName = null;
+                boolean flagMot = false;
 
                 do {
                     if (fils.categorie.equals("param")) {
@@ -122,6 +124,9 @@ public class SyntaxParser {
                             }
                             else if (param.categorie.equals("mot=")) {
                                 String joinType = "";
+
+                                flagMot = true;
+
                                 if (param.frere != null && param.frere.categorie.equals("conj")) {
                                     if (param.frere.fils.mot.equals("and")) {
                                         joinType = " intersect ";
@@ -140,7 +145,11 @@ public class SyntaxParser {
                             param = param.frere;
                         } while (param != null);
                     } else if (fils.categorie.equals("conj")) {
-                        params += " " + fils.fils.mot + " ";
+                        if (flagMot) {
+                            paramMotSavedConj = fils.fils.mot;
+                        } else {
+                            params += " " + fils.fils.mot + " ";
+                        }
                     }
 
                     fils = fils.frere;
@@ -154,6 +163,10 @@ public class SyntaxParser {
 
         if (!params.equals("") || paramMotMap.size() > 0) {
             params = " where " + params;
+
+            if (paramMotSavedConj != null) {
+                params += " " + paramMotSavedConj + " ";
+            }
         }
 
         String query = selects + tables + params;
