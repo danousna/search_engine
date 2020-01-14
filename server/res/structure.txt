@@ -28,6 +28,10 @@ dater;date
 dates;date
 publié;date
 publiés;date
+paru;date
+parus;date
+jusqu'a;jusque
+d'avant;avant
 rubrique;rubrique
 rubriques;rubrique
 titre:titre

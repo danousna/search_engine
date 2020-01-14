@@ -6,3 +6,15 @@ Je veux les articles parlant de chercheur ou datant de 2012;218
 Je veux les articles parlant de chercheur et datant de 2012;59
 Je veux les articles parlant de chercheur et de cellule et datant de 2012;10
 Je veux les articles datant de 2012 et parlant de chercheur et de cellule;10
+Je veux les articles parlant de chercheur et de cellule et publiés avant janvier 2013;16
+Je veux les articles datant de 2012 et parlant de chercheur ou accle;59
+Je veux les articles datant de 2012 et parlant de chercheur ou facile;59
+Je veux les articles datant de 2012 et parlant de chercheur ou accrue;59
+Je veux les articles et les rubriques parlant de chercheur ou accrue et datant de 2012;59
+Combien d'articles parlent de chercheur ou accrue et datant de 2012;2
+Combien d'articles parlent de chercheur et datant de 2012;1
+Je veux les articles parlant de accle;2
+Je veux les articles parlant de tradu;5
+Je veux les articles parlant de tradutea;2
+Je veux les articles datant de 2012 ou de 2013 et parlant de tradutea;109
+Je veux les articles datant entre 2012 et 2013;107

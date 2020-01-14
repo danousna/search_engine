@@ -30,12 +30,12 @@ public class SyntaxParser {
         }
 
         // on a forcément l'info de l'année selon notre grammaire.
-        String result = String.format("((annee%s'%s')", comp, date[2]);
+        String result = String.format("((annee%s%s)", comp, date[2]);
         if (date[1] != null) {
-            result += String.format(" or (annee='%s' and mois%s'%s')", date[2], comp, date[1]);
+            result += String.format(" or (annee=%s and mois%s%s)", date[2], comp, date[1]);
         }
         if (date[0] != null) {
-            result += String.format(" or (annee='%s' and mois='%s' and jour%s'%s')", date[2], date[1], comp, date[0]);
+            result += String.format(" or (annee=%s and mois=%s and jour%s%s)", date[2], date[1], comp, date[0]);
         }
 
         result += ")";
@@ -92,7 +92,7 @@ public class SyntaxParser {
                                     );
                                 }
                             } else if (param.categorie.equals("conj")) {
-                                params += " " + param.mot + " ";
+                                params += " " + param.fils.mot + " ";
                             } else if (param.categorie.equals("comp")) {
                                 // On stocke le comparateur pour ensuite le traiter au prochain fils de catégorie var_date.
                                 compName = param.mot;

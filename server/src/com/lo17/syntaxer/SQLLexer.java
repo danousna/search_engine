@@ -1,4 +1,4 @@
-// Generated from /Users/Natan/Developer/search_engine_lo17/src/com/lo17/syntaxer/SQL.g4 by ANTLR 4.7.2
+// Generated from /Users/Natan/Developer/search_engine_lo17/server/src/com/lo17/syntaxer/SQL.g4 by ANTLR 4.7.2
 package com.lo17.syntaxer;
 import org.antlr.v4.runtime.Lexer;
 import org.antlr.v4.runtime.CharStream;

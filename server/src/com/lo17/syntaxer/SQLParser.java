@@ -1,4 +1,4 @@
-// Generated from /Users/Natan/Developer/search_engine_lo17/src/com/lo17/syntaxer/SQL.g4 by ANTLR 4.7.2
+// Generated from /Users/Natan/Developer/search_engine_lo17/server/src/com/lo17/syntaxer/SQL.g4 by ANTLR 4.7.2
 package com.lo17.syntaxer;
 import org.antlr.v4.runtime.atn.*;
 import org.antlr.v4.runtime.dfa.DFA;
@@ -484,7 +484,6 @@ public class SQLParser extends Parser {
 		public TerminalNode DATE_BEFORE() { return getToken(SQLParser.DATE_BEFORE, 0); }
 		public TerminalNode DATE_FROM() { return getToken(SQLParser.DATE_FROM, 0); }
 		public TerminalNode DATE_AFTER() { return getToken(SQLParser.DATE_AFTER, 0); }
-		public TerminalNode CONJ_AND() { return getToken(SQLParser.CONJ_AND, 0); }
 		public TerminalNode DATE_BETWEEN() { return getToken(SQLParser.DATE_BETWEEN, 0); }
 		public ParamContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -819,14 +818,14 @@ public class SQLParser extends Parser {
 				setState(179);
 				((ParamContext)_localctx).var_date_1 = var_date();
 				setState(180);
-				match(CONJ_AND);
+				((ParamContext)_localctx).conj1 = conj();
 				setState(181);
 				((ParamContext)_localctx).var_date_2 = var_date();
 
 							_localctx.arbre.ajouteFils(new Arbre("table", "date"));
 							_localctx.arbre.ajouteFils(new Arbre("comp", ">="));
 							_localctx.arbre.ajouteFils(((ParamContext)_localctx).var_date_1.arbre);
-							_localctx.arbre.ajouteFils(new Arbre("conj", "and"));
+							_localctx.arbre.ajouteFils(((ParamContext)_localctx).conj1.arbre);
 							_localctx.arbre.ajouteFils(new Arbre("comp", "<"));
 							_localctx.arbre.ajouteFils(((ParamContext)_localctx).var_date_2.arbre);
 						
@@ -1170,7 +1169,7 @@ public class SQLParser extends Parser {
 		"\u00a8\3\2\2\2\u00ad\u00ae\3\2\2\2\u00ae\u00af\5\f\7\2\u00af\u00b0\b\5"+
 		"\1\2\u00b0\u00bb\3\2\2\2\u00b1\u00b3\7\16\2\2\u00b2\u00b1\3\2\2\2\u00b2"+
 		"\u00b3\3\2\2\2\u00b3\u00b4\3\2\2\2\u00b4\u00b5\7\23\2\2\u00b5\u00b6\5"+
-		"\f\7\2\u00b6\u00b7\7\t\2\2\u00b7\u00b8\5\f\7\2\u00b8\u00b9\b\5\1\2\u00b9"+
+		"\f\7\2\u00b6\u00b7\5\n\6\2\u00b7\u00b8\5\f\7\2\u00b8\u00b9\b\5\1\2\u00b9"+
 		"\u00bb\3\2\2\2\u00baL\3\2\2\2\u00ba]\3\2\2\2\u00ban\3\2\2\2\u00ba|\3\2"+
 		"\2\2\u00ba\u008a\3\2\2\2\u00ba\u00ac\3\2\2\2\u00ba\u00b2\3\2\2\2\u00bb"+
 		"\t\3\2\2\2\u00bc\u00bd\7\b\2\2\u00bd\u00c1\b\6\1\2\u00be\u00bf\7\t\2\2"+

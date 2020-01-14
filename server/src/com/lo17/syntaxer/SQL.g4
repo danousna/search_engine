@@ -156,13 +156,13 @@ param returns [Arbre arbre = new Arbre("param")] :
 	    DATE?
 		var_date_comp = DATE_BETWEEN
 		var_date_1 = var_date
-		CONJ_AND
+		conj1=conj
 		var_date_2 = var_date
 		{
 			$arbre.ajouteFils(new Arbre("table", "date"));
 			$arbre.ajouteFils(new Arbre("comp", ">="));
 			$arbre.ajouteFils($var_date_1.arbre);
-			$arbre.ajouteFils(new Arbre("conj", "and"));
+			$arbre.ajouteFils($conj1.arbre);
 			$arbre.ajouteFils(new Arbre("comp", "<"));
 			$arbre.ajouteFils($var_date_2.arbre);
 		}
