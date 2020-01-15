@@ -96,9 +96,9 @@ export default class App extends Component {
 
         return (
             <div className="suggestions">
-                Résultats pour <i>{firstWord}</i>.<br />
+                Résultats pour <i>{suggestions[0]}</i>.<br />
                 Essayez avec les orthographes suivantes :
-                {suggestions.map(suggestion => (
+                {suggestions.map((suggestion, index) => index !== 0 && (
                     <React.Fragment key={suggestion}>
                         &nbsp;
                         <a href={

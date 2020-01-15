@@ -106,7 +106,7 @@ public class CorpusLexer {
                     dp[i][j] = CorpusLexer.min(
                             dp[i - 1][j - 1] + costOfSubstitution,
                             dp[i - 1][j] + 1,
-                            dp[i][j - 1] + 1    
+                            dp[i][j - 1] + 1
                     );
 
                     // Damerau
