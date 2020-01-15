@@ -40,3 +40,5 @@ Quels sont les articles qui contiennent tradutea ?;2
 Quels sont les articles qui contiennent traduire ?;5
 Quels sont les articles qui contiennent traduit ?;5
 Quels sont les articles qui contiennent traduira ?;1
+Quels sont les articles qui parlent d'enseignement et d'école et qui datent de 2012 ?;4
+Je veux les rubriques dont le texte contient innovation.;10
