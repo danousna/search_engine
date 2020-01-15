@@ -18,3 +18,17 @@ Je veux les articles parlant de tradu;5
 Je veux les articles parlant de tradutea;2
 Je veux les articles datant de 2012 ou de 2013 et parlant de tradutea;109
 Je veux les articles datant entre 2012 et 2013;107
+Je veux les articles datant entre 2012 et 2013 et parlant de tédé;1
+Je veux les articles datant apres 2012;150
+Combien de rubriques parlent d'innovation;1
+Combien de rubriques parlent de recherche;1
+Combien de rubriques parlent d'enseignement;1
+Combien de rubriques parlent de science;1
+Combien de rubriques parlent de chercheur;1
+Je veux les articles publiés entre 2012 et 2013;107
+Je veux les articles publiés entre janvier 2012 et mars 2012;19
+Je veux les articles parlant de hexa;4
+Je veux les articles parlant de heax;1
+Je veux les articles parlant de hxeagon;4
+Je veux les articles qui parlent de respect et qui datent du 26/03/2012.;2
+Combien d'articles ont été publiés entre juin 2012 et novembre 2013 ?;1

@@ -82,6 +82,8 @@ public class CorpusLexer {
         return result;
     }
 
+
+
     public static int levenshtein(String wordA, String wordB) {
         int[][] dp = new int[wordA.length() + 1][wordB.length() + 1];
         int costOfSubstitution = 1;
@@ -104,8 +106,16 @@ public class CorpusLexer {
                     dp[i][j] = CorpusLexer.min(
                             dp[i - 1][j - 1] + costOfSubstitution,
                             dp[i - 1][j] + 1,
-                            dp[i][j - 1] + 1
+                            dp[i][j - 1] + 1    
                     );
+
+                    // Damerau
+                    if (i > 1 && j > 1 && wordA.charAt(i - 1) == wordB.charAt(j - 2) && wordA.charAt(i - 2) == wordB.charAt(j - 1)) {
+                        dp[i][j] = CorpusLexer.min(
+                            dp[i][j],
+                            dp[i - 2][j - 2] + costOfSubstitution
+                        );
+                    }
                 }
             }
         }
@@ -179,5 +189,9 @@ public class CorpusLexer {
                 throw new Error("Aucun mot trouvé.");
             }
         }
+    }
+
+    public static void main(String[] args) {
+        System.out.println(CorpusLexer.levenshtein("hxeagon", "hexagon"));
     }
 }
